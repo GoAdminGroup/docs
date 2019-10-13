@@ -219,6 +219,12 @@ type Config struct {
 
 	// Custom html after body.
 	CustomFootHtml template.HTML `json:"custom_foot_html"`
+
+	// Login page title
+	LoginTitle string `json:"login_title"`
+
+	// Login page logo
+	LoginLogo template.HTML `json:"login_logo"`
 }
 
 ```

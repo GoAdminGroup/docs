@@ -17,11 +17,11 @@ Download the binary excecute file:
 
 |  File name   | OS  | Arch  | Size  |
 |  ----  | ----  | ----  |----  |
-| [admincli_darwin_x86_64_v1.0.0-beta.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0_beta_1/admincli_darwin_x86_64_v1.0.0-beta.1.zip)  | macOs | x86-64 | 9.51 MB
-| [admincli_linux_x86_64_v1.0.0-beta.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0_beta_1/admincli_linux_x86_64_v1.0.0-beta.1.zip)  | Linux | x86-64   | 6.47 MB
-| [admincli_linux_armel_v1.0.0-beta.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0_beta_1/admincli_linux_armel_v1.0.0-beta.1.zip)  | Linux | x86   | 6.02 MB
-| [admincli_windows_i386_v1.0.0-beta.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0_beta_1/admincli_windows_i386_v1.0.0-beta.1.zip)  | Windows | x86  |6.12 MB
-| [admincli_windows_x86_64_v1.0.0-beta.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0_beta_1/admincli_windows_x86_64_v1.0.0-beta.1.zip)  | Windows | x86-64   |6.33 MB
+| [admincli_darwin_x86_64_v1.0.0.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0/admincli_darwin_x86_64_v1.0.0.zip)  | macOs | x86-64 | 4.75 MB
+| [admincli_linux_x86_64_v1.0.0.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0/admincli_linux_x86_64_v1.0.0.zip)  | Linux | x86-64   | 6.47 MB
+| [admincli_linux_armel_v1.0.0.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0/admincli_linux_armel_v1.0.0.zip)  | Linux | x86   | 6.02 MB
+| [admincli_windows_i386_v1.0.0.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0/admincli_windows_i386_v1.0.0.zip)  | Windows | x86  |6.12 MB
+| [admincli_windows_x86_64_v1.0.0.zip](http://file.go-admin.cn/go_admin/cli/v1_0_0/admincli_windows_x86_64_v1.0.0.zip)  | Windows | x86-64   |6.33 MB
 
 
 

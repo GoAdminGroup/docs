@@ -93,7 +93,7 @@ func main() {
 
 注意：golang版本高于1.11强烈建议开启```GO111MODULE=on```，如果运行下载依赖有问题，这里提供了依赖包下载：
 
-- [vendorv1.0.0-beta.1.zip](http://file.go-admin.cn/go_admin/vendor/v1_0_0_beta_1/vendor.zip)
+- [vendor_v1.0.0.zip](http://file.go-admin.cn/go_admin/vendor/v1_0_0/vendor.zip)
 
 更多框架的例子可以看：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
 
@@ -201,6 +201,12 @@ type Config struct {
 
 	// 自定义尾部js/css
 	CustomFootHtml template.HTML `json:"custom_foot_html"`
+
+	// 登录页面标题
+	LoginTitle string `json:"login_title"`
+
+	// 登录页面logo
+	LoginLogo template.HTML `json:"login_logo"`
 }
 
 ```

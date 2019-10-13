@@ -1,0 +1,4 @@
+# GoAdmin Docs
+
+GoAdmin docs
+

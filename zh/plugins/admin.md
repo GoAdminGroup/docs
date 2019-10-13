@@ -451,7 +451,7 @@ Options: []map[string]string{
 
 其中，field为字段名，value为选择对应的值。
 
-### 过滤函数FilterFn与表单过滤函数PostFilterFn与处理函数ProcessFn说明
+### 过滤函数FilterFn与表单过滤函数PostFilterFn说明
 
 ```go
 // FieldModel 其中ID为主键，Value为对应的字段在该主键下的值

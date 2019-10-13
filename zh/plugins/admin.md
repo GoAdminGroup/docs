@@ -143,27 +143,106 @@ func main() {
 ## 业务数据表生成方法文件介绍
 
 ```go
-package main
+package datamodel
 
 import (
+	"fmt"
+	"github.com/GoAdminGroup/go-admin/modules/db"
+	form2 "github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
+	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
 	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
+	"github.com/GoAdminGroup/go-admin/template/types/form"
 )
 
-func GetUsersTable() (usersTable models.Table) {
+func GetUserTable() (userTable table.Table) {
 
-	userTable = models.NewDefaultTable(models.DefaultTableConfig)
-	usersTable.GetInfo().FieldList = []types.Field{}
+	// 设置模型配置
+	userTable = table.NewDefaultTable(table.Config{
+		Driver:     db.DriverMysql,
+		CanAdd:     true,  // 是否可以新增
+		Editable:   true,  // 是否可以编辑
+		Deletable:  true,  // 是否可以删除
+		Exportable: true,  // 是否可以导出为excel
+		Connection: table.DefaultConnectionName,
+		PrimaryKey: table.PrimaryKey{
+			Type: db.Int,
+			Name: table.DefaultPrimaryKeyName,
+		},
+	})
 
-	usersTable.GetInfo().Table = "users"
-	usersTable.GetInfo().Title = "Users"
-	usersTable.GetInfo().Description = "Users"
+	info := userTable.GetInfo()
 
-	usersTable.GetForm().FormList = []types.Form{}
+	// 设置主键id为可排序
+	info.AddField("ID", "id", db.Int).FieldSortable(true)
+	info.AddField("Name", "name", db.Varchar)
 
-	usersTable.GetForm().Table = "users"
-	usersTable.GetForm().Title = "Users"
-	usersTable.GetForm().Description = "Users"
+	// 使用 FieldDisplay 过滤性别显示
+	info.AddField("Gender", "gender", db.Tinyint).FieldDisplay(func(model types.FieldModel) interface{} {
+		if model.Value == "0" {
+			return "men"
+		}
+		if model.Value == "1" {
+			return "women"
+		}
+		return "unknown"
+	})
+	
+	info.AddField("Phone", "phone", db.Varchar)
+	info.AddField("City", "city", db.Varchar)
+	info.AddField("createdAt", "created_at", db.Timestamp)
+	info.AddField("updatedAt", "updated_at", db.Timestamp)
+
+	// 设置表格页面标题和描述，以及对应sql表名
+	info.SetTable("users").SetTitle("Users").SetDescription("Users")
+
+	formList := userTable.GetForm()
+
+	// 设置主键Id不可以编辑
+	formList.AddField("ID", "id", db.Int, form.Default).FieldEditable(false)
+	formList.AddField("Ip", "ip", db.Varchar, form.Text)
+	formList.AddField("Name", "name", db.Varchar, form.Text)
+
+	// 使用 FieldOptions 设置 radio 类型内容
+	formList.AddField("Gender", "gender", db.Tinyint, form.Radio).
+		FieldOptions([]map[string]string{
+			{
+				"field":    "gender",
+				"label":    "male",
+				"value":    "0",
+				"selected": "true",
+			}, {
+				"field":    "gender",
+				"label":    "female",
+				"value":    "1",
+				"selected": "false",
+			},
+		})
+	formList.AddField("Phone", "phone", db.Varchar, form.Text)
+	formList.AddField("City", "city", db.Varchar, form.Text)
+
+	// 自定义一个表单字段，使用 FieldPostFilterFn 可以进行连表操作
+	formList.AddField("Custom Field", "role", db.Varchar, form.Text).
+		FieldPostFilterFn(func(value types.PostFieldModel) string {
+			fmt.Println("user custom field", value)
+			return ""
+		})
+
+	formList.AddField("updatedAt", "updated_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+	formList.AddField("createdAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+
+	// 使用 SetTabGroups 将表单分为几部分tab显示
+	userTable.GetForm().SetTabGroups(types.
+		NewTabGroups("id", "ip", "name", "gender", "city").
+		AddGroup("phone", "role", "created_at", "updated_at")).
+		SetTabHeaders("profile1", "profile2")
+
+	// 设置表单页面标题和描述，以及对应sql表名
+	formList.SetTable("users").SetTitle("Users").SetDescription("Users")
+
+	// 使用 SetPostHook 设置表单提交后的触发操作
+	formList.SetPostHook(func(values form2.Values) {
+		fmt.Println("userTable.GetForm().PostHook", values)
+	})
 
 	return
 }

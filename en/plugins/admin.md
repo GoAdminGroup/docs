@@ -142,27 +142,106 @@ After running, access the login URL, enter the menu management page, and set the
 ## Introduction to the business data table generation method file
 
 ```go
-package main
+package datamodel
 
 import (
+	"fmt"
+	"github.com/GoAdminGroup/go-admin/modules/db"
+	form2 "github.com/GoAdminGroup/go-admin/plugins/admin/modules/form"
+	"github.com/GoAdminGroup/go-admin/plugins/admin/modules/table"
 	"github.com/GoAdminGroup/go-admin/template/types"
-	"github.com/GoAdminGroup/go-admin/plugins/admin/models"
+	"github.com/GoAdminGroup/go-admin/template/types/form"
 )
 
-func GetUsersTable() (usersTable models.Table) {
+func GetUserTable() (userTable table.Table) {
 
-	userTable = models.NewDefaultTable(models.DefaultTableConfig)
-	usersTable.GetInfo().FieldList = []types.Field{}
+	// config the table model.
+	userTable = table.NewDefaultTable(table.Config{
+		Driver:     db.DriverMysql,
+		CanAdd:     true,
+		Editable:   true,
+		Deletable:  true,
+		Exportable: true,
+		Connection: table.DefaultConnectionName,
+		PrimaryKey: table.PrimaryKey{
+			Type: db.Int,
+			Name: table.DefaultPrimaryKeyName,
+		},
+	})
 
-	usersTable.GetInfo().Table = "users"
-	usersTable.GetInfo().Title = "Users"
-	usersTable.GetInfo().Description = "Users"
+	info := userTable.GetInfo()
 
-	usersTable.GetForm().FormList = []types.Form{}
+	// set id sortable.
+	info.AddField("ID", "id", db.Int).FieldSortable(true)
+	info.AddField("Name", "name", db.Varchar)
 
-	usersTable.GetForm().Table = "users"
-	usersTable.GetForm().Title = "Users"
-	usersTable.GetForm().Description = "Users"
+	// use FieldDisplay.
+	info.AddField("Gender", "gender", db.Tinyint).FieldDisplay(func(model types.FieldModel) interface{} {
+		if model.Value == "0" {
+			return "men"
+		}
+		if model.Value == "1" {
+			return "women"
+		}
+		return "unknown"
+	})
+	
+	info.AddField("Phone", "phone", db.Varchar)
+	info.AddField("City", "city", db.Varchar)
+	info.AddField("createdAt", "created_at", db.Timestamp)
+	info.AddField("updatedAt", "updated_at", db.Timestamp)
+
+	// set the title and description of table page.
+	info.SetTable("users").SetTitle("Users").SetDescription("Users")
+
+	formList := userTable.GetForm()
+
+	// set id editable is false.
+	formList.AddField("ID", "id", db.Int, form.Default).FieldEditable(false)
+	formList.AddField("Ip", "ip", db.Varchar, form.Text)
+	formList.AddField("Name", "name", db.Varchar, form.Text)
+
+	// use FieldOptions.
+	formList.AddField("Gender", "gender", db.Tinyint, form.Radio).
+		FieldOptions([]map[string]string{
+			{
+				"field":    "gender",
+				"label":    "male",
+				"value":    "0",
+				"selected": "true",
+			}, {
+				"field":    "gender",
+				"label":    "female",
+				"value":    "1",
+				"selected": "false",
+			},
+		})
+	formList.AddField("Phone", "phone", db.Varchar, form.Text)
+	formList.AddField("City", "city", db.Varchar, form.Text)
+
+	// add a custom field and use FieldPostFilterFn to do more things.
+	formList.AddField("Custom Field", "role", db.Varchar, form.Text).
+		FieldPostFilterFn(func(value types.PostFieldModel) string {
+			fmt.Println("user custom field", value)
+			return ""
+		})
+
+	formList.AddField("updatedAt", "updated_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+	formList.AddField("createdAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+
+	// use SetTabGroups to group a form into tabs.
+	userTable.GetForm().SetTabGroups(types.
+		NewTabGroups("id", "ip", "name", "gender", "city").
+		AddGroup("phone", "role", "created_at", "updated_at")).
+		SetTabHeaders("profile1", "profile2")
+
+	// set the title and description of form page.
+	formList.SetTable("users").SetTitle("Users").SetDescription("Users")
+
+	// use SetPostHook to add operation when form posted.
+	formList.SetPostHook(func(values form2.Values) {
+		fmt.Println("userTable.GetForm().PostHook", values)
+	})
 
 	return
 }

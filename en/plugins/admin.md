@@ -452,5 +452,5 @@ type PostFieldFilterFn func(value PostFieldModel) string
 
 <br>
 
-> English is not my main language. If any typo or wrong translation you found, you can send a [issue](https://github.com/GoAdminGroup/go-admin-docs/issues/new) to me or make a pr. I will very appreciate it.
+> English is not my main language. If any typo or wrong translation you found, you can help to translate in [github here](https://github.com/GoAdminGroup/docs). I will very appreciate it.
 

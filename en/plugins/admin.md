@@ -192,7 +192,8 @@ func GetUserTable() (userTable table.Table) {
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
 
 	// set the title and description of table page.
-	info.SetTable("users").SetTitle("Users").SetDescription("Users")
+	info.SetTable("users").SetTitle("Users").SetDescription("Users").
+		SetAction(template.HTML(`<a href="http://google.com"><i class="fa fa-google"></i></a>`))  // custom operation button
 
 	formList := userTable.GetForm()
 

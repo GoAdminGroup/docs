@@ -193,7 +193,8 @@ func GetUserTable() (userTable table.Table) {
 	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
 
 	// 设置表格页面标题和描述，以及对应sql表名
-	info.SetTable("users").SetTitle("Users").SetDescription("Users")
+	info.SetTable("users").SetTitle("Users").SetDescription("Users").
+		SetAction(template.HTML(`<a href="http://google.com"><i class="fa fa-google"></i></a>`))  // 自定义操作按钮
 
 	formList := userTable.GetForm()
 

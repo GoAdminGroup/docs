@@ -29,7 +29,7 @@ type WebFrameWork interface {
 **Use**接收两个参数，第一个参数类型为**interface{}**，是web框架的context，第二参数为插件数组。返回值是一个**error**。
 **Use**的作用是利用传入的插件数组，将web框架的路由与将插件数组中的控制器方法关联起来，实现web框架与GoAdmin插件方法的对应。比如插件example中：
 
-```
+```go
 "/admin/example" => ShowExample(ctx *context.Context)
 ```
 
@@ -41,7 +41,7 @@ type WebFrameWork interface {
 
 类型如下：
 
-```
+```go
 type GetPanel func(ctx interface{}) (Panel, error)
 ```
 

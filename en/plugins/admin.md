@@ -188,8 +188,8 @@ func GetUserTable() (userTable table.Table) {
 	
 	info.AddField("Phone", "phone", db.Varchar)
 	info.AddField("City", "city", db.Varchar)
-	info.AddField("createdAt", "created_at", db.Timestamp)
-	info.AddField("updatedAt", "updated_at", db.Timestamp)
+	info.AddField("CreatedAt", "created_at", db.Timestamp)
+	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
 
 	// set the title and description of table page.
 	info.SetTable("users").SetTitle("Users").SetDescription("Users")
@@ -226,11 +226,11 @@ func GetUserTable() (userTable table.Table) {
 			return ""
 		})
 
-	formList.AddField("updatedAt", "updated_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
-	formList.AddField("createdAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+	formList.AddField("UpdatedAt", "updated_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+	formList.AddField("CreatedAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
 
 	// use SetTabGroups to group a form into tabs.
-	userTable.GetForm().SetTabGroups(types.
+	formList.SetTabGroups(types.
 		NewTabGroups("id", "ip", "name", "gender", "city").
 		AddGroup("phone", "role", "created_at", "updated_at")).
 		SetTabHeaders("profile1", "profile2")

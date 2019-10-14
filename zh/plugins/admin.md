@@ -189,8 +189,8 @@ func GetUserTable() (userTable table.Table) {
 	
 	info.AddField("Phone", "phone", db.Varchar)
 	info.AddField("City", "city", db.Varchar)
-	info.AddField("createdAt", "created_at", db.Timestamp)
-	info.AddField("updatedAt", "updated_at", db.Timestamp)
+	info.AddField("CreatedAt", "created_at", db.Timestamp)
+	info.AddField("UpdatedAt", "updated_at", db.Timestamp)
 
 	// 设置表格页面标题和描述，以及对应sql表名
 	info.SetTable("users").SetTitle("Users").SetDescription("Users")
@@ -227,11 +227,11 @@ func GetUserTable() (userTable table.Table) {
 			return ""
 		})
 
-	formList.AddField("updatedAt", "updated_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
-	formList.AddField("createdAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+	formList.AddField("UpdatedAt", "updated_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
+	formList.AddField("CreatedAt", "created_at", db.Timestamp, form.Default).FieldNotAllowAdd(true)
 
 	// 使用 SetTabGroups 将表单分为几部分tab显示
-	userTable.GetForm().SetTabGroups(types.
+	formList.SetTabGroups(types.
 		NewTabGroups("id", "ip", "name", "gender", "city").
 		AddGroup("phone", "role", "created_at", "updated_at")).
 		SetTabHeaders("profile1", "profile2")

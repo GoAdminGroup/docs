@@ -9,11 +9,20 @@
   * [插件的使用](plugins/plugins)    
   * [Admin插件使用](plugins/admin) 
 
+* Admin插件
+
+  * [设置菜单](menus)
+  * [权限管理](rbac)
+
 * 页面介绍
 
   * [页面模块化](pages/modules)    
   * [自定义页面](pages/pages)   
-  * [修改登录界面](pages/login)   
+  * [修改登录界面](pages/login)
+
+* 项目架构
+
+  * [架构介绍](architecture/introduction)
 
 * 参与项目开发
 
@@ -24,9 +33,5 @@
     * [模板介绍](development/template/template)     
     * [表单组件开发](development/template/form)         
     * [组件开发](development/template/components) 
-
-* [设置菜单](menus)
-
-* [权限管理](rbac)
 
 * [发展规划](plan)

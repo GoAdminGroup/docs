@@ -10,19 +10,20 @@
 
 有同学就说虽然不需要前端，可是现在Adminlte的主题有些陈旧不够好看。很兴奋告诉大家，更多的超好看的主题正在路上，完全能够满足大部分个性化的需求，覆盖不同的设计风格，只要市面上能看到的好看的管理后台界面，我们都将逐步制作成为主题，只需要在配置中一个设置即可拥有。
 
-总而言之，可以理解```GoAdmin```是基于```golang```的grafana，一个为生产效率而生的框架。
+总而言之，可以理解```GoAdmin```是基于```golang```的```grafana```，一个为生产效率而生的框架。
 
 这里有一个极其简单的例子：[https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
 
 ## 特性
 
-- 内置完善的权限系统
+- 内置完善的rbac权限系统
 - 支持多个web框架接入
+- 本地化支持
 - 整个系统可以编译成一个二进制文件
 - 提供多个插件（开发中）
 - 多个好看的ui主题（目前支持Adminlte，更多主题开发中）
 
-## Demo
+## 线上Demo
 
 [http://demo.go-admin.cn/admin](http://demo.go-admin.cn/admin)
 

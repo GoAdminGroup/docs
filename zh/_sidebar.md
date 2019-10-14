@@ -11,8 +11,8 @@
 
 * Admin插件
 
-  * [设置菜单](menus)
-  * [权限管理](rbac)
+  * [设置菜单](admin/menus)
+  * [权限管理](admin/rbac)
 
 * 页面介绍
 

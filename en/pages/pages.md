@@ -37,7 +37,7 @@ func main() {
 	// here to custom a page.
 
 	r.GET("/"+cfg.PREFIX+"/custom", func(ctx *gin.Context) {
-		engine.Content(ctx, func() types.Panel {
+		engine.Content(ctx, func() (types.Panel, error) {
 			return datamodel.GetContent()
 		})
 	})
@@ -60,7 +60,7 @@ import (
 	"html/template"
 )
 
-func GetContent() types.Panel {
+func GetContent() (types.Panel, error) {
 
 	components := template2.Get(config.Get().THEME)
 	colComp := components.Col()
@@ -80,6 +80,6 @@ func GetContent() types.Panel {
 		Content:     row1,
 		Title:       "Dashboard",
 		Description: "this is a example",
-	}
+	}, nil
 }
 ```

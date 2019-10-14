@@ -30,7 +30,7 @@ import (
 	"html/template"
 )
 
-func GetContent() types.Panel {
+func GetContent() (types.Panel, error) {
 
 	components := template2.Get(config.Get().THEME)
 	colComp := components.Col()
@@ -50,7 +50,7 @@ func GetContent() types.Panel {
 		Content:     row1,
 		Title:       "Dashboard",
 		Description: "this is a example",
-	}
+	}, nil
 }
 ```
 

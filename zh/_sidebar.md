@@ -2,7 +2,7 @@
 
 * [准备工作](install)
 
-* [快速开始](init-project)
+* [快速开始](quick_start)
 
 * 插件
 
@@ -26,6 +26,7 @@
 
 * 参与项目开发
 
+  * [代码规范](development/code_style)
   * [适配器](development/adapter)
   * [插件](development/plugins)  
   * 模板开发

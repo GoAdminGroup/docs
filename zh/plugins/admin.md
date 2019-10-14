@@ -172,6 +172,8 @@ func GetUserTable() (userTable table.Table) {
 
 	info := userTable.GetInfo()
 
+	// AddField方法，第一个参数为标题，第二参数为字段名，第三个参数为字段的数据库类型
+
 	// 设置主键id为可排序
 	info.AddField("ID", "id", db.Int).FieldSortable(true)
 	info.AddField("Name", "name", db.Varchar)
@@ -288,13 +290,13 @@ type Table interface {
 
 主要包括了```GetInfo()```和```GetForm()```，这两个函数返回的类型对应的ui就是显示数据的表格和编辑新建数据的表单，截图展示如下：
 
-- 此为```Info```表格
+- 此为**数据表格**
 
 <br>
 
 ![](http://quizfile.dadadaa.cn/everyday/app/jlds/img/006tNbRwly1fxoy26qnc5j31y60u0q91.jpg)
 
-- 此为```Form```表单
+- 此为**数据表单**
 
 <br>
 

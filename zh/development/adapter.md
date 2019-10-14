@@ -4,7 +4,7 @@
 适配器的作用是实现web框架context与GoAdmin自身context的转换。
 制作一个adapter需要实现三个方法：
 
-```
+```go
 package adapter
 
 import (
@@ -26,8 +26,8 @@ type WebFrameWork interface {
 
 ## Use
 
-```Use```接收两个参数，第一个参数类型为```interface{}```，是web框架的context，第二参数为插件数组。返回值是一个```error```。
-```Use```的作用是利用传入的插件数组，将web框架的路由与将插件数组中的控制器方法关联起来，实现web框架与GoAdmin插件方法的对应。比如插件example中：
+**Use**接收两个参数，第一个参数类型为**interface{}**，是web框架的context，第二参数为插件数组。返回值是一个**error**。
+**Use**的作用是利用传入的插件数组，将web框架的路由与将插件数组中的控制器方法关联起来，实现web框架与GoAdmin插件方法的对应。比如插件example中：
 
 ```
 "/admin/example" => ShowExample(ctx *context.Context)
@@ -37,7 +37,7 @@ type WebFrameWork interface {
 
 ## Content
 
-```Content```方法接收两个参数，第一个参数类型为```interface{}```，是web框架的context，第二参数为```types.GetPanel```类型。
+**Content**方法接收两个参数，第一个参数类型为**interface{}**，是web框架的context，第二参数为**types.GetPanel**类型。
 
 类型如下：
 
@@ -45,13 +45,13 @@ type WebFrameWork interface {
 type GetPanel func(ctx interface{}) (Panel, error)
 ```
 
-```Content```的作用就是自定义页面的时候，传入web框架的context，然后往web框架的context写入自定页面内容的返回。
+**Content**的作用就是自定义页面的时候，传入web框架的context，然后往web框架的context写入自定页面内容的返回。
 
 ## init
 
-```init```方法往engine中注入该适配器，从而能够被别人去使用。
+**init**方法往engine中注入该适配器，从而能够被别人去使用。
 
-```
+```go
 func init() {
 	engine.Register(new(Beego))
 }

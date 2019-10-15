@@ -1,23 +1,26 @@
 # 模板介绍
 ---
 
-主题模板是ui的抽象表示，包括一系列组件和静态资源的集合，会在插件中被调用。在go-admin中的类型是```Template```，如下：
+主题模板是ui的抽象表示，包括一系列组件和静态资源的集合，会在插件中被调用。在GoAdmin中的定义如下：
 
 ```go
 type Template interface {
-	// Components
+	
+	// 必须实现
 	Form() types.FormAttribute
-	Box() types.BoxAttribute
 	Col() types.ColAttribute
-	Image() types.ImgAttribute
-	SmallBox() types.SmallBoxAttribute
-	Label() types.LabelAttribute
-	Row() types.RowAttribute
 	Table() types.TableAttribute
 	DataTable() types.DataTableAttribute
+	Row() types.RowAttribute
 	Tree() types.TreeAttribute
-	InfoBox() types.InfoBoxAttribute
 	Paginator() types.PaginatorAttribute
+
+	// 可不实现
+	Box() types.BoxAttribute
+	Image() types.ImgAttribute
+	SmallBox() types.SmallBoxAttribute
+	Label() types.LabelAttribute	
+	InfoBox() types.InfoBoxAttribute
 	AreaChart() types.AreaChartAttribute
 	ProgressGroup() types.ProgressGroupAttribute
 	LineChart() types.LineChartAttribute
@@ -30,7 +33,7 @@ type Template interface {
 	Tabs() types.TabsAttribute
 	Popup() types.PopupAttribute
 
-	// Builder methods
+	// 资源函数
 	GetTmplList() map[string]string
 	GetAssetList() []string
 	GetAsset(string) ([]byte, error)
@@ -38,4 +41,4 @@ type Template interface {
 }
 ```
 
-如果需要开发一个ui主题模板，需要实现以上的```Template```接口。
+如果需要开发一个ui主题模板，需要实现以上的```Template```接口。cli工具会帮助你开发一个模板。

@@ -17,3 +17,4 @@ GoAdmin的项目模块如下：
 | file  | file实现了一个文件上传引擎 | ./modules/file/file.go
 | logger  | logger是项目的日志模块 | ./modules/logger/logger.go
 | menu  | menu是对项目菜单的管理 | ./modules/menu/menu.go
+| cli  | cli命令行模块，包括生成文件和开发的一些基本命令 | ./admincli/cli.go

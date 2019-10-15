@@ -40,4 +40,4 @@ admincli --help
 | compile  | tpl | **-s, --src** 输入golang tmpl模板文件夹路径<br>**-o, --out** 输出合并模板go文件路径 | 编译所有模板文件为一个go文件
 | combine  | css| **-s, --src** 输入css文件夹路径<br>**-o, --out** 输出合并css文件路径 | 合并css文件为一个css文件
 | combine  | js | **-s, --src** 输入js文件夹路径<br>**-o, --out** 输出合并js文件路径 | 合并js文件为一个js文件
-| develop  | tmpl | **-m, --module** golang模块名或$GOPATH下的路径<br>**-n, --name** 主题名 | 远程拉取主题开发模板到本地
+| develop  | tpl | **-m, --module** golang模块名或$GOPATH下的路径<br>**-n, --name** 主题名 | 远程拉取主题开发模板到本地

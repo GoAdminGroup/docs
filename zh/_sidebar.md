@@ -13,6 +13,7 @@
 
   * [设置菜单](admin/menus)
   * [权限管理](admin/rbac)
+  * [命令行工具](admin/cli)
 
 * 页面介绍
 

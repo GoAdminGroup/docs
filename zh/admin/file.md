@@ -96,8 +96,18 @@ func main() {
 		}
     })
 
-    cfg := Config{
+    cfg := config.Config{
         ...
+
+        FileUploadEngine: config.FileUploadEngine{
+            Name: "qiniu",
+            Config: map[string]interface{}{
+                "bucket": "xxx",
+                "region": "xxx",
+                "secret_id": "xxx",
+                "secret_key": "xxx",
+            },
+        }
 
         ...
     }

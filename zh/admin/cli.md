@@ -17,7 +17,6 @@ GoAdmin提供了一个命令行工具，以提高开发效率，简化开发流�
 | [admincli_windows_x86_64_v1.0.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_1/admincli_windows_x86_64_v1.0.1.zip)  | Windows | x86-64   |6.38 MB
 
 
-
 或使用命令安装：
 
 ```

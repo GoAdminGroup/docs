@@ -33,7 +33,7 @@ type FileUploadEngine struct {
 
 如果你想要自定义上传位置，比如上传到又拍云，七牛云等云平台，那么你需要自己写一个上传引擎。下面介绍如何自己写引擎：
 
-引擎的类型为：
+### 引擎的类型
 
 ```go
 package file
@@ -51,6 +51,8 @@ func AddUploader(name string, up UploaderGenerator) {
 	...
 }
 ```
+
+### 调用
 
 我们需要调用**AddUploader**方法来增加一个上传引擎，第一个参数是引擎的名字（将在全局配置中用到），第二参数就是引擎生成函数。
 

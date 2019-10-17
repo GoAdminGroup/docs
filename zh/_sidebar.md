@@ -16,7 +16,7 @@
     * [列的使用](admin/table/column_usage)
   * 数据表单
     * [基本使用](admin/form/basic)
-    * [列的使用](admin/form/components)
+    * [表单组件](admin/form/components)
   * [设置菜单](admin/menus)
   * [权限管理](admin/rbac)
   * [文件上传](admin/file)

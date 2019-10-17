@@ -198,7 +198,7 @@ func GetUserTable() (userTable table.Table) {
 	formList := userTable.GetForm()
 
 	// set id editable is false.
-	formList.AddField("ID", "id", db.Int, form.Default).FieldEditable(false)
+	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit()
 	formList.AddField("Ip", "ip", db.Varchar, form.Text)
 	formList.AddField("Name", "name", db.Varchar, form.Text)
 

@@ -201,7 +201,7 @@ func GetUserTable() (userTable table.Table) {
 	formList := userTable.GetForm()
 
 	// 设置主键Id不可以编辑
-	formList.AddField("ID", "id", db.Int, form.Default).FieldEditable(false)
+	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit()
 	formList.AddField("Ip", "ip", db.Varchar, form.Text)
 	formList.AddField("Name", "name", db.Varchar, form.Text)
 

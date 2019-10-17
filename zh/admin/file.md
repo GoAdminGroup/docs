@@ -1,7 +1,7 @@
 # 文件上传
 ---
 
-GoAdmin默认支持是的文件上传到本地。需要在全局配置中设置上传的目录，以及上传文件访问的前缀。
+GoAdmin默认提供一个本地文件上传引擎，支持将文件上传到服务器。使用需要在全局配置中设置上传的目录，以及上传文件访问的前缀。
 
 ```go
 package config
@@ -46,16 +46,9 @@ type Uploader interface {
 // 上传引擎生成函数
 type UploaderGenerator func() Uploader
 
+// 增加引擎接口api
 func AddUploader(name string, up UploaderGenerator) {
-	upMu.Lock()
-	defer upMu.Unlock()
-	if up == nil {
-		panic("uploader generator is nil")
-	}
-	if _, dup := uploaderList[name]; dup {
-		panic("add uploader generator twice " + name)
-	}
-	uploaderList[name] = up
+	...
 }
 ```
 
@@ -77,9 +70,12 @@ type QiNiuUploader struct {
     Region    string
     SecretId  string
     SecretKey string
+
+    Prefix string
+    Path   string
 }
 
-func (q QiNiu) Upload(*multipart.Form) error {
+func (q QiNiuUploader) Upload(*multipart.Form) error {
     // 接收一个表单类型，这里实现上传逻辑
 }
 
@@ -92,7 +88,9 @@ func main() {
 			Bucket:     config.Get().FileUploadEngine.Config["bucket"].(string),
 			Region:     config.Get().FileUploadEngine.Config["region"].(string),
 			SecretId:   config.Get().FileUploadEngine.Config["secret_id"].(string),
-			SecretKey:  config.Get().FileUploadEngine.Config["secret_key"].(string),
+            SecretKey:  config.Get().FileUploadEngine.Config["secret_key"].(string),
+            Prefix:     config.Get().FileUploadEngine.Config["prefix"].(string),
+            Path:       config.Get().FileUploadEngine.Config["path"].(string),
 		}
     })
 
@@ -106,6 +104,8 @@ func main() {
                 "region": "xxx",
                 "secret_id": "xxx",
                 "secret_key": "xxx",
+                "prefix": "xxx",
+                "path": "xxx",
             },
         }
 
@@ -114,4 +114,6 @@ func main() {
 
     ...
 }
+
+这样就实现一个七牛云上传文件引擎了！
 ```

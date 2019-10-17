@@ -11,6 +11,9 @@
 
 * Admin插件
 
+  * 数据表格
+    * [基本使用](admin/table/basic)
+    * [列的使用](admin/table/column_usage)
   * [设置菜单](admin/menus)
   * [权限管理](admin/rbac)
   * [文件上传](admin/file)

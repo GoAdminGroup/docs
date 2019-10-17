@@ -19,6 +19,44 @@ CREATE TABLE `users` (
 
 生成了：
 
+```go
+package datamodel
+
+import (
+	...
+)
+
+func GetUserTable() (userTable table.Table) {
+
+	// config the table model.
+	userTable = table.NewDefaultTable(...)
+
+  ...
+
+	formList := userTable.GetForm()
+
+	// set id editable is false.
+	formList.AddField("ID", "id", db.Int, form.Default).FieldEditable(false)
+	formList.AddField("Ip", "ip", db.Varchar, form.Text)
+	formList.AddField("Name", "name", db.Varchar, form.Text)
+
+  ...
+
+	return
+}
 ```
+
+### 添加字段
+
+```go
+
+// 添加一个字段，字段标题为 ID，字段名为 id，字段类型为 int，表单类型为 Default
+formList.AddField("ID", "id", db.Int, form.Default)
+
+// 添加第二个字段，字段标题为 Ip，字段名为 ip，字段类型为 varchar，表单类型为 Text
+formList.AddField("Ip", "ip", db.Varchar, form.Text)
+
+// 添加第三个字段，一个sql表不存在的字段
+formList.AddField("Custom", "custom", db.Varchar, form.Text)
 
 ```

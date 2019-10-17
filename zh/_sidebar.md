@@ -14,6 +14,9 @@
   * 数据表格
     * [基本使用](admin/table/basic)
     * [列的使用](admin/table/column_usage)
+  * 数据表单
+    * [基本使用](admin/form/basic)
+    * [列的使用](admin/form/components)
   * [设置菜单](admin/menus)
   * [权限管理](admin/rbac)
   * [文件上传](admin/file)
@@ -29,7 +32,7 @@
 
   * [架构介绍](architecture/introduction)
 
-* 参与项目开发
+* 项目开发
 
   * [代码规范](development/code_style)
   * [适配器](development/adapter)

@@ -35,7 +35,7 @@ CREATE TABLE `users` (
 - 安装
 
 ```bash
-go install github.com/GoAdminGroup/go-admin/admincli
+go install github.com/GoAdminGroup/go-admin/adm
 ```
 
 - 生成
@@ -44,7 +44,7 @@ go install github.com/GoAdminGroup/go-admin/admincli
 在项目文件夹下执行
 
 ```bash
-admincli generate
+adm generate
 ```
 
 根据提示填写信息，运行完之后，会生成一个文件```users.go```，这个就是对应数据表的配置文件了，关于如何配置，在后面详细介绍。

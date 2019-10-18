@@ -17,18 +17,18 @@ sql文件内容为框架所需数据表，假设你的业务数据库为：datab
 
 |  File name   | OS  | Arch  | Size  |
 |  ----  | ----  | ----  |----  |
-| [admincli_darwin_x86_64_v1.0.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_1/admincli_darwin_x86_64_v1.0.1.zip)  | macOs | x86-64 | 4.77 MB
-| [admincli_linux_x86_64_v1.0.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_1/admincli_linux_x86_64_v1.0.1.zip)  | Linux | x86-64   | 6.52 MB
-| [admincli_linux_armel_v1.0.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_1/admincli_linux_armel_v1.0.1.zip)  | Linux | x86   | 6.06 MB
-| [admincli_windows_i386_v1.0.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_1/admincli_windows_i386_v1.0.1.zip)  | Windows | x86  |6.16 MB
-| [admincli_windows_x86_64_v1.0.1.zip](http://file.go-admin.cn/go_admin/cli/v1_0_1/admincli_windows_x86_64_v1.0.1.zip)  | Windows | x86-64   |6.38 MB
+| [adm_darwin_x86_64_v1.0.2.zip](http://file.go-admin.cn/go_admin/cli/v1_0_2/adm_darwin_x86_64_v1.0.2.zip)  | macOs | x86-64 | 4.77 MB
+| [adm_linux_x86_64_v1.0.2.zip](http://file.go-admin.cn/go_admin/cli/v1_0_2/adm_linux_x86_64_v1.0.2.zip)  | Linux | x86-64   | 6.52 MB
+| [adm_linux_armel_v1.0.2.zip](http://file.go-admin.cn/go_admin/cli/v1_0_2/adm_linux_armel_v1.0.2.zip)  | Linux | x86   | 6.06 MB
+| [adm_windows_i386_v1.0.2.zip](http://file.go-admin.cn/go_admin/cli/v1_0_2/adm_windows_i386_v1.0.2.zip)  | Windows | x86  |6.16 MB
+| [adm_windows_x86_64_v1.0.2.zip](http://file.go-admin.cn/go_admin/cli/v1_0_2/adm_windows_x86_64_v1.0.2.zip)  | Windows | x86-64   |6.38 MB
 
 
 
 或使用命令安装：
 
 ```
-go install github.com/GoAdminGroup/go-admin/admincli
+go install github.com/GoAdminGroup/go-admin/adm
 ```
 
 <br>

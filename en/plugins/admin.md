@@ -30,12 +30,12 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-Use the command line tools - admincli to help you quickly generate configuration files:
+Use the command line tools - adm to help you quickly generate configuration files:
 
 - install
 
 ```bash
-go install github.com/GoAdminGroup/go-admin/admincli
+go install github.com/GoAdminGroup/go-admin/adm
 ```
 
 - generate
@@ -44,7 +44,7 @@ go install github.com/GoAdminGroup/go-admin/admincli
 Execute in the project folder
 
 ```bash
-admincli generate
+adm generate
 ```
 
 Fill in the information according to the prompts. After the run, a file ```users.go``` will be generated. This is the configuration file corresponding to the data table. How to configure it is described in detail later.

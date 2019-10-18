@@ -17,4 +17,4 @@ The GoAdmin project module is as follows:
 | file  | File implements a file upload engine | ./modules/file/file.go
 | logger  | The logger is the log module of the project | ./modules/logger/logger.go
 | menu  | Menu is the management of the project menu | ./modules/menu/menu.go
-| cli  | Cli command line module, including some basic commands for generating files and development | ./admincli/cli.go
+| cli  | Cli command line module, including some basic commands for generating files and development | ./adm/cli.go

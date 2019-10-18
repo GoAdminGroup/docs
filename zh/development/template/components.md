@@ -93,5 +93,5 @@ func (*Theme) Image() types.ImgAttribute {
 - 在根目录下执行：
 
 ```shell
-admincli assets
+adm assets
 ```

@@ -93,5 +93,5 @@ Annoying, and the last step
 - Execute in the root directory:
 
 ```shell
-admincli assets
+adm assets
 ```

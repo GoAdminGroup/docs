@@ -17,7 +17,7 @@
   * Data Form
     * [Basic Usage](admin/form/basic)
     * [Form Components](admin/form/components)
-  * [Menus](admin/menus)
+  * [Menus](admin/menus) 
   * [Permissions](admin/rbac)
   * [New Theme](admin/theme)
   * [File Upload](admin/file)

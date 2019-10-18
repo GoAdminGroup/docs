@@ -19,6 +19,7 @@
     * [Form Components](admin/form/components)
   * [Menus](admin/menus)
   * [Permissions](admin/rbac)
+  * [New Theme](admin/theme)
   * [File Upload](admin/file)
   * [Cli](admin/cli)
 

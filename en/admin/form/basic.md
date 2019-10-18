@@ -1,7 +1,7 @@
-# 基本使用
+# Basic Usage
 ---
 
-使用命令行将sql表生成一个数据表单类型，如：
+Use the cli to generate a data form type for the sql table, such as:
 
 ```sql
 CREATE TABLE `users` (
@@ -17,7 +17,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-生成了：
+Generated:
 
 ```go
 package datamodel
@@ -46,28 +46,28 @@ func GetUserTable() (userTable table.Table) {
 }
 ```
 
-### 添加字段
+### Add Fields
 
 ```go
 
-// 添加一个字段，字段标题为 ID，字段名为 id，字段类型为 int，表单类型为 Default
+// Add a field with the field title ID, field name id, field type int, form type Default
 formList.AddField("ID", "id", db.Int, form.Default)
 
-// 添加第二个字段，字段标题为 Ip，字段名为 ip，字段类型为 varchar，表单类型为 Text
+// Add a second field with the field title Ip, the field name ip, the field type varchar, and the form type Text
 formList.AddField("Ip", "ip", db.Varchar, form.Text)
 
-// 添加第三个字段，一个sql表不存在的字段
+// Add a third field, a field that does not exist in the sql table
 formList.AddField("Custom", "custom", db.Varchar, form.Text)
 
 ```
 
-### 不允许编辑
+### Prohibit editing
 
 ```go
 
 ```
 
-### 不允许新增
+### No new additions
 
 ```go
 

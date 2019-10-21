@@ -45,3 +45,7 @@
     * [Components](development/template/components) 
 
 * [Plan](plan)
+
+- **Links**
+- [![Code](https://icongr.am/feather/code.svg?size=16&color=808080)Demo](http://demo.en.go-admin.cn/admin)
+- [![Github](https://icongram.jgog.in/simple/github.svg?color=808080&size=16)Github](https://github.com/GoAdminGroup/go-admin)

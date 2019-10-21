@@ -45,3 +45,7 @@
     * [组件开发](development/template/components) 
 
 * [发展规划](plan)
+
+- **链接**
+- [![Code](https://icongr.am/feather/code.svg?size=16&color=808080)Demo](http://demo.go-admin.cn/admin)
+- [![Github](https://icongram.jgog.in/simple/github.svg?color=808080&size=16)Github](https://github.com/GoAdminGroup/go-admin)

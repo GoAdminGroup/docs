@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" href="//unpkg.com/docsify-themeable/dist/css/theme-simple.css">
 </head>
 <body>
   <div id="app"></div>
@@ -17,18 +17,6 @@
     .app-name-link {
         font-weight: bold;
     }
-    .sidebar-nav ul>li>span, .sidebar-nav ul>li>p>strong, .sidebar nav ul>li>span, .sidebar nav ul>li>p>strong {
-        display: block;
-        margin: var(--sidebar-nav-strong-margin);
-        padding: var(--sidebar-nav-strong-padding);
-        border-width: var(--sidebar-nav-strong-border-width, 0);
-        border-style: solid;
-        border-color: var(--sidebar-nav-strong-border-color);
-        color: var(--sidebar-nav-strong-color);
-        font-size: var(--sidebar-nav-strong-font-size);
-        font-weight: var(--sidebar-nav-strong-font-weight);
-        text-transform: var(--sidebar-nav-strong-text-transform);
-    }
   </style>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
@@ -36,9 +24,7 @@
     window.$docsify = {
         name: 'GoAdmin v1.0.2',
         repo: 'http://github.com/GoAdminGroup/docs',
-        executeScript: true,
-        loadNavbar: true,
-        coverpage: ['/', '/en/'],
+        homepage   : 'README.md',
         loadSidebar: true,
         auto2top   : true,
         maxLevel   : 3,
@@ -57,27 +43,31 @@
             // Headline depth, 1 - 6
             depth: 2
         },
+        themeable: {
+            readyTransition : true, // default
+            responsiveTables: true  // default
+        },
         pagination: {
             crossChapter: true
-        } ,
+        },
         copyCode: {
             buttonText : 'Copy to clipboard',
             errorText  : 'Error',
             successText: 'Copied'
         },
         plugins: [
-            EditOnGithubPlugin.create("https://github.com/GoAdminGroup/docs/blob/master/en/")
-        ]
+            EditOnGithubPlugin.create("https://github.com/GoAdminGroup/docs/blob/master/en/", "https://github.com/GoAdminGroup/docs/blob/master/en/", '<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/memo.png" alt="memo"> Edit on github')
+        ]        
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
-  <script src="https://unpkg.com/docsify-copy-code@2"></script>
+    <script src="//unpkg.com/docsify-themeable"></script>
+  <script src="//unpkg.com/docsify-copy-code@2"></script>
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-go.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-sql.min.js"></script>  
+<script src="//unpkg.com/prismjs/components/prism-sql.min.js"></script>
 </body>
 </html>

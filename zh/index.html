@@ -12,15 +12,18 @@
   <div id="app"></div>
   <style>
     :root {
-        --sidebar-name-color: hsl(204, 13%, 35%)
-        --sidebar-nav-link-before-content-l3: ""
-        --sidebar-nav-link-before-content: ""
+        --sidebar-name-color: hsl(204, 13%, 35%);
+        --sidebar-nav-link-before-content-l3: "";
+        --sidebar-nav-link-before-content: "";
     }
     .app-name-link {
         font-weight: bold;
     }
     .sidebar-nav>ul>li>a {
         font-weight: bold;
+    }
+    .sidebar-nav>ul>li>ul>li>ul>li>a {
+        background-image: none;
     }
   </style>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>

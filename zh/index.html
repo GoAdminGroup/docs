@@ -15,6 +15,18 @@
         font-weight: bold;
         color: #bbb !important;
     }
+    .sidebar-nav ul>li>span, .sidebar-nav ul>li>strong, .sidebar nav ul>li>span, .sidebar nav ul>li>strong {
+        display: block;
+        margin: var(--sidebar-nav-strong-margin);
+        padding: var(--sidebar-nav-strong-padding);
+        border-width: var(--sidebar-nav-strong-border-width, 0);
+        border-style: solid;
+        border-color: var(--sidebar-nav-strong-border-color);
+        color: var(--sidebar-nav-strong-color);
+        font-size: var(--sidebar-nav-strong-font-size);
+        font-weight: var(--sidebar-nav-strong-font-weight);
+        text-transform: var(--sidebar-nav-strong-text-transform);
+    }
   </style>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>

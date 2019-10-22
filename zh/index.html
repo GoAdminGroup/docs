@@ -60,11 +60,13 @@
         plugins: [
             EditOnGithubPlugin.create("https://github.com/GoAdminGroup/docs/blob/master/zh/", "https://github.com/GoAdminGroup/docs/blob/master/zh/", '<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/memo.png" alt="memo"> Edit on github'),
             function(hook, vm) {
-                hook.doneEach(function() {
+                hook.doneEach(function() {                    
                     let uls = document.querySelectorAll('.sidebar-nav>ul>li>ul')
                     for (let i = 0; i < uls.length; i++) {
-                        uls[i].style.display = "none";
-                        uls[i].previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
+                        if (uls[i].parentNode.className != 'active') {
+                            uls[i].style.display = "none";
+                            uls[i].previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
+                        }
                     }
                 });
             }

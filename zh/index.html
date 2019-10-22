@@ -66,7 +66,7 @@
                         if (uls[i].parentNode.className != 'active') {
                             uls[i].style.display = "none";
                             uls[i].previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
-                            delete uls[i].href
+                            uls[i].previousSibling.href = "javascript:;"
                         }
                     }
                     var active = document.querySelector(".sidebar-nav li.active");

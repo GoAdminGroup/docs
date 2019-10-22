@@ -65,11 +65,11 @@
                         if (uls[i].className != 'app-sub-sidebar') {
                             if (uls[i].parentNode.className != 'active') {
                                 uls[i].style.display = "none";
-                                if (uls[i].previousSibling) {
+                                if (uls[i].previousSibling && typeof(uls[i].previousSibling) != "undefined") {
                                     uls[i].previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
                                 }
                             }
-                            if (uls[i].previousSibling) {
+                            if (uls[i].previousSibling && typeof(uls[i].previousSibling) != "undefined") {
                                 uls[i].previousSibling.style.backgroundPosition = "var(--sidebar-nav-pagelink-background-position)"
                                 uls[i].previousSibling.style.padding = "var(--sidebar-nav-pagelink-padding, var(--sidebar-nav-link-padding))"
                                 uls[i].previousSibling.href="javascript:;"
@@ -79,14 +79,14 @@
                                 if (ul) {
                                     if (ul.style.display === "none") {
                                         ul.style.display = "block";
-                                        if (ul.previousSibling) {
+                                        if (ul.previousSibling && typeof(ul.previousSibling) != "undefined") {
                                             ul.previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image--active, var(--sidebar-nav-pagelink-background-image--loaded, var(--sidebar-nav-pagelink-background-image)))"
                                             ul.previousSibling.style.backgroundPosition = "var(--sidebar-nav-pagelink-background-position--active, var(--sidebar-nav-pagelink-background-position--loaded, var(--sidebar-nav-pagelink-background-image)))"
                                             ul.previousSibling.style.padding = "var(--sidebar-nav-pagelink-padding, var(--sidebar-nav-link-padding))"
                                         }
                                     } else {
                                         ul.style.display = "none";
-                                        if (ul.previousSibling) {
+                                        if (ul.previousSibling && typeof(ul.previousSibling) != "undefined") {
                                             ul.previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
                                             ul.previousSibling.style.backgroundPosition = "var(--sidebar-nav-pagelink-background-position)"
                                             ul.previousSibling.style.padding = "var(--sidebar-nav-pagelink-padding, var(--sidebar-nav-link-padding))"

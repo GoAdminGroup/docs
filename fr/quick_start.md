@@ -1,7 +1,7 @@
 # Quick Start
 ---
 
-go-admin makes it easy to use in various web frameworks through various adapters. Currently supported web frameworks are:
+GoAdmin makes it easy to use in various web frameworks through various adapters. Currently supported web frameworks are:
 
 - [gin](http://github.com/gin-gonic/gin)
 - [beego](https://github.com/astaxie/beego)

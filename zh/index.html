@@ -61,20 +61,19 @@
             successText: 'Copied'
         },
         plugins: [
-            EditOnGithubPlugin.create("https://github.com/GoAdminGroup/docs/blob/master/zh/", "https://github.com/GoAdminGroup/docs/blob/master/zh/", '<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/memo.png" alt="memo"> Edit on github'),
-            function(hook, vm) {
-                hook.doneEach(function() {
-                    var ul = document.querySelector(".sidebar-nav>ul>li>ul");
-                    if (ul) {
-                        ul.style.display = "none";
-                    }
-                });
-            }
+            EditOnGithubPlugin.create("https://github.com/GoAdminGroup/docs/blob/master/zh/", "https://github.com/GoAdminGroup/docs/blob/master/zh/", '<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/memo.png" alt="memo"> Edit on github')            
         ]        
     }
   </script>
     <script src="//unpkg.com/docsify-themeable"></script>
   <script src="//unpkg.com/docsify-copy-code@2"></script>
+  <script>
+        let uls = document.querySelectorAll('.sidebar-nav>ul>li>ul')
+        for (let i = 0; i < uls.length; i++) {
+            uls[i].style.display = "none";
+            uls[i].previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
+        }
+  </script>
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>

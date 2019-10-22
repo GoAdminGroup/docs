@@ -80,14 +80,14 @@
                                 if (ul) {
                                     if (ul.style.display === "none") {
                                         ul.style.display = "block";
-                                        if (uls[i].previousSibling) {
+                                        if (ul.previousSibling) {
                                             ul.previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image--active, var(--sidebar-nav-pagelink-background-image--loaded, var(--sidebar-nav-pagelink-background-image)))"
                                             ul.previousSibling.style.backgroundPosition = "var(--sidebar-nav-pagelink-background-position--active, var(--sidebar-nav-pagelink-background-position--loaded, var(--sidebar-nav-pagelink-background-image)))"
                                             ul.previousSibling.style.padding = "var(--sidebar-nav-pagelink-padding, var(--sidebar-nav-link-padding))"
                                         }
                                     } else {
                                         ul.style.display = "none";
-                                        if (uls[i].previousSibling) {
+                                        if (ul.previousSibling) {
                                             ul.previousSibling.style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
                                             ul.previousSibling.style.backgroundPosition = "var(--sidebar-nav-pagelink-background-position)"
                                             ul.previousSibling.style.padding = "var(--sidebar-nav-pagelink-padding, var(--sidebar-nav-link-padding))"

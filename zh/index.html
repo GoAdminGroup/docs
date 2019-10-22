@@ -87,6 +87,16 @@
                                     }
                                 }
                             };
+
+                            let lis = uls[i].children
+                            for (let j = 0; j < lis.length; j++) {
+                                if (lis[j].children.length > 1) {
+                                    lis[j].children[0].style.backgroundImage = "var(--sidebar-nav-pagelink-background-image)"
+                                    lis[j].children[0].style.backgroundPosition = "var(--sidebar-nav-pagelink-background-position)"
+                                    lis[j].children[0].style.padding = "var(--sidebar-nav-pagelink-padding, var(--sidebar-nav-link-padding))"
+                                    lis[j].children[0].href="javascript:;"
+                                }
+                            }
                         }
                     }
                     var active = document.querySelector(".sidebar-nav li.active");

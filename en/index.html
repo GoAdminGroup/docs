@@ -56,7 +56,7 @@
             successText: 'Copied'
         },
         plugins: [
-            EditOnGithubPlugin.create("https://github.com/GoAdminGroup/docs/blob/master/en/", "https://github.com/GoAdminGroup/docs/blob/master/en/", '<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/memo.png" alt="memo"> Edit on github'),
+            EditOnGithubPlugin.create("https://github.com/GoAdminGroup/docs/edit/master/en/", "https://github.com/GoAdminGroup/docs/edit/master/en/", '<img class="emoji" src="https://github.githubassets.com/images/icons/emoji/memo.png" alt="memo"> Edit on github'),
             function(hook, vm) {
                 hook.doneEach(function() {                    
                     let uls = document.querySelectorAll('.sidebar-nav>ul>li>ul')

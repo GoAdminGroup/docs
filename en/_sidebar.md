@@ -1,20 +1,14 @@
-* [Introducation](README)
-
+* [Introducation]()
 * [Get Ready](install)
-
 * [Quick Start](quick_start)
-
-* Plugins
-
-  * [How To Use Plugins](plugins/plugins)    
+* [Plugins]()
+  * [How To Use Plugins](plugins/plugins)
   * [How To Use Admin Plugin](plugins/admin) 
-
-* Admin Plugins
-
-  * Data Table
+* [Admin Plugins]()
+  * [Data Table]()
     * [Basic Usage](admin/table/basic)
     * [Column Usage](admin/table/column_usage)
-  * Data Form
+  * [Data Form]()
     * [Basic Usage](admin/form/basic)
     * [Form Components](admin/form/components)
   * [Menus](admin/menus)
@@ -22,26 +16,21 @@
   * [New Theme](admin/theme)
   * [File Upload](admin/file)
   * [Cli](admin/cli)
-
-* Pages
-
-  * [Page Modules](pages/modules)    
+* [Pages]()
+  * [Page Modules](pages/modules)
   * [Customize Your Page](pages/pages)
   * [Customize Login Page](pages/login)  
-
-* Architecture
-
+* [Architecture]()
   * [Introduction](architecture/introduction)
-
-* Development
-
+* [Development]()
   * [Code Style](development/code_style)
   * [Adapter Development](development/adapter)
   * [Plugins Development](development/plugins)  
-  * Template Development
-
-    * [Template Introducation](development/template/template)     
+  * [Template Development]()
+    * [Template Introducation](development/template/template)
     * [Form Development](development/template/form)         
     * [Components](development/template/components) 
-
 * [Plan](plan)
+- **Links**
+- [![Code](https://icongr.am/feather/code.svg?size=16&color=808080)Demo](http://demo.en.go-admin.cn/admin)
+- [![Github](https://icongram.jgog.in/simple/github.svg?color=808080&size=16)Github](https://github.com/GoAdminGroup/go-admin)

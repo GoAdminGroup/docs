@@ -1,7 +1,7 @@
 # 快速开始
 ---
 
-go-admin通过各种适配器使得你在各个web框架中使用都十分的方便。目前支持的web框架有：
+GoAdmin通过各种适配器使得你在各个web框架中使用都十分的方便。目前支持的web框架有：
 
 - [gin](http://github.com/gin-gonic/gin)
 - [beego](https://github.com/astaxie/beego)

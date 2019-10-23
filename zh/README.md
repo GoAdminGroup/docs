@@ -23,7 +23,7 @@
 - 提供多个插件（开发中）
 - 多个好看的ui主题（目前支持Adminlte，更多主题开发中）
 
-## 线上Demo
+## Demo
 
 [http://demo.go-admin.cn/admin](http://demo.go-admin.cn/admin)
 

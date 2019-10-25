@@ -37,7 +37,7 @@ Will list help information.
 |  ---- | ---- | ----  | ----  |
 | generate  |  - | - | generate a data model file.
 | compile  | asset| **-s, --src** front-end resource folder path<br>**-d, --dist** output go file path | compile all resource files into one single go file.
-| compile  | tpl | **-s, --src** the input golang tmpl template folder path<br>**-d, --dist** output go file path | compile all template files into one single go file.
-| combine  | css| **-s, --src** the input css folder path<br>**-d, --dist** the output css file path | combine the css files into one single css file.
+| compile  | tpl | **-s, --src** the input golang tmpl template folder path<br>**-d, --dist** output go file path<br>**p, --package** output go file package name | compile all template files into one single go file.
+| combine  | css| **-s, --src** the input css folder path<br>**-d, --dist** the output css file path<br>**p, --package** output go file package name | combine the css files into one single css file.
 | combine  | js | **-s, --src** the input js folder path<br>**-d, --dist** the output js file path | combine the js files into one single js file.
 | develop  | tpl | **-m, --module** golang module name or path under $GOPATH<br>**-n, --name** theme name | fetch remotely theme development templates to local.

@@ -28,6 +28,7 @@ package main
 import (
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // Import the adapter, it must be imported. If it is not imported, you need to define it yourself.
 	_ "github.com/GoAdminGroup/themes/adminlte" // Import the theme
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/modules/config"

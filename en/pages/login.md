@@ -13,6 +13,8 @@ import (
 	"github.com/GoAdminGroup/demo/login"
 	"github.com/GoAdminGroup/demo/pages"
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/themes/adminlte"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"

@@ -1,7 +1,7 @@
 # Use New Theme
 ---
 
-Follow two steps：（Notice：GoAdmin version should be higher than v1.0.5）
+Follow two steps：（Notice：GoAdmin version should be higher than v1.0.6）
 
 - 1. import the theme package
 - 2. set theme name in your config

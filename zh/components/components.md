@@ -3,8 +3,8 @@
 
 Adminlte内置了一些ui组件供使用：
 
-- [infobox](./infobox.md)
-- [progress-group](./progressbar.md)
+- [infobox](components/infobox.md)
+- [progress-group](components/progressbar.md)
 - productlist
 - smallbox
 - description

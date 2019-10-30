@@ -1,0 +1,15 @@
+# 组件介绍
+---
+
+Adminlte内置了一些ui组件供使用：
+
+- [infobox](./infobox.md)
+- [progress-group](./progressbar.md)
+- productlist
+- smallbox
+- description
+- chart legend
+
+系统提供的组件：
+
+- [chartjs](./chartjs.md)

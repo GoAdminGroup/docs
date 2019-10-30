@@ -7,26 +7,15 @@ The theme template is an abstract representation of ui, including a collection o
 type Template interface {
 	// Components
 	Form() types.FormAttribute
-	Box() types.BoxAttribute
 	Col() types.ColAttribute
-	Image() types.ImgAttribute
-	SmallBox() types.SmallBoxAttribute
-	Label() types.LabelAttribute
-	Row() types.RowAttribute
 	Table() types.TableAttribute
 	DataTable() types.DataTableAttribute
+	Row() types.RowAttribute
 	Tree() types.TreeAttribute
-	InfoBox() types.InfoBoxAttribute
 	Paginator() types.PaginatorAttribute
-	AreaChart() types.AreaChartAttribute
-	ProgressGroup() types.ProgressGroupAttribute
-	LineChart() types.LineChartAttribute
-	BarChart() types.BarChartAttribute
-	ProductList() types.ProductListAttribute
-	Description() types.DescriptionAttribute
+	Label() types.LabelAttribute
+	Image() types.ImgAttribute
 	Alert() types.AlertAttribute
-	PieChart() types.PieChartAttribute
-	ChartLegend() types.ChartLegendAttribute
 	Tabs() types.TabsAttribute
 	Popup() types.PopupAttribute
 

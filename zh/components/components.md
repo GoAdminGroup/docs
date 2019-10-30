@@ -12,4 +12,4 @@ Adminlte内置了一些ui组件供使用：
 
 系统提供的组件：
 
-- [chartjs](./chartjs.md)
+- [chartjs](components/chartjs.md)

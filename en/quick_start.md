@@ -14,13 +14,13 @@ GoAdmin makes it easy to use in various web frameworks through various adapters.
 
 <br>
 
-You can choose the framework you are using or the business project is using. If there is no framework you like, please feel free to give us an issue or pr!
+You can choose the framework which your own project is using. If there is no framework you like, please feel free to give us an issue or pr!
 
 Let's take the gin framework as an example to demonstrate the build process.
 
 ## main.go
 
-Create a new ```main.go``` file in your project folder with the following contents:
+Firstly, create a new ```main.go``` file in your project folder with the following contents:
 
 ```go
 package main
@@ -40,10 +40,10 @@ import (
 func main() {
 	r := gin.Default()
 
-	// Instantiate a go-admin engine object.
+	// Instantiate a GoAdmin engine object.
 	eng := engine.Default()
 
-	// go-admin global configuration, can also be written as a json, imported by json.
+	// GoAdmin global configuration, can also be written as a json to be imported.
 	cfg := config.Config{
 		Databases: []config.Database{
 			{
@@ -77,9 +77,9 @@ func main() {
 }
 ```
 
-Please pay attention to the above code and comments, the corresponding steps are added to the comments, it is simple to use, the following steps:
+Please pay attention to the above code and comments, the corresponding steps are added to the comments, it is simple to use. Summary of up to five steps:
 
-- Introducing an adapter
+- Import the adapter, the theme and the sql driver
 - Set global configuration items
 - Initialize the plugin
 - Set up plugins and configurations

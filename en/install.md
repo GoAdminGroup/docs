@@ -24,7 +24,7 @@ Download the binary excecute file:
 | [adm_windows_x86_64_v1.0.6.zip](http://file.go-admin.cn/go_admin/cli/v1_0_6/adm_windows_x86_64_v1.0.6.zip)  | Windows | x86-64   |6.38 MB
 
 
-Or Use the command:
+Or use the command:
 
 ```
 go install github.com/GoAdminGroup/go-admin/adm
@@ -32,7 +32,7 @@ go install github.com/GoAdminGroup/go-admin/adm
 
 <br>
 
-🍺🍺 Get ready to work here, next to the [Quick start](init-project)
+🍺🍺 Get ready to work here, next to the [Quick start](quick_start)
 
 <br>
 

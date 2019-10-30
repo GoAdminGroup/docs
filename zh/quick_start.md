@@ -40,10 +40,10 @@ import (
 func main() {
 	r := gin.Default()
 
-	// 实例化一个go-admin引擎对象
+	// 实例化一个GoAdmin引擎对象
 	eng := engine.Default()
 
-	// go-admin全局配置，也可以写成一个json，通过json引入
+	// GoAdmin全局配置，也可以写成一个json，通过json引入
 	cfg := config.Config{
 		Databases: config.DatabaseList{
 			"default": {
@@ -79,7 +79,7 @@ func main() {
 
 请留意以上代码与注释，对应的步骤都加上了注释，使用十分简单，只需要：
 
-- 引入适配器
+- 引入适配器，主题与数据库驱动
 - 设置全局的配置项
 - 初始化插件
 - 设置插件与配置

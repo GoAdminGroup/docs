@@ -25,7 +25,7 @@
 
 ## Demo
 
-[http://demo.go-admin.cn/admin](http://demo.go-admin.cn/admin)
+[https://demo.go-admin.cn/admin](https://demo.go-admin.cn/admin)
 
 ## 依赖
 

@@ -28,6 +28,7 @@ package main
 import (
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // 引入适配器，必须引入，如若不引入，则需要自己定义
 	_ "github.com/GoAdminGroup/themes/adminlte" // 必须引入，不然报错
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/modules/config"
@@ -39,10 +40,10 @@ import (
 func main() {
 	r := gin.Default()
 
-	// 实例化一个go-admin引擎对象
+	// 实例化一个GoAdmin引擎对象
 	eng := engine.Default()
 
-	// go-admin全局配置，也可以写成一个json，通过json引入
+	// GoAdmin全局配置，也可以写成一个json，通过json引入
 	cfg := config.Config{
 		Databases: config.DatabaseList{
 			"default": {
@@ -78,7 +79,7 @@ func main() {
 
 请留意以上代码与注释，对应的步骤都加上了注释，使用十分简单，只需要：
 
-- 引入适配器
+- 引入适配器，主题与数据库驱动
 - 设置全局的配置项
 - 初始化插件
 - 设置插件与配置
@@ -93,7 +94,7 @@ func main() {
 
 注意：golang版本高于1.11强烈建议开启```GO111MODULE=on```，如果运行下载依赖有问题，这里提供了依赖包下载：
 
-- [vendor_v1.0.4.zip](http://file.go-admin.cn/go_admin/vendor/v1_0_4/vendor.zip)
+- [vendor_v1.0.6.zip](http://file.go-admin.cn/go_admin/vendor/v1_0_6/vendor.zip)
 
 更多框架的例子可以看：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
 

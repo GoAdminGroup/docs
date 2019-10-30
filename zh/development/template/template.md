@@ -6,7 +6,6 @@
 ```go
 type Template interface {
 	
-	// 必须实现
 	Form() types.FormAttribute
 	Col() types.ColAttribute
 	Table() types.TableAttribute
@@ -14,22 +13,9 @@ type Template interface {
 	Row() types.RowAttribute
 	Tree() types.TreeAttribute
 	Paginator() types.PaginatorAttribute
-
-	// 可不实现
-	Box() types.BoxAttribute
+	Label() types.LabelAttribute
 	Image() types.ImgAttribute
-	SmallBox() types.SmallBoxAttribute
-	Label() types.LabelAttribute	
-	InfoBox() types.InfoBoxAttribute
-	AreaChart() types.AreaChartAttribute
-	ProgressGroup() types.ProgressGroupAttribute
-	LineChart() types.LineChartAttribute
-	BarChart() types.BarChartAttribute
-	ProductList() types.ProductListAttribute
-	Description() types.DescriptionAttribute
 	Alert() types.AlertAttribute
-	PieChart() types.PieChartAttribute
-	ChartLegend() types.ChartLegendAttribute
 	Tabs() types.TabsAttribute
 	Popup() types.PopupAttribute
 

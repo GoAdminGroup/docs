@@ -65,10 +65,14 @@ formList.AddField("Custom", "custom", db.Varchar, form.Text)
 
 ```go
 
+formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowEdit()
+
 ```
 
 ### 不允许新增
 
 ```go
+
+formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
 
 ```

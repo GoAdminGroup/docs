@@ -20,7 +20,7 @@ here is very simple example which show you how it work: [https://github.com/GoAd
 
 ## Demo
 
-[http://demo.go-admin.cn/admin](http://demo.go-admin.cn/admin)
+[https://demo.go-admin.cn/admin](https://demo.go-admin.cn/admin)
 
 ## Dependencies
 

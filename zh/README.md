@@ -48,6 +48,6 @@ QQ群：756664859，备注加群来意
 
 ## 支持
 
-您的支持会帮助我们更好的去完善项目，我们根据意愿会列出捐赠者名单。
+您的支持会帮助我们更好的去完善项目，备注您的github/gitee用户名，我们根据意愿会列出捐赠者名单。🙏
 
 <img src="http://quick.go-admin.cn/official/assets/imgs/shoukuan.jpg" width="650" />

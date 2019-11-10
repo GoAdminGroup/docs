@@ -1,62 +1,62 @@
-# 发展计划 
+# Development Plan
 ---
 
-GoAdmin的定位不只是一个管理后台中心构建框架，目前在1.0基础版本已经实现了一个能快速构建简单的crud以及有权限管理功能的管理后台的基础构建框架。在此基础上，可以对主题以及插件等进行一定程度的定制。以下分三点阐述这个项目以后的发展计划：
+GoAdmin not only aim for a admin panel builder tool. Now the base version of 1.0 has achieved a base framework which can help quickly build a simple crud admin panel with permession manage and other fetures. On this basis, you can also customize the theme and the plugin. The following points after three expounds the project development plan.
 
-## 项目功能规划
+## Features
 
-GoAdmin的目标是实现无代码化或某种程度的无代码化可视化操作，内置插件会至少包括：简单与复杂商业化crud管理中心极速构建，支持多数据源的监控体系的搭建等等。以下是对版本的初步规划：
+The final purpose of GoAdmin is achieving a no-code or to some extent, no-code operations set. And we will at least build the plugins of two. The one we named admin is help you build a crud admin panel quickly, and the other one is a Grafana like data monitor dashboard builder, which we named monitor.
 
-### 1.0.0 版本
+### version 1.0.0
 
-- 实现基础的框架，同时提供一个内置插件能够满足快速构建crud管理后台。
-- 这个基础框架可以实现前端主题的自由定制，以及对插件的加载。
+- Build the basic framework, and at the same time provide a built-in plugin which can satisfy the rapid construction of crud admin panel.
+- This basic framework can support theme and plugin customizing.
 
-### 2.0.0 版本
+### version 2.0.0
 
-- 在 1.0 版本的基础上，此版本将完善内置插件的功能，基本达到商业化水平（能够提供一个ec商城后台/saas系统的所有功能）
-- 完善主题和插件的开发工具链，使得非项目开发人员都能够轻松的上手主题与插件的开发
-- 提供更多样化的内置主题与内置插件
-- 监控体系的初步支持（实时监控系统，数据前端展示，定制数据源）
-- 项目性能的评估与优化
+- On the basis of version 1.0, this version will imporve the admin plugin to provide a ec mall and saas system infrastructure features
+- Improve the tool chain of developing themes and plugins, make it easier for developer to get start with developing of themes and plugins.
+- Providing more themes and built-in plugins.
+- The basic support of monitor system.
+- Improve performance of project.
 
-### 3.0.0 版本
+### version 3.0.0
 
-- 可生产环境商业化的监控体系支持
-- 初步实现界面数据化以及实现一个界面拖拽定制框架
+- Support the productive monitor system.
+- Achieving a interface which support dragging and dropping in the front-end.
 
-### 4.0.0 版本
+### version 4.0.0
 
-- 实现无代码化的界面拖拽框架
+- Support no-code operations.
 
-## 人才社区构建
+## Community
 
-GoAdmin项目需要更多的人才一同加入。
+GoAdmin project needs more developers to join together.
 
-目前由我 [@cg33](https://github.com/chenhg5) 一人维护此项目，本人是国内某知名985/211大学计算机系本科毕业，两年的gopher。
+Now the project is maintained by [@cg33](https://github.com/chenhg5), who is a two years gopher。
 
-目前项目需要的工作有：
+Work of the projects:
 
-- [项目开发](https://github.com/GoAdminGroup/go-admin)，需掌握一定的```golang```开发能力
-- 社区项目开发（暂未开源，暂不对外开放）
-- [文档的维护改进与翻译](https://github.com/GoAdminGroup/docs)
-- 项目的宣传与社区文化的组织
+- [developing](https://github.com/GoAdminGroup/go-admin)
+- forum project maintenance(not be a opensource project yet)
+- [The maintenance of document improvement and translation](https://github.com/GoAdminGroup/docs)
+- Publicity and community culture of the organization of the project
 
-GoAdmin始终秉持开放开源的态度，欢迎有志有能力之士加入一块共谋项目和社区的发展，社区与个人相辅相成。
+GoAdmin always adheres to an open and open attitude, and welcomes people with lofty and capable ability to join in the development of a conspiracy project and community. The community and the individual complement each other.
 
-如果你看好GoAdmin的发展，并且愿意为他赌一把，用时间换取未来可能的财务或名誉度回报，而且你对你自己的能力有足够信心，那么你可以尝试充分阅读GoAdmin的代码，并理解GoAdmin的发展规划，为此做出你的贡献。前期代码缺陷漏洞大，可修改空间多，如果你有能力做出足够的贡献，将成为项目的**联合创始人**或**核心开发者**。到后期，代码完善度高，也仍然有改进空间，你可以通过提交修复成为**贡献者**。团队将会一直保持开放态度，接纳新成员。团队每一个付出努力的成员也会在将来根据付出比例公平地去收获项目给大家带来的一定的回报。
+If you are optimistic about the development of GoAdmin and are willing to gamble for him, use time for future financial or reputational returns, and you have confidence in your own abilities, then you can try to fully read the GoAdmin code and understand GoAdmin's development plan, make your contribution to this. The pre-code flaws are large and can be modified. If you have the ability to make enough contributions, you will become the project's co-founder** or **core developer**. In the later stages, the code is highly sophisticated and there is still room for improvement. You can become a ** contributor by submitting a fix**. The team will remain open and accept new members. Every member of the team who works hard will also receive a certain return in the future based on the proportion of the effort to harvest the project.
 
-如果你没有足够的时间和精力，但有一定的资金，且同样看好GoAdmin发展，虽然GoAdmin尚未就此加入的方案拟定计划。但只要你有足够大的兴趣，也可以带上你的计划与我们进行洽谈。
+If you don't have enough time and energy, but have a certain amount of money, and are equally optimistic about GoAdmin development, although GoAdmin has not yet planned a plan for this. But as long as you have enough interest, you can bring your plan to negotiate with us.
 
-## 商业项目计划
+## Commercial Plan
 
-GoAdmin会逐步实现商业化，但核心基础功能是免费开源的。
-GoAdmin的资金收入模式主要是：
+GoAdmin will be gradually commercialized, but the core infrastructure features are free and open source.
+GoAdmin's capital revenue model is mainly:
 
-- 接受捐助
-- 售卖主题
-- 售卖插件
-- 提供saas定制化开发
-- 提供收费的商业化版本
+- Accept donations
+- Selling themes
+- Selling plugins
+- Provide saas customized development
+- Commercial version for a fee
 
-收入资金主要用于维护社区的发展，与开发人员的薪酬回报，促使项目更好的成长。
+Revenue funds are mainly used to maintain the development of the community, and the return on compensation of developers, to promote the project to grow better.

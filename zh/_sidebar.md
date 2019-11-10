@@ -16,6 +16,7 @@
   - [使用新主题](admin/theme)
   - [文件上传](admin/file)
   - [命令行工具](admin/cli)
+- [Monitor插件](monitor/monitor)  
 - [ui组件介绍]()
   - [目录](components/components)
   - [infobox](components/infobox)

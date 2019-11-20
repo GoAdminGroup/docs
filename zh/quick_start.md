@@ -12,9 +12,7 @@ GoAdmin通过各种适配器使得你在各个web框架中使用都十分的方�
 - [iris](https://github.com/kataras/iris)
 - [chi](https://github.com/go-chi/chi)
 
-<br>
-
-你可以选择你拿手的或者业务项目正在用的框架开始，如果上述没有你喜欢的框架，欢迎给我们提issue或pr！
+你可以选择你拿手的或者业务项目正在用的框架开始，如果上述没有你喜欢的框架，欢迎给我们提[issue](https://github.com/GoAdminGroup/go-admin/issues/new?assignees=&labels=&template=proposal.md&title=%5BProposal%5D)！
 
 下面以gin这个框架为例子，演示搭建过程。
 
@@ -27,8 +25,9 @@ package main
 
 import (
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // 引入适配器，必须引入，如若不引入，则需要自己定义
-	_ "github.com/GoAdminGroup/themes/adminlte" // 必须引入，不然报错
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/themes/adminlte" // 引入主题，必须引入，不然报错
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // 引入对应数据库引擎
+
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/modules/config"
@@ -85,8 +84,6 @@ func main() {
 - 设置插件与配置
 - 挂载到Web框架中
 
-<br>
-
 接着执行```go run main.go```运行代码，访问：[http://localhost:9033/admin/login](http://localhost:9033/admin/login) <br>
 <br>
 默认登录账号：admin<br>
@@ -94,9 +91,9 @@ func main() {
 
 注意：golang版本高于1.11强烈建议开启```GO111MODULE=on```，如果运行下载依赖有问题，这里提供了依赖包下载：
 
-- [vendor_v1.0.7.zip](http://file.go-admin.cn/go_admin/vendor/v1_0_7/vendor.zip)
+- [vendor_v1.0.8.zip](http://file.go-admin.cn/go_admin/vendor/v1_0_8/vendor.zip)
 
-更多框架的例子可以看：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
+其他框架的例子可以看：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
 
 ## 添加自己的业务表进行管理
 
@@ -184,6 +181,13 @@ type Config struct {
 
 	// 是否开始数据库Sql操作日志
 	SqlLog bool `json:"sql_log"`
+
+	// 是否关闭access日志
+	AccessLogOff bool `json:"access_log_off"`
+	// 是否关闭info日志
+	InfoLogOff   bool `json:"info_log_off"`
+	// 是否关闭error日志
+	ErrorLogOff  bool `json:"error_log_off"`
 
 	// 网站颜色主题
 	ColorScheme string `json:"color_scheme"`

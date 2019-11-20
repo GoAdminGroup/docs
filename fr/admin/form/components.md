@@ -4,108 +4,209 @@
 ## Default
 
 ```go
-// usage
+formList.AddField("name", "name", db.Varchar, form.Default)
 ```
 
 ## Text
 
 ```go
-// usage
+formList.AddField("name", "name", db.Varchar, form.Text)
 ```
 
 ## SelectSingle
 
 ```go
-// usage
+formList.AddField("sex", "sex", db.Int, form.SelectSingle).
+        // Radio options, field represents the display content, value on behalf of the corresponding value
+		FieldOptions([]map[string]string{ 
+            {"field": "man","value": "0"},
+            {"field": "women","value": "1"},
+        }).
+        // This returns []string, the corresponding value is that the value of the sex of this column, the corresponding value is displayed when edit form
+        FieldDisplay(func(model types.FieldModel) interface{} {
+            return []string{"0"}
+        })
 ```
 
 ## Select
 
 ```go
-// usage
+formList.AddField("drink", "drink", db.Int, form.Select).
+        // alternative options, field represents the display content, value on behalf of the corresponding value
+		FieldOptions([]map[string]string{
+            {
+                "field": "beer",
+                "value": "beer",
+            }, {
+                "field": "juice",
+                "value": "juice",
+            }, {
+                "field": "water",
+                "value": "water",
+            }, {
+                "field": "red bull",
+                "value": "red bull",
+            },
+        }).
+        // This returns []string, the corresponding value is that the value of the drink of this column, the corresponding value is displayed when edit form
+        FieldDisplay(func(model types.FieldModel) interface{} {
+            return []string{"beer"}
+        })
 ```
 
 ## IconPicker
 
 ```go
-// usage
+formList.AddField("icon", "icon", db.Varchar, form.IconPicker)
 ```
 
 ## SelectBox
 
 ```go
-// usage
+formList.AddField("fruit", "fruit", db.Int, form.SelectBox).
+        // alternative options, field represents the display content, value on behalf of the corresponding value
+		FieldOptions([]map[string]string{
+            {
+                "field": "apple",
+                "value": "apple",
+            }, {
+                "field": "banana",
+                "value": "banana",
+            }, {
+                "field": "watermelon",
+                "value": "watermelon",
+            }, {
+                "field": "pear",
+                "value": "pear",
+            },
+        }).
+        // This returns []string, the corresponding value is that the value of the fruit of this column, the corresponding value is displayed when edit form
+        FieldDisplay(func(model types.FieldModel) interface{} {
+            return []string{"pear"}
+        })
 ```
 
 ## File
 
 ```go
-// usage
+formList.AddField("file", "file", db.Varchar, form.File)
 ```
 
 ## Password
 
 ```go
-// usage
+formList.AddField("password", "password", db.Varchar, form.Password)
 ```
 
 ## RichText
 
 ```go
-// usage
+formList.AddField("content", "content", db.Varchar, form.RichText)
 ```
 
 ## Datetime
 
 ```go
-// usage
+formList.AddField("birthday", "birthday", db.Varchar, form.Datetime)
 ```
 
 ## Radio
 
 ```go
-// usage
+formList.AddField("gender", "gender", db.Int, form.SelectBox).
+        // Radio options, field on behalf of the word, the label on behalf of the display content, value on behalf of the corresponding value
+		FieldOptions([]map[string]string{
+            {
+                "field":    "gender",
+                "label":    "male",
+                "value":    "0",
+                "selected": "true",
+            },
+            {
+                "field":    "gender",
+                "label":    "female",
+                "value":    "1",
+                "selected": "false",
+            },
+        }).FieldDefault("0") // Set the default values
 ```
 
 ## Email
 
 ```go
-// usage
+formList.AddField("email", "email", db.Varchar, form.Email)
 ```
 
 ## Url
 
 ```go
-// usage
+formList.AddField("url", "url", db.Varchar, form.Url)
 ```
 
 ## Ip
 
 ```go
-// usage
+formList.AddField("ip", "ip", db.Varchar, form.Ip)
 ```
 
 ## Color
 
 ```go
-// usage
+formList.AddField("color", "color", db.Varchar, form.Color)
 ```
 
 ## Currency
 
 ```go
-// usage
+formList.AddField("money", "money", db.Varchar, form.Currency)
 ```
 
 ## Number
 
 ```go
-// usage
+formList.AddField("num", "num", db.Varchar, form.Number)
 ```
 
 ## TextArea
 
 ```go
-// usage
+formList.AddField("content", "content", db.Varchar, form.TextArea)
 ```
 
+## Custom
+
+Custom form content
+
+```go
+formList.AddField("content", "content", db.Varchar, form.Custom).
+    FieldCustomContent(template.HTML(``)).
+    FieldCustomCss(template.CSS(``)).
+    FieldCustomJs(template.JS(``))
+```
+
+The following form the custom template file structure, setting the ` ` ` CustomContent ` ` `, ` ` ` CustomCss ` ` `, ` ` ` CustomJs ` ` ` will be inserted into the corresponding location.
+
+```go
+{{define "form_custom"}}
+    {{if eq .Must true}}
+        <label for="{{.Field}}" class="col-sm-2 asterisk control-label">{{.Head}}</label>
+    {{else}}
+        <label for="{{.Field}}" class="col-sm-2 control-label">{{.Head}}</label>
+    {{end}}
+    <div class="col-sm-8">
+        <div class="input-group">
+            {{.CustomContent}}
+        </div>
+    </div>
+    {{if .CustomJs}}
+        <script>
+            {{.CustomJs}}
+        </script>
+    {{end}}
+    {{if .CustomCss}}
+        <style>
+            {{.CustomCss}}
+        </style>
+    {{end}}
+{{end}}
+```

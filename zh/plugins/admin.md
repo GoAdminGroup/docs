@@ -443,17 +443,17 @@ FormType: form.File,
 ...
 Options: []map[string]string{
 	{
-        "field": "name",
-        "value": "张三",
+        "field": "男生",
+        "value": "0",
     },{
-        "field": "name",
-        "value": "李四",
+        "field": "女生",
+        "value": "1",
     },
 }
 ...
 ```
 
-其中，field为字段名，value为选择对应的值。
+其中，field为显示内容，value为选择对应的值。
 
 ### 过滤函数FilterFn与表单过滤函数PostFilterFn说明
 

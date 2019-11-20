@@ -173,3 +173,40 @@ formList.AddField("num", "num", db.Varchar, form.Number)
 formList.AddField("content", "content", db.Varchar, form.TextArea)
 ```
 
+## Custom
+
+自定义表单内容
+
+```go
+formList.AddField("content", "content", db.Varchar, form.Custom).
+    FieldCustomContent(template.HTML(``)).
+    FieldCustomCss(template.CSS(``)).
+    FieldCustomJs(template.JS(``))
+```
+
+以下表单自定义的模板文件结构，设置的```CustomContent```，```CustomCss```，```CustomJs```将插入到对应的位置。
+
+```go
+{{define "form_custom"}}
+    {{if eq .Must true}}
+        <label for="{{.Field}}" class="col-sm-2 asterisk control-label">{{.Head}}</label>
+    {{else}}
+        <label for="{{.Field}}" class="col-sm-2 control-label">{{.Head}}</label>
+    {{end}}
+    <div class="col-sm-8">
+        <div class="input-group">
+            {{.CustomContent}}
+        </div>
+    </div>
+    {{if .CustomJs}}
+        <script>
+            {{.CustomJs}}
+        </script>
+    {{end}}
+    {{if .CustomCss}}
+        <style>
+            {{.CustomCss}}
+        </style>
+    {{end}}
+{{end}}
+```

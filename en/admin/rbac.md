@@ -14,7 +14,7 @@ On a form of management, the corresponding routing to add and delete, assuming t
 |  ----  | ----  | ----  |
 | List page | /info/users | GET |
 | Edit page | /info/users/edit | GET |
-| New page | /info/user/new | GET |
+| New page | /info/users/new | GET |
 | All permission | * | (empty)
 
 **Note: the role of permissions is higher than in the menu configuration**

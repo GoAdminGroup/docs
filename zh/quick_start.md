@@ -11,6 +11,7 @@ GoAdmin通过各种适配器使得你在各个web框架中使用都十分的方�
 - [gorilla/mux](http://github.com/gorilla/mux)
 - [iris](https://github.com/kataras/iris)
 - [chi](https://github.com/go-chi/chi)
+- [gf](https://github.com/gogf/gf)
 
 你可以选择你拿手的或者业务项目正在用的框架开始，如果上述没有你喜欢的框架，欢迎给我们提[issue](https://github.com/GoAdminGroup/go-admin/issues/new?assignees=&labels=&template=proposal.md&title=%5BProposal%5D)！
 

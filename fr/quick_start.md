@@ -11,6 +11,7 @@ GoAdmin makes it easy to use in various web frameworks through various adapters.
 - [gorilla/mux](http://github.com/gorilla/mux)
 - [iris](https://github.com/kataras/iris)
 - [chi](https://github.com/go-chi/chi)
+- [gf](https://github.com/gogf/gf)
 
 <br>
 

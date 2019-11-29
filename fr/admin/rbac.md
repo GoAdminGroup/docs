@@ -15,10 +15,11 @@ On a form of management, the corresponding routing to add and delete, assuming t
 | List page | /info/users | GET |
 | Edit page of all rows | /info/users/edit | GET |
 | Edit page of specify row | /info/users/edit?id=2 | GET |
-| Create operation | /new/users | POST |
 | Edit operation of all rows | /edit/users | POST |
 | Edit operation of specify row | /edit/users?id=2 | POST |
 | New page | /info/users/new | GET |
+| Create operation | /new/users | POST |
+| Export operation | /export/users | POST |
 | All permission | * | (empty)
 
 **Note: the role of permissions is higher than in the menu configuration**

@@ -15,8 +15,9 @@ On a form of management, the corresponding routing to add and delete, assuming t
 | List page | /info/users | GET |
 | Edit page of all rows | /info/users/edit | GET |
 | Edit page of specify row | /info/users/edit?id=2 | GET |
-| Edit operation of all rows | /info/users/edit | POST |
-| Edit operation of specify row | /info/users/edit?id=2 | POST |
+| Create operation | /new/users | POST |
+| Edit operation of all rows | /edit/users | POST |
+| Edit operation of specify row | /edit/users?id=2 | POST |
 | New page | /info/users/new | GET |
 | All permission | * | (empty)
 

@@ -14,9 +14,10 @@ GoAdmin已经内置了[RBAC](https://www.baidu.com/s?wd=rbac)权限控制模块�
 | 列表页面 | /info/users | GET |
 | 所有记录编辑页面 | /info/users/edit | GET |
 | 指定记录编辑页面 | /info/users/edit?id=2 | GET |
-| 所有记录编辑操作 | /info/users/edit | POST |
-| 指定记录编辑操作 | /info/users/edit?id=2 | POST |
+| 所有记录编辑操作 | /edit/users | POST |
+| 指定记录编辑操作 | /edit/users?id=2 | POST |
 | 新增页面 | /info/users/new | GET |
+| 新建操作 | /new/users | POST |
 | 所有权限 | * | (留空)
 
 **注意：权限设置的高于在菜单配置的角色**

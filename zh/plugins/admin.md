@@ -372,6 +372,9 @@ type FormPanel struct {
 
 	Validator     FormValidator   // 表单验证函数
 	PostHook      FormPostHookFn  // 表单提交后触发函数
+
+	UpdateFn FormPostFn // 表单更新函数，设置了此函数，则接管了该表单的更新操作，PostHook不再生效
+	InsertFn FormPostFn // 表单插入函数，设置了此函数，则接管了该表单的插入操作，PostHook不再生效
 }
 
 // 表单验证函数，可以对传过来的表单的值进行验证
@@ -394,6 +397,10 @@ type FormField struct {
 	Editable     bool  // 是否可编辑
 	NotAllowAdd  bool  // 是否不允许新增
 	Must         bool  // 是否为必填项
+	Hide         bool  // 是否隐藏
+
+	HelpMsg   template.HTML  // 帮助信息
+	OptionExt template.JS    // 单选/多选的额外设置，详见：https://select2.org/configuration/options-api
 	
 	Display              FieldFilterFn           // 显示过滤函数
 	DisplayProcessChains DisplayProcessFnChains  // 显示处理函数

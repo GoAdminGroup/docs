@@ -382,6 +382,9 @@ type FormPanel struct {
 
 	HeaderHtml template.HTML  // header custom html content
 	FooterHtml template.HTML  // footer custom html content
+
+	UpdateFn FormPostFn // Form update function, set up this function, it took over the form of updates, PostHook is no longer in effect
+	InsertFn FormPostFn // Form inserts function, set up this function, it took over the form of the insert, PostHook effect no longer
 }
 
 // form validator function type
@@ -404,6 +407,10 @@ type FormField struct {
 	Editable    bool
 	NotAllowAdd bool
 	Must        bool
+	Hide        bool
+
+	HelpMsg   template.HTML  // form field help msg
+	OptionExt template.JS    // extra settings of select components, see: https://select2.org/configuration/options-api
 
 	Display              FieldFilterFn           // field display filter function
 	DisplayProcessChains DisplayProcessFnChains  // field value process function list

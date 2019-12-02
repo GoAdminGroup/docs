@@ -277,12 +277,15 @@ type Table interface {
 	GetCanAdd() bool
 	GetEditable() bool
 	GetDeletable() bool
+	GetExportable() bool
+	GetPrimaryKey() PrimaryKey
 	GetFiltersMap() []map[string]string
-	GetDataFromDatabase(path string, params *Parameters) PanelInfo
-	GetDataFromDatabaseWithId(id string) ([]types.Form, string, string)
-	UpdateDataFromDatabase(dataList map[string][]string)
-	InsertDataFromDatabase(dataList map[string][]string)
-	DeleteDataFromDatabase(id string)
+	GetDataFromDatabase(path string, params parameter.Parameters) (PanelInfo, error)
+	GetDataFromDatabaseWithIds(path string, params parameter.Parameters, ids []string) (PanelInfo, error)
+	GetDataFromDatabaseWithId(id string) ([]types.FormField, [][]types.FormField, []string, string, string, error)
+	UpdateDataFromDatabase(dataList form.Values) error
+	InsertDataFromDatabase(dataList form.Values) error
+	DeleteDataFromDatabase(id string) error
 }
 ```
 

@@ -12,6 +12,8 @@
 
 这里有一个极其简单的例子：[https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
 
+**GoAdmin目前一周更新一个小版本，一个月更新一个较大版本。会备注是否推荐更新。**
+
 ## 特性
 
 - 内置完善的rbac权限系统

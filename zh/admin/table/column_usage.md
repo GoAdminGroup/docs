@@ -72,3 +72,62 @@ info.AddField("Name", "name", db.Varchar).FieldToUpper()
 ```go
 info.AddField("Name", "name", db.Varchar).FieldToLower()
 ```
+
+**如果想要全局进行过滤操作**
+
+那么可以调用插件的方法：
+
+```go
+adminPlugin := admin.NewAdmin(...)
+
+// 限制输出
+adminPlugin.AddDisplayFilterLimit(limit int)
+
+// 去除空格
+adminPlugin.AddDisplayFilterTrimSpace()
+
+// 截取字符串
+adminPlugin.AddDisplayFilterSubstr(start int, end int)
+
+// 首字母大写
+adminPlugin.AddDisplayFilterToTitle()
+
+// 大写
+adminPlugin.AddDisplayFilterToUpper()
+
+// 小写
+adminPlugin.AddDisplayFilterToLower()
+
+// xss过滤
+adminPlugin.AddDisplayFilterXssFilter()
+
+// js过滤
+adminPlugin.AddDisplayFilterXssJsFilter()
+
+```
+
+**如果想要在表格或表单显示层面进行过滤操作**
+
+```go
+info := table.NewDefaultTable(...).GetInfo()
+
+info.AddLimitFilter(limit int)
+info.AddTrimSpaceFilter()
+info.AddSubstrFilter(start int, end int)
+info.AddToTitleFilter()
+info.AddToUpperFilter()
+info.AddToLowerFilter()
+info.AddXssFilter()
+info.AddXssJsFilter()
+
+form := table.NewDefaultTable(...).GetForm()
+
+form.AddLimitFilter(limit int)
+form.AddTrimSpaceFilter()
+form.AddSubstrFilter(start int, end int)
+form.AddToTitleFilter()
+form.AddToUpperFilter()
+form.AddToLowerFilter()
+form.AddXssFilter()
+form.AddXssJsFilter()
+```

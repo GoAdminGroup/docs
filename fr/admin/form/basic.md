@@ -76,3 +76,28 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowEdit()
 formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
 
 ```
+
+## Add Button
+
+If you want to add some buttons to the table box header, you can do like this:
+
+```go
+info.AddButton(title template.HTML, icon string, action Action, color ...template.HTML)
+```
+
+```title```is the title of Button, ```icon```is the icon of Button, ```action```is the Button action and ```color``` is backgroud color and text color
+
+For example:
+```go
+
+import (
+    ...
+	"github.com/GoAdminGroup/go-admin/template/icon"
+	"github.com/GoAdminGroup/go-admin/template/types/action"
+    ...
+)
+
+info.AddButton("Today Data", icon.Save, action.PopUp("/admin/data/analyze", "Data Analyze"))
+```
+
+We add a Button which will toggle a popup when click. And the popup content is returned by request of route "/admin/data/analyze". "Data Analyze" is the title of the popup.

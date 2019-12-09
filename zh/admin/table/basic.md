@@ -139,3 +139,30 @@ info.AddField("Role Name", "role_name", db.Varchar).FieldJoin(types.Join{
 ```sql
 select ..., role.`role_name` from users left join role on users.`id` = role.`user_id` where ...
 ```
+
+## 新增按钮
+
+如果您需要新增一些功能按钮，可以调用：
+
+```go
+info.AddButton(title template.HTML, icon string, action Action, color ...template.HTML)
+```
+
+其中，```title```为Button的标题，```icon```为Button的icon，```action```为Button的操作，```color```为背景色与文字颜色。
+
+例如：
+```go
+
+import (
+    ...
+	"github.com/GoAdminGroup/go-admin/template/icon"
+	"github.com/GoAdminGroup/go-admin/template/types/action"
+    ...
+)
+
+info.AddButton("今日情况", icon.Save, action.PopUp("/admin/data/analyze", "数据分析"))
+```
+
+添加了一个popup的操作，将会去请求对应路由，对应路由返回的就是popup的内容，「数据分析」为对应popup的标题。
+
+

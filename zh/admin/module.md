@@ -47,7 +47,7 @@ func main() {
     // 获取mssql连接
     conn := eng.MssqlConnection()
     
-    // 获取mssql连接
+    // 获取postgresql连接
     conn := eng.PostgresqlConnection()
 
     // 获取sqlite连接

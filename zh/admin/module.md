@@ -141,6 +141,11 @@ func main() {
         if !user.CheckPermission("dashboard") {
             return types.Panel{}, errors.New("没有权限") 
         }
+
+        // 验证其角色
+        if !user.CheckRole("operator") {
+            return types.Panel{}, errors.New("没有权限") 
+        }
 	})
     ...
 }

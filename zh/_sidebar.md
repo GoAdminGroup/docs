@@ -13,6 +13,7 @@
     - [表单组件](admin/form/components)    
   - [设置菜单](admin/menus)
   - [权限管理](admin/rbac)
+  - [模块](admin/module)
   - [使用新主题](admin/theme)
   - [文件上传](admin/file)
   - [命令行工具](admin/cli)

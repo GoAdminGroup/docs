@@ -27,10 +27,29 @@ info.AddField("Name", "name", db.Varchar).FieldSortable()
 info.AddField("Name", "name", db.Varchar).FieldFixed()
 ```
 
-### 设置为可过滤
+### 设置为可筛选
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldFilterable()
+```
+
+设置筛选的操作符与操作表单类型：
+
+```go
+
+// 设置操作符为like，模糊查询
+info.AddField("Name", "name", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+
+// 设置为单选类型
+info.AddField("Gender", "gender", db.Tinyint).
+    FieldFilterable(types.FilterType{FormType: form.SelectSingle}).
+    FieldFilterOptions([]map[string]string{
+		{"value": "0", "field": "men"},
+		{"value": "1", "field": "women"},
+    }).FieldFilterOptionExt(map[string]interface{}{"allowClear": true})
+    
+// 设置为时间范围类型，范围查询
+info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
 ```
 
 ## 帮助方法

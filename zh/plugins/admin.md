@@ -47,6 +47,8 @@ go install github.com/GoAdminGroup/go-admin/adm
 adm generate
 ```
 
+**注意：选择表格的时候，按空格选择，不是按回车**
+
 根据提示填写信息，运行完之后，会生成一个文件```users.go```，这个就是对应数据表的配置文件了，关于如何配置，在后面详细介绍。
 
 ### 设置访问路由
@@ -280,12 +282,15 @@ type Table interface {
 	GetCanAdd() bool
 	GetEditable() bool
 	GetDeletable() bool
+	GetExportable() bool
+	GetPrimaryKey() PrimaryKey
 	GetFiltersMap() []map[string]string
-	GetDataFromDatabase(path string, params *Parameters) PanelInfo
-	GetDataFromDatabaseWithId(id string) ([]types.Form, string, string)
-	UpdateDataFromDatabase(dataList map[string][]string)
-	InsertDataFromDatabase(dataList map[string][]string)
-	DeleteDataFromDatabase(id string)
+	GetDataFromDatabase(path string, params parameter.Parameters) (PanelInfo, error)
+	GetDataFromDatabaseWithIds(path string, params parameter.Parameters, ids []string) (PanelInfo, error)
+	GetDataFromDatabaseWithId(id string) ([]types.FormField, [][]types.FormField, []string, string, string, error)
+	UpdateDataFromDatabase(dataList form.Values) error
+	InsertDataFromDatabase(dataList form.Values) error
+	DeleteDataFromDatabase(id string) error
 }
 ```
 
@@ -372,6 +377,9 @@ type FormPanel struct {
 
 	Validator     FormValidator   // 表单验证函数
 	PostHook      FormPostHookFn  // 表单提交后触发函数
+
+	UpdateFn FormPostFn // 表单更新函数，设置了此函数，则接管了该表单的更新操作，PostHook不再生效
+	InsertFn FormPostFn // 表单插入函数，设置了此函数，则接管了该表单的插入操作，PostHook不再生效
 }
 
 // 表单验证函数，可以对传过来的表单的值进行验证
@@ -394,6 +402,10 @@ type FormField struct {
 	Editable     bool  // 是否可编辑
 	NotAllowAdd  bool  // 是否不允许新增
 	Must         bool  // 是否为必填项
+	Hide         bool  // 是否隐藏
+
+	HelpMsg   template.HTML  // 帮助信息
+	OptionExt template.JS    // 单选/多选的额外设置，详见：https://select2.org/configuration/options-api
 	
 	Display              FieldFilterFn           // 显示过滤函数
 	DisplayProcessChains DisplayProcessFnChains  // 显示处理函数

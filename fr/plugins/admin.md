@@ -47,6 +47,8 @@ Execute in the project folder
 adm generate
 ```
 
+**注意：选择表格的时候，按空格选择，不是按回车**
+
 Fill in the information according to the prompts. After the run, a file ```users.go``` will be generated. This is the configuration file corresponding to the data table. How to configure it is described in detail later.
 
 ### Set access url
@@ -277,12 +279,15 @@ type Table interface {
 	GetCanAdd() bool
 	GetEditable() bool
 	GetDeletable() bool
+	GetExportable() bool
+	GetPrimaryKey() PrimaryKey
 	GetFiltersMap() []map[string]string
-	GetDataFromDatabase(path string, params *Parameters) PanelInfo
-	GetDataFromDatabaseWithId(id string) ([]types.Form, string, string)
-	UpdateDataFromDatabase(dataList map[string][]string)
-	InsertDataFromDatabase(dataList map[string][]string)
-	DeleteDataFromDatabase(id string)
+	GetDataFromDatabase(path string, params parameter.Parameters) (PanelInfo, error)
+	GetDataFromDatabaseWithIds(path string, params parameter.Parameters, ids []string) (PanelInfo, error)
+	GetDataFromDatabaseWithId(id string) ([]types.FormField, [][]types.FormField, []string, string, string, error)
+	UpdateDataFromDatabase(dataList form.Values) error
+	InsertDataFromDatabase(dataList form.Values) error
+	DeleteDataFromDatabase(id string) error
 }
 ```
 
@@ -382,6 +387,9 @@ type FormPanel struct {
 
 	HeaderHtml template.HTML  // header custom html content
 	FooterHtml template.HTML  // footer custom html content
+
+	UpdateFn FormPostFn // Form update function, set up this function, it took over the form of updates, PostHook is no longer in effect
+	InsertFn FormPostFn // Form inserts function, set up this function, it took over the form of the insert, PostHook effect no longer
 }
 
 // form validator function type
@@ -404,6 +412,10 @@ type FormField struct {
 	Editable    bool
 	NotAllowAdd bool
 	Must        bool
+	Hide        bool
+
+	HelpMsg   template.HTML  // form field help msg
+	OptionExt template.JS    // extra settings of select components, see: https://select2.org/configuration/options-api
 
 	Display              FieldFilterFn           // field display filter function
 	DisplayProcessChains DisplayProcessFnChains  // field value process function list

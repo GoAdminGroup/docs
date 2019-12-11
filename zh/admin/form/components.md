@@ -120,13 +120,13 @@ formList.AddField("gender", "gender", db.Int, form.SelectBox).
                 "field":    "gender",
                 "label":    "male",
                 "value":    "0",
-                "selected": "true",
+                "selected": "checked",
             },
             {
                 "field":    "gender",
                 "label":    "female",
                 "value":    "1",
-                "selected": "false",
+                "selected": "",
             },
         }).FieldDefault("0") // 设置默认的值
 ```

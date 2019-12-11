@@ -17,11 +17,11 @@ Download the binary excecute file:
 
 |  File name   | OS  | Arch  | Size  |
 |  ----  | ----  | ----  |----  |
-| [adm_darwin_x86_64_v1.0.8.zip](http://file.go-admin.cn/go_admin/cli/v1_0_8/adm_darwin_x86_64_v1.0.8.zip)  | macOs | x86-64 | 4.77 MB
-| [adm_linux_x86_64_v1.0.8.zip](http://file.go-admin.cn/go_admin/cli/v1_0_8/adm_linux_x86_64_v1.0.8.zip)  | Linux | x86-64   | 6.52 MB
-| [adm_linux_armel_v1.0.8.zip](http://file.go-admin.cn/go_admin/cli/v1_0_8/adm_linux_armel_v1.0.8.zip)  | Linux | x86   | 6.06 MB
-| [adm_windows_i386_v1.0.8.zip](http://file.go-admin.cn/go_admin/cli/v1_0_8/adm_windows_i386_v1.0.8.zip)  | Windows | x86  |6.16 MB
-| [adm_windows_x86_64_v1.0.8.zip](http://file.go-admin.cn/go_admin/cli/v1_0_8/adm_windows_x86_64_v1.0.8.zip)  | Windows | x86-64   |6.38 MB
+| [adm_darwin_x86_64_v1.1.3.zip](http://file.go-admin.cn/go_admin/cli/v1_1_3/adm_darwin_x86_64_v1.1.3.zip)  | macOs | x86-64 | 4.77 MB
+| [adm_linux_x86_64_v1.1.3.zip](http://file.go-admin.cn/go_admin/cli/v1_1_3/adm_linux_x86_64_v1.1.3.zip)  | Linux | x86-64   | 6.52 MB
+| [adm_linux_armel_v1.1.3.zip](http://file.go-admin.cn/go_admin/cli/v1_1_3/adm_linux_armel_v1.1.3.zip)  | Linux | x86   | 6.06 MB
+| [adm_windows_i386_v1.1.3.zip](http://file.go-admin.cn/go_admin/cli/v1_1_3/adm_windows_i386_v1.1.3.zip)  | Windows | x86  |6.16 MB
+| [adm_windows_x86_64_v1.1.3.zip](http://file.go-admin.cn/go_admin/cli/v1_1_3/adm_windows_x86_64_v1.1.3.zip)  | Windows | x86-64   |6.38 MB
 
 
 Or use the command:

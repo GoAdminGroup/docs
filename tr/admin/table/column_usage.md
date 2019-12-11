@@ -1,5 +1,4 @@
 # Usage Of Column
----
 
 **InfoPanel** has a lot of built-in operation methods for columns, which can be used to manipulate column data very flexibly.
 
@@ -72,3 +71,4 @@ String to lowercase
 ```go
 info.AddField("Name", "name", db.Varchar).FieldToLower()
 ```
+

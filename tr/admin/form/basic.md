@@ -1,5 +1,4 @@
 # Basic Usage
----
 
 Use the cli to generate a data form type for the sql table, such as:
 
@@ -23,33 +22,32 @@ Generated:
 package datamodel
 
 import (
-	...
+    ...
 )
 
 func GetUserTable() (userTable table.Table) {
 
-	// config the table model.
-	userTable = table.NewDefaultTable(...)
+    // config the table model.
+    userTable = table.NewDefaultTable(...)
 
   ...
 
-	formList := userTable.GetForm()
+    formList := userTable.GetForm()
 
-	// set id editable is false.
-	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit()
-	formList.AddField("Ip", "ip", db.Varchar, form.Text)
-	formList.AddField("Name", "name", db.Varchar, form.Text)
+    // set id editable is false.
+    formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit()
+    formList.AddField("Ip", "ip", db.Varchar, form.Text)
+    formList.AddField("Name", "name", db.Varchar, form.Text)
 
   ...
 
-	return
+    return
 }
 ```
 
-### Add Fields
+## Add Fields
 
 ```go
-
 // Add a field with the field title ID, field name id, field type int, form type Default
 formList.AddField("ID", "id", db.Int, form.Default)
 
@@ -58,21 +56,17 @@ formList.AddField("Ip", "ip", db.Varchar, form.Text)
 
 // Add a third field, a field that does not exist in the sql table
 formList.AddField("Custom", "custom", db.Varchar, form.Text)
-
 ```
 
-### Prohibit editing
+## Prohibit editing
 
 ```go
-
 formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowEdit()
-
 ```
 
-### No new additions
+## No new additions
 
 ```go
-
 formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
-
 ```
+

@@ -1,10 +1,9 @@
 # Use New Theme
----
 
 Follow two steps：（Notice：GoAdmin version should be higher than v1.0.2）
 
-- 1. import the theme package
-- 2. set theme name in your config
+* 1. import the theme package
+* 1. set theme name in your config
 
 Ex:
 
@@ -12,29 +11,30 @@ Ex:
 package main
 
 import ( 
-	...
+    ...
 
-	_ "github.com/GoAdminGroup/themes/sword"
+    _ "github.com/GoAdminGroup/themes/sword"
 
     ...
 )
 
 func main() {
-	r := gin.Default()
+    r := gin.Default()
 
-	gin.SetMode(gin.ReleaseMode)
-	gin.DefaultWriter = ioutil.Discard
+    gin.SetMode(gin.ReleaseMode)
+    gin.DefaultWriter = ioutil.Discard
 
-	eng := engine.Default()
+    eng := engine.Default()
 
-	cfg := config.Config{
-		...
+    cfg := config.Config{
+        ...
 
-		Theme:    "sword",
+        Theme:    "sword",
 
         ...
-	}
+    }
 
     ...
 }
 ```
+

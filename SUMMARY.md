@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Introduction](en/README.md)
+* [English](en/README.md)
   * [Get Ready](en/install.md)
   * [Quick Start](en/quick_start.md)
   * [Plugins](en/plugins/README.md)
@@ -34,7 +34,7 @@
     * [Form Development](en/template-development/form-development.md)
     * [Components](en/template-development/components.md)
   * [Plan](en/plan.md)
-* [介绍](zh/README.md)
+* [中文](zh/README.md)
   * [准备工作](zh/install.md)
   * [快速开始](zh/quick_start.md)
   * [插件](zh/cha-jian.md)

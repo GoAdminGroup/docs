@@ -1,4 +1,4 @@
-# English
+# Introduction
 
 GoAdmin is a data visualization management platform, providing a complete set of visual ui calls to golang programs, and a built-in sql relational database management backend plugin.   
    

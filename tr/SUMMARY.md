@@ -1,5 +1,3 @@
-# \_sidebar
-
 * [Introducation](_sidebar.md)
 * [Get Ready](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/install/README.md)
 * [Quick Start](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/quick_start/README.md)

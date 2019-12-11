@@ -47,6 +47,8 @@ go install github.com/GoAdminGroup/go-admin/adm
 adm generate
 ```
 
+**注意：选择表格的时候，按空格选择，不是按回车**
+
 根据提示填写信息，运行完之后，会生成一个文件```users.go```，这个就是对应数据表的配置文件了，关于如何配置，在后面详细介绍。
 
 ### 设置访问路由

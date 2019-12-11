@@ -47,6 +47,8 @@ Execute in the project folder
 adm generate
 ```
 
+**注意：选择表格的时候，按空格选择，不是按回车**
+
 Fill in the information according to the prompts. After the run, a file ```users.go``` will be generated. This is the configuration file corresponding to the data table. How to configure it is described in detail later.
 
 ### Set access url

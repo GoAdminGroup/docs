@@ -39,8 +39,7 @@ go install github.com/GoAdminGroup/go-admin/adm
 
 * generate
 
-  
- Execute in the project folder
+Execute in the project folder
 
 ```bash
 adm generate

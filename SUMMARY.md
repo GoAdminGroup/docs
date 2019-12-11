@@ -1,3 +1,6 @@
+# Table of contents
+
+* [Introduction](README.md)
 * [English](en/README.md)
     * [Get Ready](en/install.md)
     * [Quick Start](en/quick_start.md)
@@ -70,4 +73,4 @@
         - [模板介绍](zh/development/template/template.md)     
         - [表单组件开发](zh/development/template/form.md)         
         - [组件开发](zh/development/template/components.md) 
-    - [发展规划](zh/plan.md)  
+    - [发展规划](zh/plan.md) 

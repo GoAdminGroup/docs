@@ -99,8 +99,10 @@ func main() {
 ## 添加自己的业务表进行管理
 
 详见：<br><br>
-1 [插件的使用](plugins/plugins)<br>
-2 [Admin插件使用](plugins/admin)
+
+{% page-ref page="plugins/plugins.md" %}
+
+{% page-ref page="plugins/admin.md" %}
 
 ## 全局配置项说明
 

@@ -98,8 +98,10 @@ more web framework example: [https://github.com/GoAdminGroup/go-admin/tree/maste
 ## Add your own business table for management
 
 See：<br><br>
-1 [How To Use Plugins](plugins/plugins)<br>
-2 [How To Use Admin Plugin](plugins/admin)
+
+{% page-ref page="plugins/plugins.md" %}
+
+{% page-ref page="plugins/admin.md" %}
 
 ## Global configuration item description
 

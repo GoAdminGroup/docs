@@ -82,19 +82,19 @@ Please pay attention to the above code and comments, the corresponding steps are
 * Set up plugins and configurations
 * Mounted to the web framework
 
-Then execute `go run main.go` to run the code and access: [http://localhost:9033/admin/login](http://localhost:9033/admin/login)
-
-default account: admin  
-default password: admin
+Then execute `go run main.go` to run the code and access: [http://localhost:9033/admin/login](http://localhost:9033/admin/login)   
+   
+ default account: admin  
+ default password: admin
 
 more web framework example: [https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
 
 ## Add your own business table for management
 
-See：
-
-1 [How To Use Plugins](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/plugins/plugins/README.md)  
-2 [How To Use Admin Plugin](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/plugins/admin/README.md)
+See：  
+  
+ 1 [How To Use Plugins](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/plugins/plugins/README.md)  
+ 2 [How To Use Admin Plugin](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/plugins/admin/README.md)
 
 ## Global configuration item description
 

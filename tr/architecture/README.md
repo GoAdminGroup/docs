@@ -1,2 +1,2 @@
-# Architecture
+# architecture
 

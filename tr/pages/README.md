@@ -1,2 +1,2 @@
-# Pages
+# pages
 

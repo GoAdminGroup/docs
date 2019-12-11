@@ -1,4 +1,4 @@
-# Customize Your Page
+# Customize your page
 
 call the method `Content`of the engine:
 

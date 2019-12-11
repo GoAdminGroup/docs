@@ -97,7 +97,7 @@ more web framework example: [https://github.com/GoAdminGroup/go-admin/tree/maste
 
 ## Add your own business table for management
 
-See：<br><br>
+See:
 
 {% page-ref page="plugins/plugins.md" %}
 

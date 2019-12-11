@@ -98,7 +98,7 @@ func main() {
 
 ## 添加自己的业务表进行管理
 
-详见：<br><br>
+详见：
 
 {% page-ref page="plugins/plugins.md" %}
 

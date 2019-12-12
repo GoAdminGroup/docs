@@ -48,23 +48,25 @@ func GetUserTable() (userTable table.Table) {
 
 ## 类型
 
-- 默认，只显示 Default
-- 普通文本 Text
-- 单选 SelectSingle
-- 密码 Password
-- 富文本 RichText
-- 文件 File
-- 双选择框 SelectBox
-- 多选 Select
-- icon下拉选择框 IconPicker
-- 时间选择框 Datetime
-- radio选择框 Radio
-- email输入框 Email
-- url输入框 Url
-- ip输入框 Ip
-- 颜色选择框 Color
-- 货币输入框 Currency
-- 数字输入框 Number
+- 默认，只显示 ```Default```
+- 普通文本 ```Text```
+- 单选 ```SelectSingle```
+- 密码 ```Password```
+- 富文本 ```RichText```
+- 文件 ```File```
+- 双选择框 ```SelectBox```
+- 多选 ```Select```
+- icon下拉选择框 ```IconPicker```
+- 时间选择框 ```Datetime```
+- radio选择框 ```Radio```
+- email输入框 ```Email```
+- url输入框 ```Url```
+- ip输入框 ```Ip```
+- 颜色选择框 ```Color```
+- 货币输入框 ```Currency```
+- 数字输入框 ```Number```
+
+例子：
 
 ```go
 

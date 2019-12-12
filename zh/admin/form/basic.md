@@ -46,6 +46,42 @@ func GetUserTable() (userTable table.Table) {
 }
 ```
 
+## 类型
+
+- 默认，只显示 Default
+- 普通文本 Text
+- 单选 SelectSingle
+- 密码 Password
+- 富文本 RichText
+- 文件 File
+- 双选择框 SelectBox
+- 多选 Select
+- icon下拉选择框 IconPicker
+- 时间选择框 Datetime
+- radio选择框 Radio
+- email输入框 Email
+- url输入框 Url
+- ip输入框 Ip
+- 颜色选择框 Color
+- 货币输入框 Currency
+- 数字输入框 Number
+
+```go
+
+import (
+    ...
+    "github.com/GoAdminGroup/go-admin/template/types/form"  
+    ...
+)
+
+func GetxxxTable() table.Table {
+    formList.AddField("ID", "id", db.Int, form.Default)
+}
+
+```
+
+## 操作
+
 ### 添加字段
 
 ```go
@@ -93,5 +129,41 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowEdit()
 ```go
 
 formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
+
+```
+
+### 提交前对字段进行过滤处理
+
+```go
+formList.AddField("链接", "url", db.Varchar, form.Text).
+		FieldPostFilterFn(func(value types.PostFieldModel) string {
+			return "http://xxxx.com/" + value.Get("url")
+		})
+```
+
+### 显示过滤处理
+
+```go
+
+// 限制长度
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldLimit(limit int)
+
+// 去除空格
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldTrimSpace()
+
+// 截取
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldSubstr(start int, end int)
+
+// 标题
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldToTitle()
+
+// 大写
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldToUpper()
+
+// 小写
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldToLower()
+
+// xss过滤
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldXssFilter()
 
 ```

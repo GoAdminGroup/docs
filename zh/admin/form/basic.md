@@ -117,7 +117,6 @@ formList.AddField("header", "header", db.Varchar, form.Text).FieldMust()
 formList.AddField("header", "header", db.Varchar, form.Text).FieldHelpMsg("长度应该大于5")
 ```
 
-
 ### 不允许编辑
 
 ```go
@@ -168,4 +167,21 @@ formList.AddField("链接", "url", db.Varchar, form.Text).FieldToLower()
 // xss过滤
 formList.AddField("链接", "url", db.Varchar, form.Text).FieldXssFilter()
 
+```
+
+### 插入/新增逻辑重写
+
+如果你的表单插入操作与新增操作比较复杂，框架不能满足，那么你可以完全重写并取代框架的插入操作。
+
+```go
+
+// 取代新增函数
+formList.SetInsertFn(func(values form2.Values) error {
+      // values 为传入的表单参数
+  })
+  
+// 取代更新函数
+formList.SetUpdateFn(func(values form2.Values) error {
+      // values 为传入的表单参数
+	})  
 ```

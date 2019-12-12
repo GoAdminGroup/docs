@@ -61,6 +61,25 @@ formList.AddField("Custom", "custom", db.Varchar, form.Text)
 
 ```
 
+### 设置默认值
+
+```go
+formList.AddField("header", "header", db.Varchar, form.Text).FieldDefault("header")
+```
+
+### 设置为必须输入
+
+```go
+formList.AddField("header", "header", db.Varchar, form.Text).FieldMust()
+```
+
+### 设置帮助信息
+
+```go
+formList.AddField("header", "header", db.Varchar, form.Text).FieldHelpMsg("长度应该大于5")
+```
+
+
 ### 不允许编辑
 
 ```go

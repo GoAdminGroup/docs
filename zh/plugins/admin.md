@@ -284,8 +284,7 @@ type Table interface {
 	GetDeletable() bool
 	GetExportable() bool
 	GetPrimaryKey() PrimaryKey
-	GetFiltersMap() []map[string]string
-	GetDataFromDatabase(path string, params parameter.Parameters) (PanelInfo, error)
+	GetDataFromDatabase(path string, params parameter.Parameters, isAll bool) (PanelInfo, error)
 	GetDataFromDatabaseWithIds(path string, params parameter.Parameters, ids []string) (PanelInfo, error)
 	GetDataFromDatabaseWithId(id string) ([]types.FormField, [][]types.FormField, []string, string, string, error)
 	UpdateDataFromDatabase(dataList form.Values) error

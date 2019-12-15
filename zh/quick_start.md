@@ -92,7 +92,7 @@ func main() {
 
 注意：golang版本高于1.11强烈建议开启```GO111MODULE=on```，如果运行下载依赖有问题，这里提供了依赖包下载：
 
-- [vendor_v1.1.3.zip](http://file.go-admin.cn/go_admin/vendor/v1_1_3/vendor.zip)
+- [vendor_v1.1.4.zip](http://file.go-admin.cn/go_admin/vendor/v1_1_4/vendor.zip)
 
 其他框架的例子可以看：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
 

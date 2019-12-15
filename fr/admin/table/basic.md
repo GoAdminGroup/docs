@@ -119,6 +119,12 @@ info.HideExportButton()
 info.HideDeleteButton()
 ```
 
+### Hide filter area by default
+
+```go
+info.HideFilterArea()
+```
+
 ## Join Table
 
 The table needs to set the table name and the table field

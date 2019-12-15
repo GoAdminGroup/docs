@@ -1,7 +1,7 @@
 # Basic Usage
 ---
 
-Use the cli to generate a data form type for the sql table, such as:
+Use the command line to generate a data table type for the sql table, such as:
 
 ```sql
 CREATE TABLE `users` (
@@ -29,75 +29,118 @@ import (
 func GetUserTable() (userTable table.Table) {
 
 	// config the table model.
-	userTable = table.NewDefaultTable(...)
+	userTable = table.NewDefaultTable(table.Config{...})
 
-  ...
+	info := userTable.GetInfo()
 
-	formList := userTable.GetForm()
+	// set id sortable.
+	info.AddField("ID", "id", db.Int).FieldSortable(true)
+	info.AddField("Name", "name", db.Varchar)
+    
+    ...
 
-	// set id editable is false.
-	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit()
-	formList.AddField("Ip", "ip", db.Varchar, form.Text)
-	formList.AddField("Name", "name", db.Varchar, form.Text)
+	// set the title and description of table page.
+	info.SetTable("users").SetTitle("Users").SetDescription("Users").
+		SetAction(template.HTML(`<a href="http://google.com"><i class="fa fa-google"></i></a>`))  // custom operation button
 
-  ...
-
-	return
+    ...
 }
 ```
 
-### Add Fields
+### Add Field
 
 ```go
 
-// Add a field with the field title ID, field name id, field type int, form type Default
-formList.AddField("ID", "id", db.Int, form.Default)
+// Add a field with the field title ID, field name id, field type int
+info.AddField("ID", "id", db.Int)
 
-// Add a second field with the field title Ip, the field name ip, the field type varchar, and the form type Text
-formList.AddField("Ip", "ip", db.Varchar, form.Text)
+// Add the second field, the field title is Name, the field name is name, and the field type is varchar
+info.AddField("Name", "name", db.Varchar)
 
 // Add a third field, a field that does not exist in the sql table
-formList.AddField("Custom", "custom", db.Varchar, form.Text)
+info.AddField("Custom", "custom", db.Varchar)
 
 ```
 
-### Prohibit editing
+### Modify display output
 
 ```go
 
-formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowEdit()
+// Output the corresponding content according to the value of the field
+info.AddField("Gender", "gender", db.Tinyint).FieldDisplay(func(model types.FieldModel) interface{} {
+    if model.Value == "0" {
+        return "men"
+    }
+    if model.Value == "1" {
+        return "women"
+    }
+    return "unknown"
+})
 
+// Output html
+info.AddField("Name", "name", db.Varchar).FieldDisplay(func(model types.FieldModel) interface{} {    
+    return "<span class='label'>" +  model.Value + "</span>"
+})
 ```
 
-### No new additions
+The anonymous function received by the **FieldDisplay** method binds the data object of the current row, and can call other field data of the current row in it.
+
+```go
+info.AddField("First Name", "first_name", db.Varchar).FieldHide()
+info.AddField("Last Name", "last_name", db.Varchar).FieldHide()
+
+// non-existing field columns
+info.AddField("Full Name", "full_name", db.Varchar).FieldDisplay(func(model types.FieldModel) interface{} {    
+    return model.Row["first_name"].(string) + " " + model.Row["last_name"].(string)
+})
+```
+
+### Hide create button
+
+```go
+info.HideNewButton()
+```
+
+### Hide edit button
+
+```go
+info.HideEditButton()
+```
+
+### Hide export button
+
+```go
+info.HideExportButton()
+```
+
+### Hide delete button
+
+```go
+info.HideDeleteButton()
+```
+
+### Hide filter area by default
+
+```go
+info.HideFilterArea()
+```
+
+## Join Table
+
+The table needs to set the table name and the table field
 
 ```go
 
-formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
+info.AddField("Role Name", "role_name", db.Varchar).FieldJoin(types.Join{
+    Table: "role",         // table name which you want to join 
+	Field: "id",           // table field name of your own 
+	JoinField: "user_id",  // table field name of the table which you want to join 
+})
 
 ```
 
-## Add Button
+It will generate a sql statement like this:
 
-If you want to add some buttons to the table box header, you can do like this:
-
-```go
-info.AddButton(title template.HTML, icon string, action Action, color ...template.HTML)
+```sql
+select ..., role.`role_name` from users left join role on users.`id` = role.`user_id` where ...
 ```
-
-```title```is the title of Button, ```icon```is the icon of Button, ```action```is the Button action and ```color``` is backgroud color and text color
-
-For example:
-```go
-
-import (
-    ...
-	"github.com/GoAdminGroup/go-admin/template/icon"
-	"github.com/GoAdminGroup/go-admin/template/types/action"
-    ...
-)
-
-info.AddButton("Today Data", icon.Save, action.PopUp("/admin/data/analyze", "Data Analyze"))
-```
-
-We add a Button which will toggle a popup when click. And the popup content is returned by request of route "/admin/data/analyze". "Data Analyze" is the title of the popup.

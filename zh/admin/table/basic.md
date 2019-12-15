@@ -119,6 +119,12 @@ info.HideExportButton()
 info.HideDeleteButton()
 ```
 
+### 默认隐藏筛选框
+
+```go
+info.HideFilterArea()
+```
+
 ## 连表
 
 连表需要设置连表表名与连表字段

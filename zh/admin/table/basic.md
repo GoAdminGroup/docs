@@ -125,6 +125,13 @@ info.HideDeleteButton()
 info.HideFilterArea()
 ```
 
+### 预查询
+
+```go
+// 字段, 操作符, 参数
+info.Where("type", "=", 0)
+```
+
 ## 连表
 
 连表需要设置连表表名与连表字段

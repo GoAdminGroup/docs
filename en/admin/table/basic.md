@@ -125,6 +125,13 @@ info.HideDeleteButton()
 info.HideFilterArea()
 ```
 
+### Pre query
+
+```go
+// field, operator, argument
+info.Where("type", "=", 0)
+```
+
 ## Join Table
 
 The table needs to set the table name and the table field

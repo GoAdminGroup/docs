@@ -71,7 +71,7 @@ var Generators = map[string]models.TableGenerator{
 }
 ```
 
-`"user"` is the corresponding access route prefix, `GetUserTable` is the table data generation method. The corresponding access routing address is: [http://localhost:9033/admin/info/users](http://localhost:9033/admin/info/users)
+`"user"` is the corresponding access route prefix, `GetUserTable` is the table data generation method. The corresponding access routing address is: [http://localhost:9033/admin/info/user](http://localhost:9033/admin/info/user)
 
 ### Initialize and load in the engine
 

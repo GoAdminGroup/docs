@@ -75,7 +75,7 @@ var Generators = map[string]models.TableGenerator{
 ```
 
 其中，```"user"```就是对应的访问路由前缀，```GetUserTable```就是表格数据生成方法。
-对应的访问路由地址就是：http://localhost:9033/admin/info/users
+对应的访问路由地址就是：[http://localhost:9033/admin/info/user](http://localhost:9033/admin/info/user)
 
 ### 初始化，并在引擎中加载
 
@@ -363,7 +363,7 @@ type Join struct {
 
 ```go
 type FormPanel struct {
-	FormList     FormFields      // 字段列表
+	FieldList    FormFields      // 字段列表
 	Table        string          // 表格
 	Title        string          // 标题
 	Description  string          // 描述

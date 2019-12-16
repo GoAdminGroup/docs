@@ -132,6 +132,21 @@ info.HideFilterArea()
 info.Where("type", "=", 0)
 ```
 
+## 设置筛选表单布局
+
+```go
+info.SetFilterFormLayout(layout form.Layout)
+```
+
+## 设置默认排序规则
+
+```go
+// 顺序
+info.SetSortAsc()
+// 倒序
+info.SetSortDesc()
+```
+
 ## 连表
 
 连表需要设置连表表名与连表字段

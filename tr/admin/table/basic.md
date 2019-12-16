@@ -128,6 +128,21 @@ info.HideFilterArea()
 info.Where("type", "=", 0)
 ```
 
+## Set filter area form layout
+
+```go
+info.SetFilterFormLayout(layout form.Layout)
+```
+
+## Set default order rule
+
+```go
+// increase
+info.SetSortAsc()
+// decrease
+info.SetSortDesc()
+```
+
 ## Join Table
 
 The table needs to set the table name and the table field

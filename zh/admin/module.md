@@ -39,7 +39,9 @@ func main() {
 	}
 
 	// 这里生成了数据库模块
-    _ = eng.AddConfig(cfg).AddPlugins(adminPlugin).Use(r)
+    _ = eng.AddConfig(cfg).
+        AddPlugins(adminPlugin).
+        Use(r)
     
     // 获取mysql连接
     conn := eng.MysqlConnection()
@@ -52,6 +54,25 @@ func main() {
 
     // 获取sqlite连接
     conn := eng.SqliteConnection()
+
+    // 注意，获取到的一个指针，指向的是全局唯一的真正的数据库连接对象。
+    // 如果你要在数据模型文件中复用，那么你必须在 .Use(r) 调用前对连接对象进行设置
+    // 否则会报空指针错误。比如：
+    //
+    // _ = eng.AddConfig(cfg).
+    //     ResolveMysqlConnection(tables.SetConn)
+    //     AddPlugins(adminPlugin).
+    //     Use(r)
+    //
+    // 在tables.go文件中是：
+    //
+    // var conn db.Connection
+    //
+    // func SetConn(c db.Connection) {
+    //    conn = c   
+    // }
+    //
+    // 然后在数据模型文件中调用 conn，进行数据库操作
 
     // 通过setter函数获取
     eng.ResolveMysqlConnection(SetConn)

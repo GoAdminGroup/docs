@@ -13,6 +13,7 @@
             * [Form Components](en/admin/form/components.md)
         * [Menus](en/admin/menus.md)
         * [Permissions](en/admin/rbac.md)
+        - [Modules](en/admin/module.md)        
         * [New Theme](en/admin/theme.md)
         * [File Upload](en/admin/file.md)
         * [Cli](en/admin/cli.md)

@@ -2,7 +2,7 @@
 ---
 
 适配器的作用是实现web框架context与GoAdmin自身context的转换。
-制作一个adapter需要实现三个方法：
+制作一个adapter需要实现以下方法：
 
 ```go
 package adapter
@@ -18,11 +18,25 @@ import (
 // response to the corresponding context of framework.
 type WebFrameWork interface {
 	Use(interface{}, []plugins.Plugin) error
-	Content(interface{}, types.GetPanel)
+	Content(interface{}, types.GetPanelFn)
+	SetConnection(db.Connection)
+	GetConnection() db.Connection
+	SetContext(ctx interface{}) WebFrameWork
+	GetCookie() (string, error)
+	Path() string
+	Method() string
+	PjaxHeader() string
+	Redirect()
+	SetContentType()
+	Write(body []byte)
+	CookieKey() string
+	HTMLContentType() string
+	Name() string
+	User(ci interface{}) (models.UserModel, bool)
+	SetApp(app interface{}) error
+	AddHandler(method, path string, plug plugins.Plugin)
 }
 ```
-
-除了```Use```与```Content```外还需要实现```init```
 
 ## Use
 
@@ -56,3 +70,5 @@ func init() {
 	engine.Register(new(Beego))
 }
 ```
+
+更多请参考：[https://github.com/GoAdminGroup/go-admin/tree/master/adapter](https://github.com/GoAdminGroup/go-admin/tree/master/adapter)

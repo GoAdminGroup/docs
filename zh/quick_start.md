@@ -77,7 +77,7 @@ func main() {
 }
 ```
 
-请留意以上代码与注释，对应的步骤都加上了注释，使用十分简单，只需要：
+请<b>留意以上代码与注释</b>，对应的步骤都加上了注释，使用十分简单，只需要：
 
 - 引入适配器，主题与数据库驱动
 - 设置全局的配置项
@@ -94,7 +94,7 @@ func main() {
 
 - [vendor_v1.1.5.zip](http://file.go-admin.cn/go_admin/vendor/v1_1_5/vendor.zip)
 
-其他框架的例子可以看：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
+其他框架的例子可以参考：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
 
 ## 添加自己的业务表进行管理
 
@@ -129,7 +129,7 @@ type Database struct {
 
 // 数据库配置
 // 为一个map，其中key为数据库连接的名字，value为对应的数据配置
-// key为default的数据库是默认数据库，也是框架所用的数据库，而你可以
+// 注意：key为default的数据库是默认数据库，也是框架所用的数据库，而你可以
 // 配置多个数据库，提供给你的业务表使用，实现对不同数据库的管理。
 type DatabaseList map[string]Database
 

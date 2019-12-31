@@ -9,6 +9,7 @@
 功能需求方面，```GoAdmin```目前内置支持对主流sql数据库（mysql/postgresql/sqlite）增删改查的管理，而更多的功能插件如：监控系统（类似grafana），版本发布系统，api管理系统，日志管理系统等等会陆续开发并开放。
 
 对于前端个性化需求，```GoAdmin```目前官方免费支持Adminlte、Sword两个主题，更多主题正在制作中。
+
 对应更多的登录界面组件也在制作中，复古的或现代的，酷炫的或保守的，敬请期待。
 
 这里有一个极易上手的例子：[https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
@@ -50,6 +51,7 @@ QQ群：756664859，为防广告，请备注加群来意，没备注不通过。
 ## 支持
 
 您的支持会帮助我更好的去完善项目，备注或告知我您的 github/gitee 用户名，我们根据意愿会列出捐赠者名单。🙏
+
 同时捐赠者可直接联系我进入捐赠者用户群，您的需求将第一时间得到反馈。
 
 <img src="http://quick.go-admin.cn/official/assets/imgs/shoukuan.jpg" width="650" />

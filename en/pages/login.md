@@ -1,9 +1,9 @@
-# 更改登录界面
+# Customize Login Page
 ---
 
-通过组件的方式可以修改登录界面，如下例子：
+You can modify the login interface by means of components, as in the following example:
 
-更多登录界面组件[看这里](https://github.com/GoAdminGroup/components/blob/master/login/README.md)；加载后引入即可。
+More login interface components [see here](https://github.com/GoAdminGroup/components/blob/master/login/README.md)；It can be introduced after loading.
 
 ```go
 package main
@@ -32,7 +32,7 @@ func main() {
 	adminPlugin := admin.NewAdmin(datamodel.Generators)
 	adminPlugin.AddGenerator("user", datamodel.GetUserTable)
 
-    // 增加登录组件
+    //  Add login component
 	template.AddLoginComp(login.GetLoginComponent())
 
 	// you can custom a plugin like:

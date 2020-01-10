@@ -160,6 +160,9 @@ type Connection interface {
 
     // 以下是事务操作：
 
+    // 开始事务
+    BeginTx() *sql.Tx
+
 	QueryWithTx(tx *sql.Tx, query string, args ...interface{}) ([]map[string]interface{}, error)
 
 	ExecWithTx(tx *sql.Tx, query string, args ...interface{}) (sql.Result, error)
@@ -167,7 +170,7 @@ type Connection interface {
 	BeginTxWithReadUncommitted() *sql.Tx
 	BeginTxWithReadCommitted() *sql.Tx
 	BeginTxWithRepeatableRead() *sql.Tx
-	BeginTx() *sql.Tx
+	
 	BeginTxWithLevel(level sql.IsolationLevel) *sql.Tx
 
 	BeginTxWithReadUncommittedAndConnection(conn string) *sql.Tx

@@ -87,7 +87,7 @@ func SetConn(conn db.Connection) {
 }
 ```
 
-使用，获取到 ```connection``` 后，可以调用内置的数据库连接方法对sql数据库进行操作，如：
+使用，获取到 ```connection``` 后，可以调用内置的数据库sql连接辅助方法库对sql数据库进行操作，如：
 
 ```go
 
@@ -123,6 +123,59 @@ func main() {
     // 等等...
 }
 
+```
+
+也可以直接使用 ```connection``` 的api，进行操作：
+
+```go
+// Connection is a connection handler of database.
+type Connection interface {
+
+    // 初始化
+	InitDB(cfg map[string]config.Database) Connection
+
+	// 获取驱动名
+	Name() string
+
+    // 关闭连接
+	Close() []error
+
+	// 获取分隔符
+	GetDelimiter() string
+
+    // 获取DB对象
+	GetDB(key string) *sql.DB
+
+	// 查询方法，使用默认连接
+	Query(query string, args ...interface{}) ([]map[string]interface{}, error)
+
+	// Exec方法，使用默认连接
+	Exec(query string, args ...interface{}) (sql.Result, error)
+
+	// 查询方法，使用指定连接
+	QueryWithConnection(conn, query string, args ...interface{}) ([]map[string]interface{}, error)
+
+	// Exec方法，使用指定连接
+	ExecWithConnection(conn, query string, args ...interface{}) (sql.Result, error)
+
+    // 以下是事务操作：
+
+	QueryWithTx(tx *sql.Tx, query string, args ...interface{}) ([]map[string]interface{}, error)
+
+	ExecWithTx(tx *sql.Tx, query string, args ...interface{}) (sql.Result, error)
+
+	BeginTxWithReadUncommitted() *sql.Tx
+	BeginTxWithReadCommitted() *sql.Tx
+	BeginTxWithRepeatableRead() *sql.Tx
+	BeginTx() *sql.Tx
+	BeginTxWithLevel(level sql.IsolationLevel) *sql.Tx
+
+	BeginTxWithReadUncommittedAndConnection(conn string) *sql.Tx
+	BeginTxWithReadCommittedAndConnection(conn string) *sql.Tx
+	BeginTxWithRepeatableReadAndConnection(conn string) *sql.Tx
+	BeginTxAndConnection(conn string) *sql.Tx
+	BeginTxWithLevelAndConnection(conn string, level sql.IsolationLevel) *sql.Tx	
+}
 ```
 
 ## 用户认证模块

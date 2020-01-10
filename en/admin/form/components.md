@@ -113,7 +113,7 @@ formList.AddField("birthday", "birthday", db.Varchar, form.Datetime)
 ## Radio
 
 ```go
-formList.AddField("gender", "gender", db.Int, form.SelectBox).
+formList.AddField("gender", "gender", db.Int, form.Radio).
         // Radio options, field on behalf of the word, the label on behalf of the display content, value on behalf of the corresponding value
 		FieldOptions([]map[string]string{
             {

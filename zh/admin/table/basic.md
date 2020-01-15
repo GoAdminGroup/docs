@@ -101,22 +101,28 @@ info.AddField("Full Name", "full_name", db.Varchar).FieldDisplay(func(model type
 info.HideNewButton()
 ```
 
-### 禁用编辑按钮
+### 隐藏编辑按钮
 
 ```go
 info.HideEditButton()
 ```
 
-### 禁用导出按钮
+### 隐藏导出按钮
 
 ```go
 info.HideExportButton()
 ```
 
-### 禁用删除按钮
+### 隐藏删除按钮
 
 ```go
 info.HideDeleteButton()
+```
+
+### 隐藏详情按钮
+
+```go
+info.HideDetailButton()
 ```
 
 ### 默认隐藏筛选框
@@ -194,3 +200,26 @@ info.AddButton("今日情况", icon.Save, action.PopUp("/admin/data/analyze", "�
 添加了一个popup的操作，将会去请求对应路由，对应路由返回的就是popup的内容，「数据分析」为对应popup的标题。
 
 
+## 设置详情页
+
+可以自定义详情页显示内容，如果不设置的话，则默认用列表页设置的显示
+
+```go
+package datamodel
+
+import (
+	...
+)
+
+func GetUserTable() (userTable table.Table) {
+
+	userTable = table.NewDefaultTable(table.Config{...})
+
+	detail := userTable.GetDetail()
+
+	detail.AddField("ID", "id", db.Int)
+	detail.AddField("Name", "name", db.Varchar)
+    
+    ...
+}
+```

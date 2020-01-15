@@ -115,6 +115,12 @@ info.HideExportButton()
 info.HideDeleteButton()
 ```
 
+### Hide detail button
+
+```go
+info.HideDetailButton()
+```
+
 ### Hide filter area by default
 
 ```go
@@ -161,3 +167,26 @@ It will generate a sql statement like this:
 select ..., role.`role_name` from users left join role on users.`id` = role.`user_id` where ...
 ```
 
+## Configure Detail Page
+
+You can customize details page display content, if it is not set, the default Settings display using list page
+
+```go
+package datamodel
+
+import (
+	...
+)
+
+func GetUserTable() (userTable table.Table) {
+
+	userTable = table.NewDefaultTable(table.Config{...})
+
+	detail := userTable.GetDetail()
+
+	detail.AddField("ID", "id", db.Int)
+	detail.AddField("Name", "name", db.Varchar)
+    
+    ...
+}
+```

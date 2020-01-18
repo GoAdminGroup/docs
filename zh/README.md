@@ -52,6 +52,4 @@ QQ群：756664859，为防广告，请备注加群来意，没备注不通过。
 
 您的支持会帮助我更好的去完善项目，备注或告知我您的 github/gitee 用户名，我们根据意愿会列出捐赠者名单。🙏
 
-同时捐赠者可直接联系我进入捐赠者用户群，您的需求将第一时间得到反馈。
-
 <img src="http://quick.go-admin.cn/official/assets/imgs/shoukuan.jpg" width="650" />

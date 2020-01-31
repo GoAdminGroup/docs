@@ -20,7 +20,7 @@ CREATE TABLE `users` (
 生成了：
 
 ```go
-package datamodel
+package main
 
 import (
 	...
@@ -28,18 +28,18 @@ import (
 
 func GetUserTable() (userTable table.Table) {
 
-	// config the table model.
+	// 初始化数据表模型
 	userTable = table.NewDefaultTable(table.Config{...})
 
 	info := userTable.GetInfo()
 
-	// set id sortable.
+	// 设置ID为可排序
 	info.AddField("ID", "id", db.Int).FieldSortable(true)
 	info.AddField("Name", "name", db.Varchar)
     
     ...
 
-	// set the title and description of table page.
+	// 设置页面标题和描述
 	info.SetTable("users").SetTitle("Users").SetDescription("Users").
 		SetAction(template.HTML(`<a href="http://google.com"><i class="fa fa-google"></i></a>`))  // custom operation button
 
@@ -223,3 +223,70 @@ func GetUserTable() (userTable table.Table) {
     ...
 }
 ```
+
+## 自定义数据源
+
+如果您想自己定义一个数据源，不想从SQL数据库中自动读取，可以有两种方式：
+
+### 通过设置数据源URL
+
+设置数据源链接，GoAdmin将自动从数据源链接拉取数据。如下：
+
+```go
+
+package main
+
+import (
+	...
+)
+
+func GetUserTable() (userTable table.Table) {
+
+	// 初始化数据表模型，并设置数据源url
+	userTable = table.NewDefaultTable(table.Config{
+        ...
+		SourceURL: "http://xx.xx.xx.xx/xxx",
+        ...
+    })
+
+    info := userTable.GetInfo()
+    
+	// 设置ID为可排序
+	info.AddField("ID", "id", db.Int).FieldSortable(true)
+	info.AddField("Name", "name", db.Varchar)
+    
+    ...
+
+```
+
+设置好数据源url后，数据源需满足返回的数据格式为JSON，并按照以下结构返回：
+
+```json
+{
+	"data": [
+        {
+            "id": 1,
+            "name":"张三"
+        },{
+            "id": 2,
+            "name":"李四"
+        }
+    ], 
+    "size": 10
+}
+```
+
+说明：
+
+> data 为数据表数据，是数组，每一个数组项表示一行数据，数据项的键表示字段名，对应值表示字段值。
+> size 为所有数据的总量
+
+在数据源url对应接口中，会收到以下URL参数：
+
+> __page: 当面页码
+> __pageSize: 页面数据数
+> __sort: 排序字段
+> __sort_type: 排序类型
+> __columns: 隐藏的字段
+
+接口需拿取对应的URL参数进行处理返回对应的JSON格式数据，GoAdmin会将数据展示出来。

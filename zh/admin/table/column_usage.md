@@ -91,6 +91,7 @@ import (
 //
 // 其中{%id}为id的占位符
 action.Jump("/admin/info/manager")
+action.JumpInNewTab("/admin/info/manager", "管理员")
 
 // 返回一个PopUp Action，参数一为url，参数二为popup标题，参数三为对应的控制器方法。
 // 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回，

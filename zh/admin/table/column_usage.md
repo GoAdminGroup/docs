@@ -52,6 +52,58 @@ info.AddField("Gender", "gender", db.Tinyint).
 info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
 ```
 
+## 列操作按钮
+
+```go
+// 第一个参数为标题，第二个参数为对应的操作
+info.AddActionButton("操作", action.Jump("https://google.com"))
+```
+
+操作的类Action为一个接口，如下：
+
+```go
+type Action interface {
+  // 返回对应的JS
+  Js() template.JS
+  // 返回按钮的属性
+  BtnAttribute() template.HTML
+  // 返回额外的HTML
+  ExtContent() template.HTML
+  // 设置按钮的ID，供给Js()方法调用
+  SetBtnId(btnId string)
+  // 返回请求节点，包括路由方法和对应控制器方法
+	GetCallbacks() context.Node
+}
+```
+
+可以自己实现一个```Action```，也可以直接使用框架提供的```Action```。系统内置提供以下两个```Action```，一个是popup操作，一个是跳转操作。
+
+```go
+
+import (
+    "github.com/GoAdminGroup/go-admin/template/types/action"
+)
+
+// 返回一个Jump Action，参数一为url，参数二为额外的html
+// Jump Action是一个跳转操作。如果需要跳转url中带上id，可以这样写：
+//
+// action.Jump("/admin/info/manager?id={%id}")
+//
+// 其中{%id}为id的占位符
+action.Jump("/admin/info/manager")
+
+// 返回一个PopUp Action，参数一为url，参数二为popup标题，参数三为对应的控制器方法。
+// 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回，
+// 注意返回的格式必须如下一致。其中code为0表示请求成功，不为0表示失败。
+action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) {
+    ctx.JSON(http.StatusOK, map[string]interface{}{
+        "code": 0,
+        "data": "<h2>hello world</h2>",
+		})
+})
+
+```
+
 ## 帮助方法
 
 ### 字符串操作

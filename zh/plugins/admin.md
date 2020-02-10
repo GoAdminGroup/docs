@@ -157,7 +157,7 @@ import (
 	"github.com/GoAdminGroup/go-admin/template/types/form"
 )
 
-func GetUserTable() (userTable table.Table) {
+func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
 	// 设置模型配置
 	userTable = table.NewDefaultTable(table.Config{
@@ -228,7 +228,7 @@ func GetUserTable() (userTable table.Table) {
 
 	// 自定义一个表单字段，使用 FieldPostFilterFn 可以进行连表操作
 	formList.AddField("Custom Field", "role", db.Varchar, form.Text).
-		FieldPostFilterFn(func(value types.PostFieldModel) string {
+		FieldPostFilterFn(func(value types.PostFieldModel) interface{} {
 			fmt.Println("user custom field", value)
 			return ""
 		})

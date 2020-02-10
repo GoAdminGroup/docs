@@ -10,11 +10,11 @@ Download the binary of the corresponding system:
 
 |  File name   | OS  | Arch  | Size  |
 |  ----  | ----  | ----  |----  |
-| [adm_darwin_x86_64_v1.1.9.zip](http://file.go-admin.cn/go_admin/cli/v1_1_9/adm_darwin_x86_64_v1.1.9.zip)  | macOs | x86-64 | 4.77 MB
-| [adm_linux_x86_64_v1.1.9.zip](http://file.go-admin.cn/go_admin/cli/v1_1_9/adm_linux_x86_64_v1.1.9.zip)  | Linux | x86-64   | 6.52 MB
-| [adm_linux_armel_v1.1.9.zip](http://file.go-admin.cn/go_admin/cli/v1_1_9/adm_linux_armel_v1.1.9.zip)  | Linux | x86   | 6.06 MB
-| [adm_windows_i386_v1.1.9.zip](http://file.go-admin.cn/go_admin/cli/v1_1_9/adm_windows_i386_v1.1.9.zip)  | Windows | x86  |6.16 MB
-| [adm_windows_x86_64_v1.1.9.zip](http://file.go-admin.cn/go_admin/cli/v1_1_9/adm_windows_x86_64_v1.1.9.zip)  | Windows | x86-64   |6.38 MB
+| [adm_darwin_x86_64_v1.2.0.zip](http://file.go-admin.cn/go_admin/cli/v1_2_0/adm_darwin_x86_64_v1.2.0.zip)  | macOs | x86-64 | 4.77 MB
+| [adm_linux_x86_64_v1.2.0.zip](http://file.go-admin.cn/go_admin/cli/v1_2_0/adm_linux_x86_64_v1.2.0.zip)  | Linux | x86-64   | 6.52 MB
+| [adm_linux_armel_v1.2.0.zip](http://file.go-admin.cn/go_admin/cli/v1_2_0/adm_linux_armel_v1.2.0.zip)  | Linux | x86   | 6.06 MB
+| [adm_windows_i386_v1.2.0.zip](http://file.go-admin.cn/go_admin/cli/v1_2_0/adm_windows_i386_v1.2.0.zip)  | Windows | x86  |6.16 MB
+| [adm_windows_x86_64_v1.2.0.zip](http://file.go-admin.cn/go_admin/cli/v1_2_0/adm_windows_x86_64_v1.2.0.zip)  | Windows | x86-64   |6.38 MB
 
 
 Or use the command to install:

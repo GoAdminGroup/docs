@@ -26,7 +26,7 @@ import (
 	...
 )
 
-func GetUserTable() (userTable table.Table) {
+func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
 	// config the table model.
 	userTable = table.NewDefaultTable(...)
@@ -76,7 +76,7 @@ import (
     ...
 )
 
-func GetxxxTable() table.Table {
+func GetxxxTable(ctx *context.Context) table.Table {
     formList.AddField("ID", "id", db.Int, form.Default)
 }
 
@@ -137,7 +137,7 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
 
 ```go
 formList.AddField("链接", "url", db.Varchar, form.Text).
-		FieldPostFilterFn(func(value types.PostFieldModel) string {
+		FieldPostFilterFn(func(value types.PostFieldModel) interface{} {
 			return "http://xxxx.com/" + value.Get("url")
 		})
 ```

@@ -25,7 +25,7 @@ import (
     ...
 )
 
-func GetUserTable() (userTable table.Table) {
+func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
     // config the table model.
     userTable = table.NewDefaultTable(...)

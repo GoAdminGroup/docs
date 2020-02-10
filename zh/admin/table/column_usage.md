@@ -72,7 +72,7 @@ type Action interface {
   // 设置按钮的ID，供给Js()方法调用
   SetBtnId(btnId string)
   // 返回请求节点，包括路由方法和对应控制器方法
-	GetCallbacks() context.Node
+  GetCallbacks() context.Node
 }
 ```
 

@@ -153,6 +153,12 @@ info.SetSortAsc()
 info.SetSortDesc()
 ```
 
+## 设置默认排序字段
+
+```go
+info.SetSortField("created_at")
+```
+
 ## 连表
 
 连表需要设置连表表名与连表字段
@@ -216,7 +222,7 @@ type Action interface {
 }
 ```
 
-可以自己实现一个```Action```，也可以直接使用框架提供的```Action```。系统内置提供以下两个```Action```，一个是popup操作，一个是跳转操作。
+可以自己实现一个```Action```，也可以直接使用框架提供的```Action```。系统内置提供以下三个```Action```，一个是popup操作，一个是跳转操作，还要ajax操作
 
 ```go
 
@@ -234,13 +240,21 @@ action.Jump("/admin/info/manager")
 action.JumpInNewTab("/admin/info/manager", "管理员")
 
 // 返回一个PopUp Action，参数一为url，参数二为popup标题，参数三为对应的控制器方法。
-// 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回，
-// 注意返回的格式必须如下一致。其中code为0表示请求成功，不为0表示失败。
-action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) {
-    ctx.JSON(http.StatusOK, map[string]interface{}{
-        "code": 0,
-        "data": "<h2>hello world</h2>",
-		})
+// 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回。
+action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) (success bool, data, msg string) {
+    // 获取参数
+    // ctx.FormValue["id"]
+    // ctx.FormValue["ids"]
+    return true, "<h2>hello world</h2>", ""
+})
+
+// 返回一个Ajax Action，参数一为url，参数二为对应的控制器方法。
+action.Ajax("/admin/ajax",
+func(ctx *context.Context) (success bool, data, msg string) {
+    // 获取参数
+    // ctx.FormValue["id"]
+    // ctx.FormValue["ids"]
+    return true, "", "success"
 })
 
 ```
@@ -263,7 +277,11 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 	detail := userTable.GetDetail()
 
 	detail.AddField("ID", "id", db.Int)
-	detail.AddField("Name", "name", db.Varchar)
+    detail.AddField("Name", "name", db.Varchar)
+    
+    detail.SetTable("users").
+		SetTitle("用户详情").
+		SetDescription("用户详情")
     
     ...
 }
@@ -272,6 +290,75 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 ## 自定义数据源
 
 如果您想自己定义一个数据源，不想从SQL数据库中自动读取，可以有两种方式：
+
+### 编写自定义数据源函数
+
+```go
+
+package main
+
+import (
+    ...
+    "github.com/GoAdminGroup/go-admin/plugins/admin/modules/parameter"
+    ...
+)
+
+func GetUserTable(ctx *context.Context) (userTable table.Table) {
+
+	// 初始化数据表模型，并设置数据源url
+	userTable = table.NewDefaultTable(table.Config{
+        ...
+		SourceURL: "http://xx.xx.xx.xx/xxx",
+        ...
+    })
+
+    info := externalTable.GetInfo()
+	info.AddField("ID", "id", db.Bigint).FieldSortable()
+    info.AddField("Title", "title", db.Varchar)
+    
+    info.SetTable("external").
+		SetTitle("Externals").
+		SetDescription("Externals").
+        // 返回值：第一个为数据列表，第二个为数据量
+        SetGetDataFn(func(param parameter.Parameters) (data []map[string]interface{}, size int) {
+            // 注意需要对以下两种情况进行处理
+
+            // 情况1：返回全部数据
+            param.IsAll()
+            
+            // 情况2：返回指定主键对应的数据
+            param.PK()
+            
+            // 对于参数说明
+            // 
+            // param.SortField     排序字段
+            // param.Fields        筛选的字段
+            // param.SortType      排序类型
+            // param.Columns       隐藏的字段
+            // param.PageSize      每页数据数
+            // param.Page          当面页码
+            
+
+            return []map[string]interface{}{
+                    {
+                        "id":    10,
+                        "title": "this is a title",
+                    }, {
+                        "id":    11,
+                        "title": "this is a title2",
+                    }, {
+                        "id":    12,
+                        "title": "this is a title3",
+                    }, {
+                        "id":    13,
+                        "title": "this is a title4",
+                    },
+                }, 10
+        })
+
+    ...
+}
+```
 
 ### 通过设置数据源URL
 

@@ -79,9 +79,19 @@ func GetContent() (types.Panel, error)  {
 	row1 := components.Row().SetContent(infoboxCol1).GetContent()
 
 	return types.Panel{
+		// 内容
 		Content:     row1,
+		// 标题
 		Title:       "Dashboard",
+		// 描述
 		Description: "this is a example",
+
+		// 是否缩小边栏
+		MiniSidebar: true,
+		// 是否自动刷新页面
+		AutoRefresh: true,
+		// 自动刷新页面时间间隔，单位为秒
+		RefreshInterval: []int{3000},
 	}, nil
 }
 ```

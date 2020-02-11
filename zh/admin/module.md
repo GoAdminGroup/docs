@@ -183,7 +183,7 @@ type Connection interface {
 
 ## 用户认证模块
 
-我们编写页面内容时，需要获取对应的登录用户，并对其信息进行验证时，需要用到用户认证模块。
+我们编写页面内容时或在数据模型文件中，需要获取对应的登录用户，并对其信息进行验证时，需要用到用户认证模块。
 
 ```go
 
@@ -226,4 +226,25 @@ func main() {
 	})
     ...
 }
+```
+
+在数据模型文件中获取登录用户：
+
+```go
+
+import (
+    ...
+    "github.com/GoAdminGroup/go-admin/modules/auth"
+    "github.com/GoAdminGroup/go-admin/plugins/admin/models"
+    ...
+)
+
+func GetUserTable(ctx *context.Context) table.Table {
+    // 登录用户，需要先判断ctx是否带用户数据
+    var user = models.User()
+    if len(ctx.UserValue) > 0 {
+        user = auth.Auth(ctx)
+    }
+}
+
 ```

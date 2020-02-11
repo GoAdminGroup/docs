@@ -142,6 +142,18 @@ formList.AddField("链接", "url", db.Varchar, form.Text).
 		})
 ```
 
+*插入字段如果需要为NULL*
+
+```go
+formList.AddField("avatar", "avatar", db.Varchar, form.Text).
+		FieldPostFilterFn(func(value types.PostFieldModel) interface{} {
+			if value.Value == "" {
+        return sql.NullString{}
+      }
+      return value.Value
+		})
+```
+
 ### 显示过滤处理
 
 ```go

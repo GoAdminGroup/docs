@@ -5,6 +5,7 @@
 ### Set Width
 
 ```go
+info.SetTableFixed()
 info.AddField("Name", "name", db.Varchar).FieldWidth(100)
 ```
 

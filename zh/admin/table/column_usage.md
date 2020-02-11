@@ -5,7 +5,10 @@
 
 ### 设置列宽
 
+注意需要先设置表格布局类型为fixed
+
 ```go
+info.SetTableFixed()
 info.AddField("Name", "name", db.Varchar).FieldWidth(100)
 ```
 
@@ -50,6 +53,14 @@ info.AddField("Gender", "gender", db.Tinyint).
     
 // 设置为时间范围类型，范围查询
 info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
+
+// 设置过滤字段处理函数
+info.AddField("Name", "name", db.Varchar).
+FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike}).
+FieldFilterProcess(func(s string) string {
+    // 即使前端错误输入带空格，在这里可以过滤空格进行sql查询
+    return strings.TrimSpace(s)
+})
 ```
 
 ## 列操作按钮
@@ -94,13 +105,21 @@ action.Jump("/admin/info/manager")
 action.JumpInNewTab("/admin/info/manager", "管理员")
 
 // 返回一个PopUp Action，参数一为url，参数二为popup标题，参数三为对应的控制器方法。
-// 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回，
-// 注意返回的格式必须如下一致。其中code为0表示请求成功，不为0表示失败。
-action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) {
-    ctx.JSON(http.StatusOK, map[string]interface{}{
-        "code": 0,
-        "data": "<h2>hello world</h2>",
-		})
+// 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回。
+action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) (success bool, data, msg string) {
+    // 获取参数
+    // ctx.FormValue["id"]
+    // ctx.FormValue["ids"]
+    return true, "<h2>hello world</h2>", ""
+})
+
+// 返回一个Ajax Action，参数一为url，参数二为对应的控制器方法。
+action.Ajax("/admin/ajax",
+func(ctx *context.Context) (success bool, data, msg string) {
+    // 获取参数
+    // ctx.FormValue["id"]
+    // ctx.FormValue["ids"]
+    return true, "", "success"
 })
 
 ```

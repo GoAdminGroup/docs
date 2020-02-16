@@ -125,6 +125,12 @@ info.HideDeleteButton()
 info.HideDetailButton()
 ```
 
+### 默认隐藏列选择框
+
+```go
+info.HideRowSelector()
+```
+
 ### 默认隐藏筛选框
 
 ```go

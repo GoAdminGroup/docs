@@ -38,8 +38,8 @@ func main() {
         ...
 	}
 
-	// 这里生成了数据库模块
-    _ = eng.AddConfig(cfg).
+	
+    _ = eng.AddConfig(cfg). // 这里生成了数据库模块，获取连接需要再AddConfig之后
         AddPlugins(adminPlugin).
         Use(r)
     

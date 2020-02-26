@@ -18,9 +18,9 @@ formList.AddField("name", "name", db.Varchar, form.Text)
 ```go
 formList.AddField("sex", "sex", db.Int, form.SelectSingle).
         // 单选的选项，field代表显示内容，value代表对应值
-		FieldOptions([]map[string]string{ 
-            {"field": "man","value": "0"},
-            {"field": "women","value": "1"},
+		FieldOptions(types.FieldOptions{ 
+            {Text: "man",Value: "0"},
+            {Text: "women",Value: "1"},
         }).
         // 这里返回一个[]string，对应的值是本列的sex字段的值，即编辑表单时会显示的对应值
         FieldDisplay(func(model types.FieldModel) interface{} {
@@ -33,19 +33,19 @@ formList.AddField("sex", "sex", db.Int, form.SelectSingle).
 ```go
 formList.AddField("drink", "drink", db.Int, form.Select).
         // 多选的选项，field代表显示内容，value代表对应值
-		FieldOptions([]map[string]string{
+		FieldOptions(types.FieldOptions{
             {
-                "field": "beer",
-                "value": "beer",
+                Text: "beer",
+                Value: "beer",
             }, {
-                "field": "juice",
-                "value": "juice",
+                Text: "juice",
+                Value: "juice",
             }, {
-                "field": "water",
-                "value": "water",
+                Text: "water",
+                Value: "water",
             }, {
-                "field": "red bull",
-                "value": "red bull",
+                Text: "red bull",
+                Value: "red bull",
             },
         }).
         // 这里返回一个[]string，对应的值是本列的drink字段的值，即编辑表单时会显示的对应值
@@ -65,19 +65,19 @@ formList.AddField("icon", "icon", db.Varchar, form.IconPicker)
 ```go
 formList.AddField("fruit", "fruit", db.Int, form.SelectBox).
         // 多选的选项，field代表显示内容，value代表对应值
-		FieldOptions([]map[string]string{
+		FieldOptions(types.FieldOptions{
             {
-                "field": "apple",
-                "value": "apple",
+                Text: "apple",
+                Value: "apple",
             }, {
-                "field": "banana",
-                "value": "banana",
+                Text: "banana",
+                Value: "banana",
             }, {
-                "field": "watermelon",
-                "value": "watermelon",
+                Text: "watermelon",
+                Value: "watermelon",
             }, {
-                "field": "pear",
-                "value": "pear",
+                Text: "pear",
+                Value: "pear",
             },
         }).
         // 这里返回一个[]string，对应的值是本列的fruit字段的值，即编辑表单时会显示的对应值

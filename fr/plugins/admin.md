@@ -207,19 +207,10 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
 	// use FieldOptions.
 	formList.AddField("Gender", "gender", db.Tinyint, form.Radio).
-		FieldOptions([]map[string]string{
-			{
-				"field":    "gender",
-				"label":    "male",
-				"value":    "0",
-				"selected": "true",
-			}, {
-				"field":    "gender",
-				"label":    "female",
-				"value":    "1",
-				"selected": "false",
-			},
-		})
+		FieldOptions(types.FieldOptions{ 
+            {Text: "man",Value: "0"},
+            {Text: "women",Value: "1"},
+        }).
 	formList.AddField("Phone", "phone", db.Varchar, form.Text)
 	formList.AddField("City", "city", db.Varchar, form.Text)
 

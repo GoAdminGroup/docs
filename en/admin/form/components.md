@@ -18,9 +18,9 @@ formList.AddField("name", "name", db.Varchar, form.Text)
 ```go
 formList.AddField("sex", "sex", db.Int, form.SelectSingle).
         // Radio options, field represents the display content, value on behalf of the corresponding value
-		FieldOptions([]map[string]string{ 
-            {"field": "man","value": "0"},
-            {"field": "women","value": "1"},
+		FieldOptions(types.FieldOptions{
+            {Text: "man",Value: "0"},
+            {Text: "women",Value: "1"},
         }).
         // This returns []string, the corresponding value is that the value of the sex of this column, the corresponding value is displayed when edit form
         FieldDisplay(func(model types.FieldModel) interface{} {
@@ -33,19 +33,19 @@ formList.AddField("sex", "sex", db.Int, form.SelectSingle).
 ```go
 formList.AddField("drink", "drink", db.Int, form.Select).
         // alternative options, field represents the display content, value on behalf of the corresponding value
-		FieldOptions([]map[string]string{
+		FieldOptions(types.FieldOptions{
             {
-                "field": "beer",
-                "value": "beer",
+                Text: "beer",
+                Value: "beer",
             }, {
-                "field": "juice",
-                "value": "juice",
+                Text: "juice",
+                Value: "juice",
             }, {
-                "field": "water",
-                "value": "water",
+                Text: "water",
+                Value: "water",
             }, {
-                "field": "red bull",
-                "value": "red bull",
+                Text: "red bull",
+                Value: "red bull",
             },
         }).
         // This returns []string, the corresponding value is that the value of the drink of this column, the corresponding value is displayed when edit form
@@ -65,19 +65,19 @@ formList.AddField("icon", "icon", db.Varchar, form.IconPicker)
 ```go
 formList.AddField("fruit", "fruit", db.Int, form.SelectBox).
         // alternative options, field represents the display content, value on behalf of the corresponding value
-		FieldOptions([]map[string]string{
+		FieldOptions(types.FieldOptions{
             {
-                "field": "apple",
-                "value": "apple",
+                Text: "apple",
+                Value: "apple",
             }, {
-                "field": "banana",
-                "value": "banana",
+                Text: "banana",
+                Value: "banana",
             }, {
-                "field": "watermelon",
-                "value": "watermelon",
+                Text: "watermelon",
+                Value: "watermelon",
             }, {
-                "field": "pear",
-                "value": "pear",
+                Text: "pear",
+                Value: "pear",
             },
         }).
         // This returns []string, the corresponding value is that the value of the fruit of this column, the corresponding value is displayed when edit form
@@ -115,20 +115,15 @@ formList.AddField("birthday", "birthday", db.Varchar, form.Datetime)
 ```go
 formList.AddField("gender", "gender", db.Int, form.Radio).
         // Radio options, field on behalf of the word, the label on behalf of the display content, value on behalf of the corresponding value
-		FieldOptions([]map[string]string{
-            {
-                "field":    "gender",
-                "label":    "male",
-                "value":    "0",
-                "selected": "checked",
-            },
-            {
-                "field":    "gender",
-                "label":    "female",
-                "value":    "1",
-                "selected": "",
-            },
-        }).FieldDefault("0") // Set the default values
+		FieldOptions(types.FieldOptions{
+			{
+				Text:    "male",
+				Value:    "0",
+			}, {
+				Text:    "female",
+				Value:    "1",
+			},
+		}).FieldDefault("0") // Set the default values
 ```
 
 ## Email

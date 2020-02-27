@@ -217,12 +217,16 @@ info.AddButton("今日情况", icon.Save, action.PopUp("/admin/data/analyze", "�
 type Action interface {
     // 返回对应的JS
     Js() template.JS
+    // 获取class
+    BtnClass() template.HTML
     // 返回按钮的属性
     BtnAttribute() template.HTML
     // 返回额外的HTML
     ExtContent() template.HTML
     // 设置按钮的ID，供给Js()方法调用
     SetBtnId(btnId string)
+    // 设置数据
+    SetBtnData(data interface{})
     // 返回请求节点，包括路由方法和对应控制器方法
     GetCallbacks() context.Node
 }
@@ -251,6 +255,8 @@ action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) (succes
     // 获取参数
     // ctx.FormValue["id"]
     // ctx.FormValue["ids"]
+
+    // 这里返回的data为前端显示html内容
     return true, "", "<h2>hello world</h2>"
 })
 
@@ -344,7 +350,6 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
             // param.PageSize      每页数据数
             // param.Page          当面页码
             
-
             return []map[string]interface{}{
                     {
                         "id":    10,

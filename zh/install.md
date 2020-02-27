@@ -5,7 +5,7 @@
 
 #### 导入程序所需sql到对应<strong>自建数据库</strong>中
 
-sql文件内容为框架所需数据表，假设你的业务数据库为：database_a；那么你可以将框架sql导入到```database_a```中，也可以另外建一个数据库```database_b```再导入，可以为不同驱动的数据库，比方说你的业务数据库为```mysql```，框架数据库为```sqlite```。框架目前支持多个数据库连接操作。关于如何配置，后面会详细介绍。
+以下sql文件内容为框架所需数据表，假设你的业务数据库为：database_a；那么你可以将以下框架sql文件导入到```database_a```中，也可以另外建一个数据库```database_b```再导入，可以为不同驱动的数据库，比方说你的业务数据库为```mysql```，框架数据库为```sqlite```。框架目前支持多个数据库连接操作。关于如何配置，后面会详细介绍。
 
 - [mysql](https://raw.githubusercontent.com/GoAdminGroup/go-admin/master/data/admin.sql)
 - [sqlite](https://raw.githubusercontent.com/GoAdminGroup/go-admin/master/data/admin.db)

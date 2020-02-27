@@ -106,20 +106,20 @@ action.JumpInNewTab("/admin/info/manager", "管理员")
 
 // 返回一个PopUp Action，参数一为url，参数二为popup标题，参数三为对应的控制器方法。
 // 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回。
-action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) (success bool, data, msg string) {
+action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) (success bool, msg string, data interface{}) {
     // 获取参数
     // ctx.FormValue["id"]
     // ctx.FormValue["ids"]
-    return true, "<h2>hello world</h2>", ""
+    return true, "", "<h2>hello world</h2>"
 })
 
 // 返回一个Ajax Action，参数一为url，参数二为对应的控制器方法。
 action.Ajax("/admin/ajax",
-func(ctx *context.Context) (success bool, data, msg string) {
+func(ctx *context.Context) (success bool, msg string, data interface{}) {
     // 获取参数
     // ctx.FormValue["id"]
     // ctx.FormValue["ids"]
-    return true, "", "success"
+    return true, "success", ""
 })
 
 ```

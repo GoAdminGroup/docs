@@ -317,10 +317,7 @@ import (
 
 func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
-	// 初始化数据表模型，并设置数据源url
 	userTable = table.NewDefaultTable(table.Config{
-        ...
-		SourceURL: "http://xx.xx.xx.xx/xxx",
         ...
     })
 

@@ -34,6 +34,120 @@ info.AddField("Name", "name", db.Varchar).FieldFixed()
 info.AddField("Name", "name", db.Varchar).FieldFilterable()
 ```
 
+Set filter operator and operation form type:
+
+```go
+
+// Set the operator to like, fuzzy query
+info.AddField("Name", "name", db.Varchar).FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+
+// Set to single selection type
+info.AddField("Gender", "gender", db.Tinyint).
+    FieldFilterable(types.FilterType{FormType: form.SelectSingle}).
+    FieldFilterOptions([]map[string]string{
+		{"value": "0", "field": "men"},
+		{"value": "1", "field": "women"},
+    }).FieldFilterOptionExt(map[string]interface{}{"allowClear": true})
+    
+// Set to the time range type, range queries
+info.AddField("CreatedAt", "created_at", db.Timestamp).FieldFilterable(types.FilterType{FormType: form.DatetimeRange})
+
+// Set the filter field processing function
+info.AddField("Name", "name", db.Varchar).
+FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike}).
+FieldFilterProcess(func(s string) string {
+    // Even if the error input with extra spaces from the request, here can filter the spaces for SQL queries
+    return strings.TrimSpace(s)
+})
+```
+
+## Add column operation button
+
+If you want to add some function button, then you can do like this:
+
+```go
+info.AddButton(title template.HTML, icon string, action Action, color ...template.HTML)
+```
+
+```title``` is the title of Button, ```icon```is the icon of Button, ```action```is a set of operations of Button and ```color``` are the background color and text color.
+
+For example: 
+```go
+
+import (
+    ...
+	"github.com/GoAdminGroup/go-admin/template/icon"
+	"github.com/GoAdminGroup/go-admin/template/types/action"
+    ...
+)
+
+info.AddButton("Today Data", icon.Save, action.PopUp("/admin/data/analyze", "Data Analysis"))
+```
+
+Added a popup operation, will go to request the corresponding routing, corresponding routing return is the content of the popup, "data analysis" as the title for the popup.
+
+Operation of class Action as an interface, as follows:
+
+```go
+type Action interface {
+    // Returns the corresponding JS
+    Js() template.JS
+    // Access to the class
+    BtnClass() template.HTML
+    // Returns the button properties
+    BtnAttribute() template.HTML
+    // Returns the extra HTML
+    ExtContent() template.HTML
+    // The set up button ID, supply Js () method call
+    SetBtnId(btnId string)
+    // SetData
+    SetBtnData(data interface{})
+    // Return request node, including routing method and the corresponding controller
+    GetCallbacks() context.Node
+}
+```
+
+You can implement a ```Action``` yourself or use the ```Action``` provided of framework. There are three default ```Action```: PopUp, Ajax and Jump.
+
+```go
+
+import (
+    "github.com/GoAdminGroup/go-admin/template/types/action"
+)
+
+// Return a Jump Action，parameter one is the url，two is the extra html.
+// Jump Action is a link jump operation. If you need to carry the id  of operation row, you can do like this:
+//
+// action.Jump("/admin/info/manager?id={%id}")
+//
+// {%id} is the placeholder of id.
+action.Jump("/admin/info/manager")
+action.JumpInNewTab("/admin/info/manager", "管理员")
+
+// Return a PopUp Action, parameter one is the url, two is the title, three is handler method.
+// When user click the button, the request will be sent to the handler with the row id.
+action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) (success bool, msg string, data interface{}) {
+    // Access to the paramters:
+    //
+    // ctx.FormValue["id"]
+    // ctx.FormValue["ids"]
+
+    // The data return is the content of popup.
+    return true, "", "<h2>hello world</h2>"
+})
+
+// Return a Ajax Action, parameter one is the url, two is the handler method.
+action.Ajax("/admin/ajax",
+func(ctx *context.Context) (success bool, msg string, data interface{}) {
+    // Access to the paramters:
+    //
+    // ctx.FormValue["id"]
+    // ctx.FormValue["ids"]
+    return true, "success", ""
+})
+
+```
+
 ## Help Methods
 
 ### String manipulation

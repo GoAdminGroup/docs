@@ -22,6 +22,10 @@ On a form of management, the corresponding routing to add and delete, assuming t
 | Export operation | /export/users | POST |
 | All permission | * | (empty)
 
+**Note: set up the authority does not mean the left side menu can be seen**
+
+Set the permissions, if need to display on the left side of the menu, you also need to in the menu editor page set up corresponding role.
+
 **Note: the role of permissions is higher than in the menu configuration**
 
 That is to say, assuming the menu 1, corresponding operator is the role of, and have all permissions users can still access the menu 1.

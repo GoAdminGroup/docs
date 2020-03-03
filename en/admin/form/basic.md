@@ -46,7 +46,46 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 }
 ```
 
-### Add Fields
+
+## Type
+
+- ```Default```
+- ```Text```
+- SingleSelection ```SelectSingle```
+- ```Password```
+- ```RichText```
+- ```File```
+- ```SelectBox```
+- ```Select```
+- ```IconPicker```
+- ```Datetime```
+- ```Radio```
+- ```Email```
+- ```Url```
+- ```Ip```
+- ```Color```
+- ```Currency```
+- ```Number```
+
+Example:
+
+```go
+
+import (
+    ...
+    "github.com/GoAdminGroup/go-admin/template/types/form"  
+    ...
+)
+
+func GetxxxTable(ctx *context.Context) table.Table {
+    formList.AddField("ID", "id", db.Int, form.Default)
+}
+
+```
+
+## Operations
+
+### Add fields
 
 ```go
 
@@ -61,6 +100,24 @@ formList.AddField("Custom", "custom", db.Varchar, form.Text)
 
 ```
 
+### Default value
+
+```go
+formList.AddField("header", "header", db.Varchar, form.Text).FieldDefault("header")
+```
+
+### Required field
+
+```go
+formList.AddField("header", "header", db.Varchar, form.Text).FieldMust()
+```
+
+### Help msg
+
+```go
+formList.AddField("header", "header", db.Varchar, form.Text).FieldHelpMsg("length should be more than 5")
+```
+
 ### Prohibit editing
 
 ```go
@@ -69,10 +126,76 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowEdit()
 
 ```
 
-### No new additions
+### Prohibit creating
 
 ```go
 
 formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
 
+```
+
+
+### Filter function before update/insert operation
+
+```go
+formList.AddField("Link", "url", db.Varchar, form.Text).
+		FieldPostFilterFn(func(value types.PostFieldModel) interface{} {
+			return "http://xxxx.com/" + value.Get("url")
+		})
+```
+
+*If the insert field need to be NULL*
+
+```go
+formList.AddField("avatar", "avatar", db.Varchar, form.Text).
+		FieldPostFilterFn(func(value types.PostFieldModel) interface{} {
+			if value.Value == "" {
+        return sql.NullString{}
+      }
+      return value.Value
+		})
+```
+
+### Display filter procress functions
+
+```go
+
+// Limit length
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldLimit(limit int)
+
+// Trim space
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldTrimSpace()
+
+// Truncate
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldSubstr(start int, end int)
+
+// Title
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldToTitle()
+
+// Upper
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldToUpper()
+
+// Lower
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldToLower()
+
+// xss fliter
+formList.AddField("链接", "url", db.Varchar, form.Text).FieldXssFilter()
+
+```
+
+### Rewrite the insert/update logic functions
+
+If your form inserts and the update operation is complicated, the framework can not meet you need, then you can rewrite and replace the default logics.
+
+```go
+
+// replace the default insert logic
+formList.SetInsertFn(func(values form2.Values) error {
+      // values are the form parameters
+  })
+  
+// replace the default update logic
+formList.SetUpdateFn(func(values form2.Values) error {
+      // values are the form parameters
+	})  
 ```

@@ -94,7 +94,7 @@ formList.AddField("content", "content", db.Varchar, form.TextArea)
 
 ```go
 formList.AddField("sex", "sex", db.Int, form.SelectSingle).
-        // 单选的选项，field代表显示内容，value代表对应值
+        // 单选的选项，text代表显示内容，value代表对应值
 		FieldOptions(types.FieldOptions{ 
             {Text: "man",Value: "0"},
             {Text: "women",Value: "1"},
@@ -107,7 +107,7 @@ formList.AddField("sex", "sex", db.Int, form.SelectSingle).
 
 ```go
 formList.AddField("drink", "drink", db.Int, form.Select).
-        // 多选的选项，field代表显示内容，value代表对应值
+        // 多选的选项，text代表显示内容，value代表对应值
 		FieldOptions(types.FieldOptions{
             {
                 Text: "beer",
@@ -134,27 +134,18 @@ formList.AddField("drink", "drink", db.Int, form.Select).
 ```go
 formList.AddField("gender", "gender", db.Int, form.Radio).
         // radio的选项，field代表字，label代表显示内容，value代表对应值
-		FieldOptions([]map[string]string{
-            {
-                "field":    "gender",
-                "label":    "male",
-                "value":    "0",
-                "selected": "checked",
-            },
-            {
-                "field":    "gender",
-                "label":    "female",
-                "value":    "1",
-                "selected": "",
-            },
-        }).FieldDefault("0") // 设置默认的值
+		FieldOptions(types.FieldOptions{
+            {Text: "male",Value: "0"},
+            {Text: "female",Value: "1"},
+        }).
+        FieldDefault("0") // 设置默认的值
 ```
 
 ### SelectBox
 
 ```go
 formList.AddField("fruit", "fruit", db.Int, form.SelectBox).
-        // 多选的选项，field代表显示内容，value代表对应值
+        // 多选的选项，text代表显示内容，value代表对应值
 		FieldOptions(types.FieldOptions{
             {
                 Text: "apple",

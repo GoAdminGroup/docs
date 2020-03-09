@@ -267,6 +267,19 @@ func(ctx *context.Context) (success bool, msg string, data interface{}) {
 
 ```
 
+New drop-down filter button
+
+```go
+// Parameters, first is the title, the second is options, third is the action
+info.AddSelectBox("gender", types.FieldOptions{
+        {Value: "", Text: ""},
+		{Value: "0", Text: "men"},
+		{Value: "1", Text: "women"},
+	}, action.FieldFilter("gender"))
+```
+
+Parameter of ```FieldFilter``` is the field name for filter.
+
 
 ## Configure Detail Page
 

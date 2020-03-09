@@ -232,7 +232,7 @@ type Action interface {
 }
 ```
 
-可以自己实现一个```Action```，也可以直接使用框架提供的```Action```。系统内置提供以下三个```Action```，一个是popup操作，一个是跳转操作，还要ajax操作
+可以自己实现一个```Action```，也可以直接使用框架提供的```Action```。系统内置提供以下四个```Action```，一个是popup操作，一个是跳转操作，一个ajax操作，还有过滤操作（用于下拉框）。
 
 ```go
 
@@ -270,6 +270,20 @@ func(ctx *context.Context) (success bool, msg string, data interface{}) {
 })
 
 ```
+
+新增下拉筛选按钮
+
+```go
+// 参数一位标题，参数二为选项，参数三为action
+info.AddSelectBox("gender", types.FieldOptions{
+        {Value: "", Text: ""},
+		{Value: "0", Text: "men"},
+		{Value: "1", Text: "women"},
+	}, action.FieldFilter("gender"))
+```
+
+```FieldFilter```中的参数为筛选字段名。
+
 
 ## 设置详情页
 

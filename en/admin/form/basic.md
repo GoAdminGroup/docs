@@ -134,6 +134,16 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
 
 ```
 
+### Validator
+
+```go
+formList.SetPostValidator(func(values form2.Values) error {
+		if values.Get("sex") != "women" && values.Get("sex") != "men" {
+			return fmt.Errorf("error info")
+		}
+		return nil
+})
+```
 
 ### Filter function before update/insert operation
 

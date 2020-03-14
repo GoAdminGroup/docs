@@ -133,6 +133,17 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
 
 ```
 
+### 验证器
+
+```go
+formList.SetPostValidator(func(values form2.Values) error {
+		if values.Get("sex") != "women" && values.Get("sex") != "men" {
+			return fmt.Errorf("error info")
+		}
+		return nil
+})
+```
+
 ### 提交前对字段进行过滤处理
 
 ```go

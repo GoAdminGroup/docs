@@ -44,9 +44,9 @@ info.AddField("Name", "name", db.Varchar).FieldFilterable(types.FilterType{Opera
 // Set to single selection type
 info.AddField("Gender", "gender", db.Tinyint).
     FieldFilterable(types.FilterType{FormType: form.SelectSingle}).
-    FieldFilterOptions([]map[string]string{
-		{"value": "0", "field": "men"},
-		{"value": "1", "field": "women"},
+    FieldFilterOptions(types.FieldOptions{
+      {Value: "0", Text: "men"},
+      {Value: "1", Text: "women"},
     }).FieldFilterOptionExt(map[string]interface{}{"allowClear": true})
     
 // Set to the time range type, range queries

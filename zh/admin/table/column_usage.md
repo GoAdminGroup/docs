@@ -46,9 +46,9 @@ info.AddField("Name", "name", db.Varchar).FieldFilterable(types.FilterType{Opera
 // 设置为单选类型
 info.AddField("Gender", "gender", db.Tinyint).
     FieldFilterable(types.FilterType{FormType: form.SelectSingle}).
-    FieldFilterOptions([]map[string]string{
-		{"value": "0", "field": "men"},
-		{"value": "1", "field": "women"},
+    FieldFilterOptions(types.FieldOptions{
+      {Value: "0", Text: "men"},
+      {Value: "1", Text: "women"},
     }).FieldFilterOptionExt(map[string]interface{}{"allowClear": true})
     
 // 设置为时间范围类型，范围查询

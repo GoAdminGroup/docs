@@ -39,7 +39,7 @@ func main() {
 	// here to custom a page.
 
 	r.GET("/"+cfg.PREFIX+"/custom", func(ctx *gin.Context) {
-		engine.Content(ctx, func() (types.Panel, error) {
+		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
 			return datamodel.GetContent()
 		})
 	})

@@ -282,7 +282,7 @@ info.AddSelectBox("gender", types.FieldOptions{
 	}, action.FieldFilter("gender"))
 ```
 
-```FieldFilter```中的参数为筛选字段名。
+FieldFilter中的参数为筛选字段名。
 
 
 ## 设置详情页

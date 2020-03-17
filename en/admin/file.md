@@ -75,7 +75,11 @@ type AwsUploader struct {
 }
 
 func (q AwsUploader) Upload(*multipart.Form) error {
-    // 接收一个表单类型，这里实现上传逻辑
+    // Receive a form type, for upload logic here
+    // This invocation framework auxiliary function
+    file.Upload(func(*multipart.FileHeader, string) (string, error){
+        // Here for upload logic, return to the file path and error information
+    }, form) 
 }
 
 func main() {

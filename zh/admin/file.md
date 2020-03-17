@@ -29,6 +29,9 @@ type FileUploadEngine struct {
 	Name   string
 	Config map[string]interface{}
 }
+
+// UploadFun is a function to process the uploading logic.
+type UploadFun func(*multipart.FileHeader, string) (string, error)
 ```
 
 如果你想要自定义上传位置，比如上传到又拍云，七牛云等云平台，那么你需要自己写一个上传引擎。下面介绍如何自己写引擎：
@@ -77,8 +80,12 @@ type QiNiuUploader struct {
     Path   string
 }
 
-func (q QiNiuUploader) Upload(*multipart.Form) error {
+func (q QiNiuUploader) Upload(form *multipart.Form) error {
     // 接收一个表单类型，这里实现上传逻辑
+    // 这里调用框架的辅助函数
+    file.Upload(func(*multipart.FileHeader, string) (string, error){
+        // 这里实现上传逻辑，返回文件路径与错误信息
+    }, form)    
 }
 
 func main() {

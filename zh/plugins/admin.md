@@ -120,13 +120,11 @@ func main() {
 		Language: language.CN,
 	}
 
-	adminPlugin := admin.NewAdmin(Generators)
-
 	// 也可以调用 AddGenerator 方法加载
-	// adminPlugin.AddGenerator("user", GetUserTable)
+	// eng.AddGenerator("user", GetUserTable)
 	
 	eng.AddConfig(cfg).
-		AddPlugins(adminPlugin).  // 加载插件
+		AddGenerators(Generators).  // 加载插件
 		Use(r)
 
 	r.Run(":9033")

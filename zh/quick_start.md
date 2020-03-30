@@ -66,12 +66,12 @@ func main() {
 		Language: language.CN,
 	}
 
-	// 这里引入你需要管理的业务表配置
-	// 关于Generators，详见 https://github.com/GoAdminGroup/go-admin/blob/master/examples/datamodel/tables.go
-	adminPlugin := admin.NewAdmin(datamodel.Generators)
-
 	// 增加配置与插件，使用Use方法挂载到Web框架中
-	_ = eng.AddConfig(cfg).AddPlugins(adminPlugin).Use(r)
+	_ = eng.AddConfig(cfg).
+		// 这里引入你需要管理的业务表配置
+		// 关于Generators，详见 https://github.com/GoAdminGroup/go-admin/blob/master/examples/datamodel/tables.go
+		AddGenerators(datamodel.Generators).
+		Use(r)
 
 	_ = r.Run(":9033")
 }

@@ -28,9 +28,6 @@ func main() {
 
     eng := engine.Default()
 
-    adminPlugin := admin.NewAdmin(datamodel.Generators)
-    adminPlugin.AddGenerator("user", datamodel.GetUserTable)
-
     // 增加登录组件
     template.AddLoginComp(login.GetLoginComponent())
 
@@ -40,7 +37,11 @@ func main() {
 
     rootPath := "/data/www/go-admin"
 
-    if err := eng.AddConfigFromJson(rootPath+"/config.json").AddPlugins(adminPlugin, examplePlugin).Use(r); err != nil {
+    if err := eng.AddConfigFromJson(rootPath+"/config.json").
+        AddGenerators(datamodel.Generators).
+        AddGenerator("user", datamodel.GetUserTable).
+        AddPlugins(examplePlugin).
+        Use(r); err != nil {
         panic(err)
     }
 

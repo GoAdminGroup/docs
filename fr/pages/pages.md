@@ -24,13 +24,16 @@ func main() {
 
 	eng := engine.Default()
 
-	cfg := config.Config{}
-
-	adminPlugin := admin.NewAdmin(datamodel.Generators)
+	cfg := config.Config{
+		...
+	}
 
 	examplePlugin := example.NewExample()
 
-	if err := eng.AddConfig(cfg).AddPlugins(adminPlugin, examplePlugin).Use(r); err != nil {
+	if err := eng.AddConfig(cfg).
+		AddGenerators(datamodel.Generators).
+		AddPlugins(examplePlugin).
+		Use(r); err != nil {
 		panic(err)
 	}
 

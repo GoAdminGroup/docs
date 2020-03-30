@@ -61,14 +61,14 @@ func main() {
             Prefix: "uploads",
         },
         Language: language.EN,
-    }
-
-    // Import the business table configuration you need to manage here.
-    // About Generators，see: https://github.com/GoAdminGroup/go-admin/blob/master/examples/datamodel/tables.go
-    adminPlugin := admin.NewAdmin(datamodel.Generators)
+    }    
 
     // Add configuration and plugins, use the Use method to mount to the web framework.
-    _ = eng.AddConfig(cfg).AddPlugins(adminPlugin).Use(r)
+    _ = eng.AddConfig(cfg).
+        // Import the business table configuration you need to manage here.
+        // About Generators，see: https://github.com/GoAdminGroup/go-admin/blob/master/examples/datamodel/tables.go
+        AddGenerators(datamodel.Generators).
+        Use(r)
 
     _ = r.Run(":9033")
 }

@@ -26,11 +26,10 @@ func main() {
 
 	cfg := config.Config{}
 
-	adminPlugin := admin.NewAdmin(datamodel.Generators)
-
-	examplePlugin := example.NewExample()
-
-	if err := eng.AddConfig(cfg).AddPlugins(adminPlugin, examplePlugin).Use(r); err != nil {
+	if err := eng.AddConfig(cfg).
+		AddGenerators(datamodel.Generators).
+		AddPlugins(example.NewExample()).
+		Use(r); err != nil {
 		panic(err)
 	}
 
@@ -38,11 +37,7 @@ func main() {
 
 	// here to custom a page.
 
-	r.GET("/"+cfg.PREFIX+"/custom", func(ctx *gin.Context) {
-		engine.Content(ctx, func(ctx interface{}) (types.Panel, error) {
-			return datamodel.GetContent()
-		})
-	})
+	eng.HTML("GET", "/admin/custom", datamodel.GetContent)
 
 	r.Run(":9033")
 }
@@ -59,10 +54,11 @@ import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	template2 "github.com/GoAdminGroup/go-admin/template"
 	"github.com/GoAdminGroup/go-admin/template/types"
+	"github.com/GoAdminGroup/go-admin/context"
 	"html/template"
 )
 
-func GetContent() (types.Panel, error) {
+func GetContent(ctx *context.Context) (types.Panel, error) {
 
 	components := template2.Get(config.Get().THEME)
 	colComp := components.Col()

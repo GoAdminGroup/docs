@@ -30,7 +30,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-使用自带的命令行工具可以帮助你快速生成配置文件，如：
+使用自带的命令行工具可以帮助你快速生成数据模型文件，如：
 
 - 安装
 
@@ -41,7 +41,7 @@ go install github.com/GoAdminGroup/go-admin/adm
 - 生成
 
 <br>
-在项目文件夹下执行
+在项目文件夹下执行：
 
 ```bash
 adm generate
@@ -53,7 +53,7 @@ adm generate
 
 ### 设置访问路由
 
-生成完配置文件后，同时也会生成一个路由配置文件```tables.go```，如：
+生成完配置文件后，同时也会生成一个路由配置文件```tables.go```以及```Generators```变量，如：
 
 ```go
 package main
@@ -79,16 +79,17 @@ var Generators = map[string]models.TableGenerator{
 
 ### 初始化，并在引擎中加载
 
-初始化，需要调用```NewAdmin```方法，然后将上面的```Generators```传进去即可。然后再调用引擎的```AddPlugins```方法加载引擎。
+初始化，调用```eng.AddGenerators```，将上面的```Generators```传进去即可。
 
 ```go
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // 必须引入，如若不引入，则需要自己定义
 	_ "github.com/GoAdminGroup/themes/adminlte" // 必须引入，不然报错
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // 数据库驱动
+
+	"github.com/gin-gonic/gin"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/modules/config"
@@ -105,7 +106,7 @@ func main() {
 				Port:       "3306",
 				User:       "root",
 				Pwd:        "root",
-				Name:       "godmin",
+				Name:       "go-admin",
 				MaxIdleCon: 50,
 				MaxOpenCon: 150,
 				Driver:     config.DriverMysql,
@@ -131,9 +132,15 @@ func main() {
 }
 ```
 
+运行代码：
+
+```
+GO111MODULE=on go run .
+```
+
 ### 设置访问菜单
 
-运行起来后，访问登录网址，进入到菜单管理页面，设置好数据表的管理菜单就可以在侧边栏中进入了。
+运行起来后，访问[登录网址](http://localhost:9033/admin/login)，进入到[菜单管理页面](http://localhost:9033/admin/menu)，设置好数据表的管理菜单就可以在侧边栏中进入了。
 
 > 注：
 >

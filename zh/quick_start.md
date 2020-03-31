@@ -30,7 +30,6 @@ import (
 	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // 引入对应数据库引擎
 
 	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/language"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
@@ -45,13 +44,15 @@ func main() {
 
 	// GoAdmin全局配置，也可以写成一个json，通过json引入
 	cfg := config.Config{
+		// 数据库配置，为一个map，key为连接名，value为对应连接信息
 		Databases: config.DatabaseList{
+			// 默认数据库连接，名字必须为default
 			"default": {
 				Host:       "127.0.0.1",
 				Port:       "3306",
 				User:       "root",
 				Pwd:        "root",
-				Name:       "godmin",
+				Name:       "goadmin",
 				MaxIdleCon: 50,
 				MaxOpenCon: 150,
 				Driver:     config.DriverMysql,
@@ -63,14 +64,15 @@ func main() {
 			Path:   "./uploads",
 			Prefix: "uploads",
 		},
+		// 网站语言
 		Language: language.CN,
 	}
 
 	// 增加配置与插件，使用Use方法挂载到Web框架中
 	_ = eng.AddConfig(cfg).
 		// 这里引入你需要管理的业务表配置
-		// 关于Generators，详见 https://github.com/GoAdminGroup/go-admin/blob/master/examples/datamodel/tables.go
-		AddGenerators(datamodel.Generators).
+		// 后面会介绍如何使用命令行根据你自己的业务表生成Generators
+		// AddGenerators(Generators).
 		Use(r)
 
 	_ = r.Run(":9033")
@@ -79,11 +81,9 @@ func main() {
 
 请<b>留意以上代码与注释</b>，对应的步骤都加上了注释，使用十分简单，只需要：
 
-- 引入<b>适配器</b>，<b>主题</b>与<b>数据库驱动</b>（必须）
-- 设置全局的配置项
-- 初始化插件
-- 设置插件与配置
-- 挂载到Web框架中
+- 匿名引入<b>适配器</b>，<b>主题</b>与<b>数据库驱动</b>（必须）
+- 载入设置好的全局配置项：```eng.AddConfig```
+- 挂载到Web框架中：```eng.Use```
 
 接着执行```go run main.go```运行代码，访问：[http://localhost:9033/admin/login](http://localhost:9033/admin/login) <br>
 <br>

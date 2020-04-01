@@ -98,9 +98,9 @@ import (
 // 返回一个Jump Action，参数一为url，参数二为额外的html
 // Jump Action是一个跳转操作。如果需要跳转url中带上id，可以这样写：
 //
-// action.Jump("/admin/info/manager?id={%id}")
+// action.Jump("/admin/info/manager?id={{.Id}}")
 //
-// 其中{%id}为id的占位符
+// 其中{{.Id}}为id的占位符
 action.Jump("/admin/info/manager")
 action.JumpInNewTab("/admin/info/manager", "管理员")
 

@@ -244,7 +244,7 @@ formList.AddField("content", "content", db.Varchar, form.Custom).
     FieldCustomJs(template.JS(``))
 ```
 
-以下表单自定义的模板文件结构，设置的```CustomContent```，```CustomCss```，```CustomJs```将插入到对应的位置。
+以下表单自定义的模板文件结构，设置的```CustomContent```，```CustomCss```，```CustomJs```将插入到以下对应的位置。
 
 ```go
 {{define "form_custom"}}
@@ -270,3 +270,47 @@ formList.AddField("content", "content", db.Varchar, form.Custom).
     {{end}}
 {{end}}
 ```
+
+在```CustomContent```，```CustomCss```，```CustomJs```中会传入一个```FormField```类型进行模板渲染，定义如下：
+
+```golang
+type FormField struct {
+	Field    string  // 字段名
+	TypeName db.DatabaseType
+	Head     string  // 表单字段头部名
+	FormType form2.Type
+
+	Default                template.HTML
+	Value                  template.HTML // 字段值
+	Value2                 string
+	Options                FieldOptions
+	DefaultOptionDelimiter string
+	Label                  template.HTML
+
+	Placeholder string
+
+	CustomContent template.HTML
+	CustomJs      template.JS
+	CustomCss     template.CSS
+
+	Editable    bool
+	NotAllowAdd bool
+	Must        bool
+	Hide        bool
+
+	Width int
+
+	Join Join
+
+	HelpMsg template.HTML
+
+	OptionExt    template.JS
+	OptionInitFn OptionInitFn
+	OptionTable  OptionTable
+
+	FieldDisplay
+	PostFilterFn PostFieldFilterFn
+}
+```
+
+因此可以在```CustomContent```中，使用这样的模板语法来表示编辑时字段的值：```{{.Value}}```

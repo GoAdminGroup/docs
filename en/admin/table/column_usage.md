@@ -118,9 +118,9 @@ import (
 // Return a Jump Action，parameter one is the url，two is the extra html.
 // Jump Action is a link jump operation. If you need to carry the id  of operation row, you can do like this:
 //
-// action.Jump("/admin/info/manager?id={%id}")
+// action.Jump("/admin/info/manager?id={{.Id}}")
 //
-// {%id} is the placeholder of id.
+// {{.Id}} is the placeholder of id.
 action.Jump("/admin/info/manager")
 action.JumpInNewTab("/admin/info/manager", "管理员")
 

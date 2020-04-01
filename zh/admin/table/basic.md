@@ -243,9 +243,9 @@ import (
 // 返回一个Jump Action，参数一为url，参数二为额外的html
 // Jump Action是一个跳转操作。如果需要跳转url中带上id，可以这样写：
 //
-// action.Jump("/admin/info/manager?id={%id}")
+// action.Jump("/admin/info/manager?id={{.Id}}")
 //
-// 其中{%id}为id的占位符
+// 其中{{.Id}}为id的占位符
 action.Jump("/admin/info/manager")
 action.JumpInNewTab("/admin/info/manager", "管理员")
 
@@ -264,8 +264,8 @@ action.PopUp("/admin/popup", "Popup Example", func(ctx *context.Context) (succes
 action.Ajax("/admin/ajax",
 func(ctx *context.Context) (success bool, msg string, data interface{}) {
     // 获取参数
-    // ctx.FormValue["id"]
-    // ctx.FormValue["ids"]
+    // ctx.FormValue["id"]  选择的id
+    // ctx.FormValue["ids"] 选择的id列表，是逗号分割的字符串
     return true, "success", ""
 })
 

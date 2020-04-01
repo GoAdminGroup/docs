@@ -278,3 +278,48 @@ The following form the custom template file structure, setting the `` `CustomCon
     {{end}}
 {{end}}
 ```
+
+
+It will pass a variable which is a type of ```FormField``` into the ```CustomContent```，```CustomCss```，```CustomJs``` as a golang template:
+
+```golang
+type FormField struct {
+	Field    string
+	TypeName db.DatabaseType
+	Head     string
+	FormType form2.Type
+
+	Default                template.HTML
+	Value                  template.HTML
+	Value2                 string
+	Options                FieldOptions
+	DefaultOptionDelimiter string
+	Label                  template.HTML
+
+	Placeholder string
+
+	CustomContent template.HTML
+	CustomJs      template.JS
+	CustomCss     template.CSS
+
+	Editable    bool
+	NotAllowAdd bool
+	Must        bool
+	Hide        bool
+
+	Width int
+
+	Join Join
+
+	HelpMsg template.HTML
+
+	OptionExt    template.JS
+	OptionInitFn OptionInitFn
+	OptionTable  OptionTable
+
+	FieldDisplay
+	PostFilterFn PostFieldFilterFn
+}
+```
+
+So that you can use ```{{.Value}}``` as the edit field value in the ```CustomContent```.

@@ -50,6 +50,7 @@ Content方法会将内容写入到框架的context中。
 GetContent方法代码如下：
 
 ```go
+
 import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/db"
@@ -62,7 +63,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func YourPageFunc(ctx *gin.Context) (types.Panel, error) {
+func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 
@@ -160,5 +161,4 @@ func YourPageFunc(ctx *gin.Context) (types.Panel, error) {
 		Description: "表单例子",
 	}, nil
 }
-
 ```

@@ -48,6 +48,7 @@ func main() {
 here is the code of ```GetContent```:
 
 ```go
+
 import (
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/db"
@@ -105,7 +106,7 @@ func YourPageFunc(ctx *gin.Context) (types.Panel, error) {
 			{Text: "apple", Value: "apple"},
 			{Text: "banana", Value: "banana"},
 			{Text: "watermelon", Value: "watermelon"},
-			{Text: "pear Value: "pear"},
+			{Text: "pear Value: ", Value: "pear"},
 		}).
 		FieldDisplay(func(value types.FieldModel) interface{} {
 			return []string{"梨"}

@@ -27,7 +27,7 @@
 
 ## 在线Demo
 
-[https://demo.go-admin.cn/admin](https://demo.go-admin.cn/admin)
+[https://demo.go-admin.cn](https://demo.go-admin.cn/admin/login)
 
 ## 依赖
 
@@ -43,7 +43,7 @@
 
 ## 交流
 
-QQ群：756664859，为防广告，请备注加群来意，没备注不通过。
+QQ群：[756664859](https://jq.qq.com/?_wv=1027&k=5JqQqIt)，为防广告，请备注加群来意，没备注不通过。
 
 [微信群](http://quick.go-admin.cn/resource/wechat_qrcode.jpg)
 

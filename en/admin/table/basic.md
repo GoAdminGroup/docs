@@ -283,7 +283,7 @@ Parameter of ```FieldFilter``` is the field name for filter.
 
 ## Configure Detail Page
 
-You can customize details page display content, if it is not set, the default Settings display using list page
+You can customize details page display content.
 
 ```go
 package datamodel
@@ -309,6 +309,14 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 }
 ```
 
+If you want to copy list page fields to detail, and add  external fields.
+
+```go
+detail := userTable.GetDetailFromInfo()
+detail.AddField("External", "external", db.Varchar)
+```
+
+Notice:  if it is not set, the default Settings display using list page.
 
 ## Custom data source
 

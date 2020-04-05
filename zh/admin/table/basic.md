@@ -287,7 +287,7 @@ FieldFilter中的参数为筛选字段名。
 
 ## 设置详情页
 
-可以自定义详情页显示内容，如果不设置的话，则默认用列表页设置的显示
+可以自定义详情页显示内容
 
 ```go
 package datamodel
@@ -312,6 +312,17 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
     ...
 }
 ```
+
+如果你想直接复制列表的设置，并且再增加额外的字段
+
+```go
+detail := userTable.GetDetailFromInfo()
+detail.AddField("额外字段", "external", db.Varchar)
+```
+
+注意：如果不设置的话，则默认用列表页设置的显示
+
+
 
 ## 自定义数据源
 

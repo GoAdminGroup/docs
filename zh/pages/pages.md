@@ -13,9 +13,7 @@ import (
 	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
-	"github.com/GoAdminGroup/go-admin/plugins/example"
-	"github.com/GoAdminGroup/go-admin/template/types"
-  ginAdapter "github.com/GoAdminGroup/go-admin/adapter/gin"
+    ginAdapter "github.com/GoAdminGroup/go-admin/adapter/gin"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,13 +22,12 @@ func main() {
 
 	eng := engine.Default()
 
-	cfg := config.Config{}
-
-	examplePlugin := example.NewExample()
+	cfg := config.Config{
+		...
+	}
 
 	if err := eng.AddConfig(cfg).
 		AddGenerators(datamodel.Generators).
-		AddPlugins(examplePlugin).
 		Use(r); err != nil {
 		panic(err)
 	}
@@ -38,14 +35,21 @@ func main() {
 	r.Static("/uploads", "./uploads")
 
 	// 这样子去自定义一个页面：
-	
-	r.GET("/"+cfg.PREFIX+"/custom",  ginAdapter.Content(YourPageFunc))
+	// 访问：http://localhost:9033/custom
+	r.GET("/custom",  ginAdapter.Content(GetContent))
+
+	// 也可以使用engine的API：
+	eng.Data(method, url string, handler context.Handler)
+	eng.HTML(method, url string, fn types.GetPanelInfoFn)
+	// 以下两个API是渲染html，传入的data会跟传入的html文件路径path一起渲染为最后的html返回
+	eng.HTMLFile(method, url, path string, data map[string]interface{}) // 一个文件
+	eng.HTMLFiles(method, url string, data map[string]interface{}, files ...string) // 多个文件
 
 	r.Run(":9033")
 }
 ```
 
-Content方法会将内容写入到框架的context中。
+ginAdapter.Content方法会将内容写入到框架的context中。
 
 GetContent方法代码如下：
 
@@ -63,7 +67,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
+func GetContent(ctx *gin.Context) (types.Panel, error) {
 
 	components := template2.Get(config.Get().Theme)
 
@@ -152,11 +156,13 @@ func GetForm1Content(ctx *gin.Context) (types.Panel, error) {
 		SetOperationFooter(col1 + col2)
 
 	return types.Panel{
+		// Content 是页面主题内容，为template.html类型
 		Content: components.Box().
 			SetHeader(aform.GetDefaultBoxHeader()).
 			WithHeadBorder().
 			SetBody(aform.GetContent()).
 			GetContent(),
+		// Title 与 Description是标题与描述
 		Title:       "表单",
 		Description: "表单例子",
 	}, nil

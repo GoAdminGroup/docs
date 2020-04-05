@@ -61,6 +61,8 @@
         - [页面模块化](zh/pages/modules.md)    
         - [自定义页面](zh/pages/pages.md)   
         - [修改登录界面](zh/pages/login.md)
+    - [ci测试]
+        - [ci测试](zh/tests/ci.md)
     - [项目架构]()
         - [架构介绍](zh/architecture/introduction.md)
     - [项目开发]()

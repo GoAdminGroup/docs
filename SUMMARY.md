@@ -51,6 +51,7 @@
         - [使用新主题](zh/admin/theme.md)
         - [文件上传](zh/admin/file.md)
         - [命令行工具](zh/admin/cli.md)
+        - [设置cdn](zh/admin/cdn.md)
     - [Monitor插件](zh/monitor/monitor.md)  
     - [ui组件介绍]()
         - [目录](zh/components/components.md)

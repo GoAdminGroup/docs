@@ -33,7 +33,7 @@ GoAdmin的目标是实现无代码化或某种程度的无代码化可视化操�
 
 GoAdmin项目需要更多的人才一同加入。
 
-目前由我 [@cg33](https://github.com/chenhg5) 一人维护此项目，本人是国内某985/211大学软件系本科毕业，两年的gopher。
+目前由我 [@cg33](https://github.com/chenhg5) 一人维护此项目，我是中山大学大学软件系本科毕业，三年的gopher。
 
 目前项目需要的工作有：
 

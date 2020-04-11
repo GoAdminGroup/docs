@@ -239,11 +239,8 @@ import (
 )
 
 func GetUserTable(ctx *context.Context) table.Table {
-    // 登录用户，需要先判断ctx是否带用户数据
-    var user = models.User()
-    if len(ctx.UserValue) > 0 {
-        user = auth.Auth(ctx)
-    }
+    // 获取登录用户模型
+    user = auth.Auth(ctx)
 }
 
 ```

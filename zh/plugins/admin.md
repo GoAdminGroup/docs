@@ -172,7 +172,7 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 		Deletable:  true,  // 是否可以删除
 		Exportable: true,  // 是否可以导出为excel
 		Connection: table.DefaultConnectionName,
-		PrimaryKey: table.PrimaryKey{
+		PrimaryKey: table.PrimaryKey{ // 自定义主键，默认为id，类型为Int
 			Type: db.Int,
 			Name: table.DefaultPrimaryKeyName,
 		},

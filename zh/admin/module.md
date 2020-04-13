@@ -118,6 +118,9 @@ func main() {
         
     // 删除
     db.WithDriver(globalConn).Table("users").Where("id", "=", 10).Delete()
+    
+    // 指定连接，第一个参数为连接名，也就是全局配置config.Config中的Databases的key
+    db.WithDriverAndConnection(connName string, conn Connection)
 
     // 等等...
 }
@@ -151,7 +154,7 @@ type Connection interface {
 	// Exec方法，使用默认连接
 	Exec(query string, args ...interface{}) (sql.Result, error)
 
-	// 查询方法，使用指定连接
+	// 查询方法，使用指定连接，第一个参数为连接名，也就是全局配置config.Config中的Databases的key
 	QueryWithConnection(conn, query string, args ...interface{}) ([]map[string]interface{}, error)
 
 	// Exec方法，使用指定连接

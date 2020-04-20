@@ -142,6 +142,10 @@ info.HideFilterArea()
 ```go
 // 字段, 操作符, 参数
 info.Where("type", "=", 0)
+// 原生sql
+info.WhereRaw("type = 0 or sex = 1")
+// or语句，以下会生成：type = 3 or type = 0
+info.Where("type", "=", 3).WhereOr("type", "=", 0) 
 ```
 
 ## 设置筛选表单布局

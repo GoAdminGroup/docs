@@ -64,6 +64,17 @@ formList.AddField("url", "url", db.Varchar, form.Url)
 formList.AddField("ip", "ip", db.Varchar, form.Ip)
 ```
 
+### Code
+```go
+formList.AddField("code", "code", db.Text, form.Code)
+formList.AddField("code", "code", db.Text, form.Code).FieldOptionExt(map[string]interface{}{
+    "theme": "monokai",
+    "font_size": 14,
+    "language": "php",
+    "options": "{useWorker: false}",
+})
+```
+
 ### Color
 
 ```go

@@ -150,6 +150,15 @@ info.Where("type", "=", 0)
 info.SetFilterFormLayout(layout form.Layout)
 ```
 
+## 设置筛选表单项宽度
+
+```go
+// 设置标题宽度，1到12，默认为2
+info.SetFilterFormHeadWidth(w int)
+// 设置输入框宽度，1到12，默认为10，两者之和为12
+info.SetFilterFormInputWidth(w int)
+```
+
 ## 设置默认排序规则
 
 ```go

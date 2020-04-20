@@ -69,7 +69,7 @@ import (
 
 func GetContent(ctx *gin.Context) (types.Panel, error) {
 
-	components := template2.Get(config.Get().Theme)
+	components := template2.Default()
 
 	col1 := components.Col().GetContent()
 	btn1 := components.Button().SetType("submit").

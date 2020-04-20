@@ -284,6 +284,21 @@ info.AddSelectBox("gender", types.FieldOptions{
 
 FieldFilter中的参数为筛选字段名。
 
+## 新增列按钮
+
+有时候想要增加一个列的操作按钮，可以使用：
+
+```go
+info.AddColumnButtons(head string, buttons ...Button)
+```
+
+## 增加列内容
+
+如果你单纯想增加一列，跟数据库字段不是一对一，可以使用这个API。
+
+```go
+info.AddColumn(head string, fn FieldFilterFn)
+```
 
 ## 设置详情页
 

@@ -133,6 +133,30 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowAdd()
 
 ```
 
+### 隐藏继续编辑按钮
+
+```go
+formList.HideContinueEditCheckBox()
+```
+
+### 隐藏继续新增按钮
+
+```go
+formList.HideContinueNewCheckBox()
+```
+
+### 隐藏返回按钮
+
+```go
+formList.HideBackButton()
+```
+
+### 默认重设按钮
+
+```go
+formList.HideResetButton()
+```
+
 ### 验证器
 
 ```go

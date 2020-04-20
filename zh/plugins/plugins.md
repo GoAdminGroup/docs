@@ -18,11 +18,12 @@ example插件是我们的演示例子。
 ```go
 package main
 
-import (
-	"github.com/gin-gonic/gin"
+import (	
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // 必须引入，如若不引入，则需要自己定义
 	_ "github.com/GoAdminGroup/themes/adminlte" // 必须引入，不然报错
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // 引入数据库驱动
+
+	"github.com/gin-gonic/gin"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/plugins/example"
@@ -55,11 +56,12 @@ func main() {
 ```go
 package main
 
-import (
-	"github.com/gin-gonic/gin"
+import (	
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // 必须引入，如若不引入，则需要自己定义
 	_ "github.com/GoAdminGroup/themes/adminlte" // 必须引入，不然报错
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // 引入数据库驱动
+
+	"github.com/gin-gonic/gin"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/plugins"

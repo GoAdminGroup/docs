@@ -306,27 +306,55 @@ type Table interface {
 ### Info表格
 
 ```go
+// 表格数据对象
 type InfoPanel struct {
-	FieldList   []Field  // 字段类型
-	Table       string   // 表格
-	Title       string   // 标题
-	Description string   // 描述
-}
+	FieldList   FieldList // 字段列表
 
-type InfoPanel struct {
-	FieldList    []Field         // 字段列表
-	Table        string          // 表格
-	Title        string          // 标题
-	Description  string          // 描述	
+	Table       string    // 表格
+	Title       string    // 标题
+	Description string    // 描述
 
-	Sort         Sort            // 默认排序
+	TabGroups  TabGroups   // tab分组
+	TabHeaders TabHeaders  // tab分组标题
 
-	TabGroups    TabGroups       // tab分组
-	TabHeaders   TabHeaders      // tab分组标题
+	Sort      Sort      // 默认排序
+	SortField string    // 默认排序字段
 
-	Action       template.HTML   // 表单操作html内容
-	HeaderHtml   template.HTML   // 头部自定义html内容
-	FooterHtml   template.HTML   // 底部自定义html内容
+	PageSizeList    []int  // 页码列表，默认为：10, 20, 30, 50, 100
+	DefaultPageSize int    // 默认页码，默认为：10
+
+	ExportType int // 导出设置，是否导出原生值
+
+	IsHideNewButton    bool  // 是否隐藏新建按钮
+	IsHideExportButton bool  // 是否隐藏导出按钮
+	IsHideEditButton   bool  // 是否隐藏编辑按钮
+	IsHideDeleteButton bool  // 是否隐藏删除按钮
+	IsHideDetailButton bool  // 是否隐藏详情按钮
+	IsHideFilterButton bool  // 是否隐藏筛选按钮
+	IsHideRowSelector  bool  // 是否隐藏列选择按钮
+	IsHidePagination   bool  // 是否隐藏分页
+	IsHideFilterArea   bool  // 是否隐藏筛选区域
+	FilterFormLayout   form.Layout  // 筛选表单布局
+
+	FilterFormHeadWidth  int // 筛选表单项标题宽度
+	FilterFormInputWidth int // 筛选表单项输入框宽度
+
+	Wheres    Wheres     // 预查询内容
+	WhereRaws WhereRaw   // 预查询原生内容
+
+	TableLayout string  // 表格布局
+
+	DeleteHook  DeleteFn  // 删除hook函数
+	PreDeleteFn DeleteFn  // 删除预检查函数
+	DeleteFn    DeleteFn  // 删除逻辑，替换自带逻辑
+
+	DeleteHookWithRes DeleteFnWithRes  // 删除hook函数，带通知结果
+
+	GetDataFn GetDataFn // 获取数据逻辑，替换表格数据获取逻辑
+
+	Action        template.HTML  // 表单操作html内容
+	HeaderHtml    template.HTML  // 头部自定义html内容
+	FooterHtml    template.HTML  // 底部自定义html内容
 }
 
 type Field struct {
@@ -341,6 +369,9 @@ type Field struct {
 	Fixed      bool   // 是否固定
 	Filterable bool   // 是否可以筛选
 	Hide       bool   // 是否隐藏
+
+	EditType    table.Type    // 表格字段编辑类型
+	EditOptions FieldOptions  // 表格字段编辑选项
 
 	Display              FieldFilterFn           // 显示过滤函数
 	DisplayProcessChains DisplayProcessFnChains  // 显示处理函数
@@ -370,18 +401,20 @@ type FormPanel struct {
 	HeaderHtml    template.HTML   // 头部自定义内容
 	FooterHtml    template.HTML   // 底部自定义内容	
 
-	Validator     FormValidator   // 表单验证函数
-	PostHook      FormPostHookFn  // 表单提交后触发函数
+	Validator    FormPostFn       // 表单验证函数
+	PostHook     FormPostFn       // 表单提交后触发函数
+	PreProcessFn FormPreProcessFn // 表单提交预处理函数
 
-	UpdateFn FormPostFn // 表单更新函数，设置了此函数，则接管了该表单的更新操作，PostHook不再生效
-	InsertFn FormPostFn // 表单插入函数，设置了此函数，则接管了该表单的插入操作，PostHook不再生效
+	IsHideContinueEditCheckBox bool // 是否隐藏继续编辑按钮
+	IsHideContinueNewCheckBox  bool // 是否隐藏继续新建按钮
+	IsHideResetButton          bool // 是否隐藏重设按钮
+	IsHideBackButton           bool // 是否隐藏返回按钮
+
+	UpdateFn FormPostFn // 表单更新函数
+	InsertFn FormPostFn // 表单插入函数
 }
 
-// 表单验证函数，可以对传过来的表单的值进行验证
-type FormValidator func(values form.Values) error
-
-// 表单触发函数，表单数据插入数据库后触发的函数
-type FormPostHookFn func(values form.Values)
+type FormPostFn func(values form.Values) error
 
 type FormField struct {
 	Field        string                // 字段名
@@ -405,6 +438,21 @@ type FormField struct {
 	Display              FieldFilterFn           // 显示过滤函数
 	DisplayProcessChains DisplayProcessFnChains  // 显示处理函数
 	PostFilterFn PostFieldFilterFn               // 表单过滤函数：用于对提交字段值的处理，处理后插入数据库
+
+	Placeholder string // 表单输入提示语
+
+	CustomContent template.HTML // 自定义表单项HTML
+	CustomJs      template.JS   // 自定义表单项JS
+	CustomCss     template.CSS  // 自定义表单项CSS
+
+	Width int // 表单宽度
+
+	Divider      bool   // 表单分割线
+	DividerTitle string // 表单分割线标题
+
+	OptionExt    template.JS  // 表单选项内容
+	OptionInitFn OptionInitFn // 表单选项内容
+	OptionTable  OptionTable  // 表单选项连表表格名字
 }
 ```
 
@@ -444,25 +492,24 @@ FormType: form.File,
 
 ```
 
-对于选择类型：单选、多选、选择框，需要指定 Options 值。格式为：
-
-```
-...
-Options: []map[string]string{
-	{
-        "field": "男生",
-        "value": "0",
-    },{
-        "field": "女生",
-        "value": "1",
-    },
-}
-...
-```
-
 其中，field为显示内容，value为选择对应的值。
+具体使用，详见：[表单组件使用一节](admin/form/components.md)
 
-### 过滤函数FilterFn与表单过滤函数PostFilterFn说明
+### 显示过滤函数FieldFilterFn说明
+
+框架从数据库拿到数据后，会将数据展示到表格或表单。如果想要对数据进行转化展示（比如过滤css/js，字符串转大写，加上一些html样式等等），则可以通过设置过滤函数实现。当然，框架内置了很多常见显示过滤操作，会在admin插件下面进行介绍。
+
+```go
+
+// 表格设置显示过滤函数
+info.AddField(...).FieldDisplay(func(value FieldModel) interface{})
+
+// 表单设置显示过滤函数
+formList.AddField(...).FieldDisplay(func(value FieldModel) interface{})
+
+```
+
+显示过滤函数为一个回调函数，传入参数为字段和该行数据的值，可以对此进行转化后返回，返回内容将显示在表格或表单中。
 
 ```go
 // FieldModel 其中ID为主键，Value为对应的字段在该主键下的值
@@ -477,7 +524,7 @@ type FieldModel struct {
 // 对于表格，可以返回template.HTML类型，包括html和css样式，使得表格中字段可以个性化的显示，如：
 // 
 // FilterFn: func(model types.FieldModel) interface{} {
-// 	return template.Get("adminlte").Label().SetContent(template2.HTML(model.Value)).GetContent()
+// 	return template.Default().Label().SetContent(template2.HTML(model.Value)).GetContent()
 // },
 //
 // 对于表单，需要注意的是，如果是为选择框类型：Select/SelectSingle/SelectBox，则需要返回数组：[]string，如：
@@ -505,26 +552,5 @@ func (r FieldModelValue) Value() string {
 func (r FieldModelValue) First() string {
 	return r[0]
 }
-
-// PostFieldFilterFn 表单提交过滤函数，用于提交表单的时候对表单数据的处理。表单数据传过来，经过表单提交过滤函数
-// 的处理后再存入数据库中。
-//
-// 如果是为选择框类型：Select/SelectSingle/SelectBox，需要将数组类型转化为字符串类型，如：
-//
-// PostFilterFn: func(model types.PostFieldModel) string {
-// 	return strings.Join(model.Value, ",")
-// },
-//
-// 同时也可以用来连表更新或插入数据。
-// 自定义的字段，比如用户表的角色，需要更新。在这里可以根据传过来的主键ID以及表单数据Value，进行连表更新。如：
-// 
-// PostFilterFn: func(model types.PostFieldModel) {
-//   db.Table("role").Insert(dialect.H{
-//	  	"user_id": model.ID,  
-//	  	"role_id": model.Value.Value(),
-//   })
-// },
-//
-type PostFieldFilterFn func(value PostFieldModel) string
 ```
 

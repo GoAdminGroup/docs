@@ -104,6 +104,9 @@ func main() {
 
 {% page-ref page="plugins/admin.md" %}
 
+- [插件介绍](plugins/plugins.md)
+- [admin插件](plugins/admin.md)
+
 ## 全局配置项说明
 
 [https://github.com/GoAdminGroup/go-admin/blob/master/modules/config/config.go](https://github.com/GoAdminGroup/go-admin/blob/master/modules/config/config.go)
@@ -125,6 +128,7 @@ type Database struct {
 	MaxOpenCon   int     // 最大打开连接数
 	Driver       string  // 驱动名
 	File         string  // 文件名
+	DSN          string  // DSN语句：如果设置了DSN语句，则优先使用DSN进行连接
 }
 
 // 数据库配置
@@ -135,8 +139,8 @@ type DatabaseList map[string]Database
 
 // 存储目录：存储头像等上传文件
 type Store struct {
-	Path   string
-	Prefix string
+	Path   string // 存储路径
+	Prefix string // url访问前缀
 }
 
 type Config struct {
@@ -170,6 +174,9 @@ type Config struct {
 	// 登录后跳转的路由
 	IndexUrl string `json:"index"`
 
+	// 自定义登录路由地址
+	LoginUrl string `json:"login_url",yaml:"login_url",ini:"login_url"`
+
 	// 是否开始debug模式
 	Debug bool `json:"debug"`
 
@@ -191,6 +198,9 @@ type Config struct {
 	InfoLogOff   bool `json:"info_log_off"`
 	// 是否关闭error日志
 	ErrorLogOff  bool `json:"error_log_off"`
+
+	// 日志配置
+	Logger Logger `json:"logger",yaml:"logger",ini:"logger"`
 
 	// 网站颜色主题
 	ColorScheme string `json:"color_scheme"`
@@ -215,6 +225,86 @@ type Config struct {
 
 	// 登录页面logo
 	LoginLogo template.HTML `json:"login_logo"`
+
+	// 自定义认证用户的数据表
+	AuthUserTable string `json:"auth_user_table",yaml:"auth_user_table",ini:"auth_user_table"`
+
+	// 额外
+	Extra ExtraInfo `json:"extra",yaml:"extra",ini:"extra"`
+
+	// 页面动画
+	Animation PageAnimation `json:"animation",yaml:"animation",ini:"animation"`
+
+	// 是否不限制不同IP登录，默认限制
+	NoLimitLoginIP bool `json:"no_limit_login_ip",yaml:"no_limit_login_ip",ini:"no_limit_login_ip"`
+
+	// 网站开关
+	SiteOff bool `json:"site_off",yaml:"site_off",ini:"site_off"`
+
+	// 是否隐藏配置中心入口，默认显示
+	HideConfigCenterEntrance bool `json:"hide_config_center_entrance",yaml:"hide_config_center_entrance",ini:"hide_config_center_entrance"`
+
+	// 是否隐藏应用信息入口，默认显示
+	HideAppInfoEntrance bool `json:"hide_app_info_entrance",yaml:"hide_app_info_entrance",ini:"hide_app_info_entrance"`
+
+	// 配置更新处理函数
+	UpdateProcessFn UpdateConfigProcessFn `json:"-",yaml:"-",ini:"-"`
+
+	// 是否开放admin的json apis，默认关闭
+	OpenAdminApi bool `json:"open_admin_api",yaml:"open_admin_api",ini:"open_admin_api"`
+}
+
+```
+
+日志设置：
+
+```golang
+
+type Logger struct {
+	// 编码设置
+	Encoder EncoderCfg `json:"encoder",yaml:"encoder",ini:"encoder"`
+	// 分割设置
+	Rotate  RotateCfg  `json:"rotate",yaml:"rotate",ini:"rotate"`
+	// 日志级别
+	Level   int8       `json:"level",yaml:"level",ini:"level"`
+}
+
+// 日志输出内容编码设置
+type EncoderCfg struct {
+	// 时间键内容，默认为 ts
+	TimeKey       string `json:"time_key",yaml:"time_key",ini:"time_key"`
+	// 级别键内容，默认为 level
+	LevelKey      string `json:"level_key",yaml:"level_key",ini:"level_key"`
+	// 名字键内容，默认为 logger
+	NameKey       string `json:"name_key",yaml:"name_key",ini:"name_key"`
+	// 调用者键内容，默认为 caller
+	CallerKey     string `json:"caller_key",yaml:"caller_key",ini:"caller_key"`
+	// 消息键内容，默认为 msg
+	MessageKey    string `json:"message_key",yaml:"message_key",ini:"message_key"`
+	// 栈键内容，默认为 stacktrace
+	StacktraceKey string `json:"stacktrace_key",yaml:"stacktrace_key",ini:"stacktrace_key"`
+	// 级别编码器，默认为 大写带颜色
+	Level         string `json:"level",yaml:"level",ini:"level"`
+	// 时间编码器，默认为 ISO8601
+	Time          string `json:"time",yaml:"time",ini:"time"`
+	// 间隔时间编码器，默认为 秒
+	Duration      string `json:"duration",yaml:"duration",ini:"duration"`
+	// 调用者编码器，默认为 简短路径
+	Caller        string `json:"caller",yaml:"caller",ini:"caller"`
+	// 输出格式，默认console
+	Encoding      string `json:"encoding",yaml:"encoding",ini:"encoding"`
+}
+
+// 日志分割设置
+type RotateCfg struct {
+	// 文件最大大小，单位为m，默认为 10m
+	MaxSize    int  `json:"max_size",yaml:"max_size",ini:"max_size"`
+	// 最多文件数，默认为 5个
+	MaxBackups int  `json:"max_backups",yaml:"max_backups",ini:"max_backups"`
+	// 存储最长时间，单位为天，默认为 30天
+	MaxAge     int  `json:"max_age",yaml:"max_age",ini:"max_age"`
+	// 是否压缩，默认为 不开启
+	Compress   bool `json:"compress",yaml:"compress",ini:"compress"`
 }
 
 ```

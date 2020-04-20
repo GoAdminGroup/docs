@@ -133,11 +133,23 @@ formList.AddField("drink", "drink", db.Int, form.Select).
 
 ```go
 formList.AddField("gender", "gender", db.Int, form.Radio).
-        // radio的选项，field代表字，label代表显示内容，value代表对应值
+        // radio的选项，Text代表显示内容，Value代表对应值
 		FieldOptions(types.FieldOptions{
             {Text: "male",Value: "0"},
             {Text: "female",Value: "1"},
         }).
+        FieldDefault("0") // 设置默认的值
+```
+
+### Switch
+
+```go
+formList.AddField("site", "site", db.Int, form.Switch).
+        // switch的选项，Text代表显示内容，Value代表对应值
+		FieldOptions(types.FieldOptions{
+			{Text: trueStr, Value: "true"},
+			{Text: falseStr, Value: "false"},
+		})
         FieldDefault("0") // 设置默认的值
 ```
 
@@ -224,10 +236,13 @@ func (f *FormPanel) FieldOnChoose(val, field string, value template.HTML) *FormP
 // [{"id":0, "text":"men"}, {"id":1, "text":"women"}]
 func (f *FormPanel) FieldOnChooseAjax(field, url string, handler Handler) *FormPanel
 
-// 选中后触发，如果选中值为val，则将field这个表单项隐藏
+// 选中后触发，如果选中值为val，则将对应field的表单项隐藏
 func (f *FormPanel) FieldOnChooseHide(value string, field ...string) *FormPanel
 
-// 选中后触发，如果选中值为val，则将field这个表单项禁止
+// 选中后触发，如果选中值为val，则将对应field的表单项显示
+func (f *FormPanel) FieldOnChooseShow(value string, field ...string) *FormPanel
+
+// 选中后触发，如果选中值为val，则将对应field的表单项禁止
 func (f *FormPanel) FieldOnChooseDisable(value string, field ...string) *FormPanel
 ```
 

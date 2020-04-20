@@ -165,7 +165,7 @@ formList.AddField("avatar", "avatar", db.Varchar, form.Text).
 		})
 ```
 
-### 显示过滤处理
+### 内置显示过滤函数
 
 ```go
 
@@ -206,5 +206,30 @@ formList.SetInsertFn(func(values form2.Values) error {
 // 取代更新函数
 formList.SetUpdateFn(func(values form2.Values) error {
       // values 为传入的表单参数
+      // 这里需要区分是否为一个字段更新的情景（表格字段更新），通过values的参数区分：
+      // values.IsSingleUpdatePost() 返回 1 则为表格字段更新
 	})  
 ```
+
+### 表单更新流程
+
+按时间顺序如下：
+
+- FormPanel.Validator           数据验证
+- FormPanel.PreProcessFn        数据预处理
+- FormPanel.UpdateFn/InsertFn   数据更新/插入
+- FormPanel.PostHook            Hook函数
+
+对应设置接口：
+
+```go
+
+formList.SetPostValidator()
+formList.SetPreProcessFn()
+formList.SetPostHook()
+formList.SetUpdateFn()
+formList.SetInsertFn()
+
+```
+
+在 PostHook 中，通过 ```values.PostError()``` 去拿到更新或插入的结果。

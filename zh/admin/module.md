@@ -127,7 +127,7 @@ func main() {
 
 ```
 
-也可以直接使用 ```connection``` 的api，进行操作：
+也可以直接使用 ```Connection``` 的api，进行操作，定义如下：
 
 ```go
 // Connection is a connection handler of database.
@@ -164,22 +164,35 @@ type Connection interface {
 
     // 开始事务
     BeginTx() *sql.Tx
-
 	QueryWithTx(tx *sql.Tx, query string, args ...interface{}) ([]map[string]interface{}, error)
-
 	ExecWithTx(tx *sql.Tx, query string, args ...interface{}) (sql.Result, error)
-
 	BeginTxWithReadUncommitted() *sql.Tx
 	BeginTxWithReadCommitted() *sql.Tx
 	BeginTxWithRepeatableRead() *sql.Tx
-	
 	BeginTxWithLevel(level sql.IsolationLevel) *sql.Tx
-
 	BeginTxWithReadUncommittedAndConnection(conn string) *sql.Tx
 	BeginTxWithReadCommittedAndConnection(conn string) *sql.Tx
 	BeginTxWithRepeatableReadAndConnection(conn string) *sql.Tx
 	BeginTxAndConnection(conn string) *sql.Tx
 	BeginTxWithLevelAndConnection(conn string, level sql.IsolationLevel) *sql.Tx	
+}
+```
+
+当然也可以使用orm，比如```gorm```，如下：
+
+```go
+package main
+
+import (
+    ...
+    "github.com/jinzhu/gorm"
+    ...
+)
+
+func initORM() {
+    // 这里的conn为上面的connection对象
+    orm, _ := gorm.Open("mysql", conn.GetDB("default"))
+    // gorm用法，详见：http://gorm.book.jasperxu.com/
 }
 ```
 

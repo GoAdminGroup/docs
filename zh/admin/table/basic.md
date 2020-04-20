@@ -148,6 +148,13 @@ info.WhereRaw("type = 0 or sex = 1")
 info.Where("type", "=", 3).WhereOr("type", "=", 0) 
 ```
 
+### 导出设置
+
+```go
+// 设置导出未经显示处理的原生值，默认为显示处理后的值
+info.ExportValue()
+```
+
 ## 设置筛选表单布局
 
 ```go

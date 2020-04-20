@@ -192,7 +192,7 @@ import (
 func initORM() {
     // 这里的conn为上面的connection对象
     orm, _ := gorm.Open("mysql", conn.GetDB("default"))
-    // gorm用法，详见：http://gorm.book.jasperxu.com/
+    // gorm用法，详见：https://gorm.io/zh_CN/docs/index.html
 }
 ```
 

@@ -9,44 +9,51 @@ More login interface components [see here](https://github.com/GoAdminGroup/compo
 package main
 
 import (
-	"github.com/GoAdminGroup/demo/ecommerce"
-	"github.com/GoAdminGroup/demo/login"
-	"github.com/GoAdminGroup/demo/pages"
-	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
-	_ "github.com/GoAdminGroup/themes/adminlte"
+	_ "github.com/GoAdminGroup/go-admin/adapter/gin"	    
+    _ "github.com/GoAdminGroup/go-admin/adapter/gin"
+    _ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+    // import the theme2 login theme, if you don`t use, don`t import
+    _ "github.com/GoAdminGroup/components/login/theme2"
+	
+	"github.com/GoAdminGroup/components/login"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
-	"github.com/GoAdminGroup/go-admin/plugins/example"
-	"github.com/GoAdminGroup/go-admin/template"
-	"github.com/GoAdminGroup/go-admin/template/types"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 )
 
 func main() {
 	r := gin.Default()
 
+	gin.SetMode(gin.ReleaseMode)
+	gin.DefaultWriter = ioutil.Discard
+
 	eng := engine.Default()
+	adminPlugin := admin.NewAdmin(datamodel.Generators)
+	adminPlugin.AddGenerator("user", datamodel.GetUserTable)
+	
+	// load the CAPTCHA driver if you use it
+	adminPlugin.SetCaptcha(map[string]string{"driver": login.CaptchaDriverKeyDefault})
 
-    //  Add login component
-	template.AddLoginComp(login.GetLoginComponent())
+    // use the login theme component
+    login.Init(login.Config{
+        Theme: "theme2", // theme name
+        CaptchaDigits: 5, // Use captcha images, here on behalf of how many authentication code Numbers
+        // Use tencent verification code, need to offer appID and appSecret
+        // TencentWaterProofWallData: login.TencentWaterProofWallData{
+        //    AppID:"",
+        //    AppSecret: "",
+        // }   
+    })
 
-	// you can custom a plugin like:
-
-	examplePlugin := example.NewExample()
-
-	rootPath := "/data/www/go-admin"
-
-	if err := eng.AddConfigFromJson(rootPath+"/config.json").
-		AddGenerators(datamodel.Generators).
-		AddGenerator("user", datamodel.GetUserTable).
-		AddPlugins(examplePlugin).
+	if err := eng.AddConfigFromJson("./config.json").
+		AddPlugins(adminPlugin).
 		Use(r); err != nil {
 		panic(err)
 	}
 
-	r.Static("/uploads", rootPath+"/uploads")
+	r.Static("/uploads", "./uploads")
 
 	_ = r.Run(":9033")
 }

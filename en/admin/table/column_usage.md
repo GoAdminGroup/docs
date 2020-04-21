@@ -148,6 +148,47 @@ func(ctx *context.Context) (success bool, msg string, data interface{}) {
 
 ```
 
+### FieldSwitch
+
+Show as a switch
+
+```go
+import "github.com/GoAdminGroup/go-admin/template/types/table"
+
+info.AddField("ShowEnable", "show_status", db.Tinyint).FieldEditAble(table.Switch).FieldEditOptions(types.FieldOptions{
+		{Value: "1", Text: "Enable"}, 
+		{Value: "2", Text: "Disable"},
+	})
+```
+
+Maybe you want to add filter together
+
+```go
+info.AddField("ShowEnable", "show_status",db.Tinyint).FieldEditAble(table.Switch).FieldEditOptions(types.FieldOptions{
+		{Value: "1", Text: "Enable"}, 
+		{Value: "2", Text: "Disable"},
+	}).FieldFilterable(types.FilterType{FormType: form.SelectSingle}).FieldFilterOptions(types.FieldOptions{
+		{Value: "1", Text: "Enable"},
+		{Value: "2", Text: "Disable"},
+	}).FieldFilterOptionExt(map[string]interface{}{"allowClear": true})
+```
+
+### FieldImage
+
+If field `avatar` is full path, it will show as a image 
+
+```go
+info.AddField("Avatar", "avatar", db.Varchar).FieldImage("50", "50")  
+```
+
+You can custom the prefix.
+
+```go
+info.AddField("Avatar", "avatar", db.Varchar).FieldImage("50", "50", "https://prefix.com")
+```
+
+
+
 ## Help Methods
 
 ### String manipulation

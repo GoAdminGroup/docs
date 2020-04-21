@@ -10,9 +10,9 @@
 
 对于前端个性化需求，**GoAdmin**目前官方免费支持Adminlte、Sword两个主题，更多主题正在制作中以及对应更多的登录界面组件也在制作中，敬请期待。
 
-这里有一个极易上手的例子：[https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
+这里有一个极易上手的例子：[https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example/blob/master/README_CN.md)
 
-一篇上手文章：[使用GoAdmin极速搭建golang应用管理后台](https://segmentfault.com/a/1190000022215579)
+一篇上手文章：[使用GoAdmin极速搭建golang应用管理后台](http://discuss.go-admin.com/t/goadmin-golang/17/3)
 
 **GoAdmin目前保持一周或两周更新一个小版本，一个月更新一个较大版本。会备注是否推荐更新。**
 

@@ -73,6 +73,5 @@
         - [插件](zh/development/plugins.md)  
     - [模板开发](zh/development/template/template.md)
         - [模板介绍](zh/development/template/template.md)     
-        - [表单组件开发](zh/development/template/form.md)         
         - [组件开发](zh/development/template/components.md) 
     - [发展规划](zh/plan.md)  

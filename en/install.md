@@ -1,11 +1,11 @@
 # Get Ready
 ---
 
-This program is based on ```golang```. It is recommended to use ```golang``` with version higher than 1.11. Please visit: [https://golang.org](https://golang.org)
+This program is based on ```golang```. It is recommended to use ```golang``` with version higher than 1.11. More infomation, please visit: [https://golang.org](https://golang.org)
 
 ## Import the program required sql to the corresponding self-built database
 
-The contents of the sql file are the data tables required by the framework. Suppose your business database is: database_a; then you can import the framework sql into ```database_a```, or you can create another database ```database_b``` Import, can be a different driver database, for example, your business database is ```mysql```, the framework database is ```sqlite```. The framework currently supports multiple database connection operations. How to configure, will be described in detail later.
+The content of the sql file are the data tables required by the framework. Suppose your business database is: ```database_a```; then you can import the framework sql into ```database_a```, or you can create another database ```database_b``` to import into. Besides, they can be different driver databases, for example, your business database is ```mysql```, the framework database is ```sqlite```. GoAdmin currently supports multiple database connection operations. How to configure, will be described in detail later.
 
 - [mysql](https://raw.githubusercontent.com/GoAdminGroup/go-admin/master/data/admin.sql)
 - [sqlite](https://raw.githubusercontent.com/GoAdminGroup/go-admin/master/data/admin.db)

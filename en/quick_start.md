@@ -15,9 +15,9 @@ GoAdmin makes it easy to use in various web frameworks through various adapters.
 
 <br>
 
-You can choose the framework which your own project is using. If there is no framework you like, please feel free to give us an issue or pr!
+You can choose the framework which your own project is using. If there is no framework you like, please feel free to give us an [issue](https://github.com/GoAdminGroup/go-admin/issues/new?assignees=&labels=&template=proposal.md&title=%5BProposal%5D) or pr!
 
-Let's take the gin framework as an example to demonstrate the build process.
+Let's take the gin framework for example to demonstrate the build process.
 
 ## main.go
 
@@ -29,12 +29,11 @@ package main
 import (
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // Import the adapter, it must be imported. If it is not imported, you need to define it yourself.
 	_ "github.com/GoAdminGroup/themes/adminlte" // Import the theme
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // Import the sql driver
+
 	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/examples/datamodel"
 	"github.com/GoAdminGroup/go-admin/modules/config"
 	"github.com/GoAdminGroup/go-admin/modules/language"
-	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/gin-gonic/gin"
 )
 
@@ -44,7 +43,7 @@ func main() {
 	// Instantiate a GoAdmin engine object.
 	eng := engine.Default()
 
-	// GoAdmin global configuration, can also be written as a json to be imported.
+	// GoAdmin global configuration, can also be imported as a json file.
 	cfg := config.Config{
 		Databases: []config.Database{
 			{
@@ -69,8 +68,6 @@ func main() {
 
 	// Add configuration and plugins, use the Use method to mount to the web framework.
 	_ = eng.AddConfig(cfg).
-		// About Generators，see: https://github.com/GoAdminGroup/go-admin/blob/master/examples/datamodel/tables.go
-		AddGenerators(datamodel.Generators).
 		Use(r)
 
 	_ = r.Run(":9033")
@@ -81,8 +78,6 @@ Please pay attention to the above code and comments, the corresponding steps are
 
 - Import the adapter, the theme and the sql driver
 - Set global configuration items
-- Initialize the plugin
-- Set up plugins and configurations
 - Mounted to the web framework
 
 <br>
@@ -118,6 +113,10 @@ import (
 // The Config has multiple options but may be not used.
 // Such as the sqlite driver only use the FILE option which
 // can be ignored when the driver is mysql.
+//
+// If the Dsn is configured, when driver is mysql/postgresql/
+// mssql, the other configurations will be ignored, except for
+// MaxIdleCon and MaxOpenCon.
 type Database struct {
 	Host         string
 	Port         string
@@ -128,6 +127,7 @@ type Database struct {
 	MaxOpenCon   int
 	Driver       string
 	File         string
+	Dsn          string
 }
 
 // Database configuration
@@ -144,7 +144,6 @@ type Store struct {
 	Path   string
 	Prefix string
 }
-
 
 // Config type is the global config of goAdmin. It will be
 // initialized in the engine.
@@ -228,10 +227,89 @@ type Config struct {
 
 	// Login page logo
 	LoginLogo template.HTML `json:"login_logo"`
+
+	// Auth user table
+	AuthUserTable string `json:"auth_user_table",yaml:"auth_user_table",ini:"auth_user_table"`
+
+	// Extra config info
+	Extra ExtraInfo `json:"extra",yaml:"extra",ini:"extra"`
+
+	// Page animation
+	Animation PageAnimation `json:"animation",yaml:"animation",ini:"animation"`
+
+	// Limit login with different IPs
+	NoLimitLoginIP bool `json:"no_limit_login_ip",yaml:"no_limit_login_ip",ini:"no_limit_login_ip"`
+
+	// When site off is true, website will be closed
+	SiteOff bool `json:"site_off",yaml:"site_off",ini:"site_off"`
+
+	// Hide config center entrance flag
+	HideConfigCenterEntrance bool `json:"hide_config_center_entrance",yaml:"hide_config_center_entrance",ini:"hide_config_center_entrance"`
+
+	// Hide app info entrance flag
+	HideAppInfoEntrance bool `json:"hide_app_info_entrance",yaml:"hide_app_info_entrance",ini:"hide_app_info_entrance"`
+
+	// Update Process Function
+	UpdateProcessFn UpdateConfigProcessFn `json:"-",yaml:"-",ini:"-"`
+
+	// Is open admin plugin json api
+	OpenAdminApi bool `json:"open_admin_api",yaml:"open_admin_api",ini:"open_admin_api"`
+
+	HideVisitorUserCenterEntrance bool `json:"hide_visitor_user_center_entrance",yaml:"hide_visitor_user_center_entrance",ini:"hide_visitor_user_center_entrance"`
 }
 
 ```
 
 <br>
+
+Logger configuration:
+
+```golang
+
+type Logger struct {
+	Encoder EncoderCfg `json:"encoder",yaml:"encoder",ini:"encoder"`
+	Rotate  RotateCfg  `json:"rotate",yaml:"rotate",ini:"rotate"`
+	Level   int8       `json:"level",yaml:"level",ini:"level"`
+}
+
+// Logger encode configuration
+type EncoderCfg struct {
+	// TimeKey, default is ts
+	TimeKey       string `json:"time_key",yaml:"time_key",ini:"time_key"`
+	// LevelKey, default is level
+	LevelKey      string `json:"level_key",yaml:"level_key",ini:"level_key"`
+	// LevelKey, default is logger
+	NameKey       string `json:"name_key",yaml:"name_key",ini:"name_key"`
+	// CallerKey caller
+	CallerKey     string `json:"caller_key",yaml:"caller_key",ini:"caller_key"`
+	// MessageKey, default is msg
+	MessageKey    string `json:"message_key",yaml:"message_key",ini:"message_key"`
+	// StacktraceKey, default is stacktrace
+	StacktraceKey string `json:"stacktrace_key",yaml:"stacktrace_key",ini:"stacktrace_key"`
+	// Level Encoder, default is CapticalColor
+	Level         string `json:"level",yaml:"level",ini:"level"`
+	// Time Encoder, default is ISO8601
+	Time          string `json:"time",yaml:"time",ini:"time"`
+	// Duration Encoder, default is seconds
+	Duration      string `json:"duration",yaml:"duration",ini:"duration"`
+	// Caller Encoder, default is short
+	Caller        string `json:"caller",yaml:"caller",ini:"caller"`
+	// Encoding Format, default is console
+	Encoding      string `json:"encoding",yaml:"encoding",ini:"encoding"`
+}
+
+// Logger rotate configuration
+type RotateCfg struct {
+	// Max file size, unit is m, default is 10m
+	MaxSize    int  `json:"max_size",yaml:"max_size",ini:"max_size"`
+	// Max file backups, default is 5
+	MaxBackups int  `json:"max_backups",yaml:"max_backups",ini:"max_backups"`
+	// Max store age, unit is day, default is 30 day
+	MaxAge     int  `json:"max_age",yaml:"max_age",ini:"max_age"`
+	// Is compress or not, defaul is false
+	Compress   bool `json:"compress",yaml:"compress",ini:"compress"`
+}
+
+```
 
 > English is not my main language. If any typo or wrong translation you found, you can help to translate in [github here](https://github.com/GoAdminGroup/docs). I will very appreciate it.

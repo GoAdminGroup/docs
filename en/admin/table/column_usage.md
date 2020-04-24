@@ -187,8 +187,6 @@ You can custom the prefix.
 info.AddField("Avatar", "avatar", db.Varchar).FieldImage("50", "50", "https://prefix.com")
 ```
 
-
-
 ## Help Methods
 
 ### String manipulation

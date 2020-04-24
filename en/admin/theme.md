@@ -38,3 +38,5 @@ func main() {
     ...
 }
 ```
+
+Of course, if you import multi themes, you can switch it in the real-time config center.

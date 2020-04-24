@@ -209,3 +209,26 @@ formList.SetUpdateFn(func(values form2.Values) error {
       // values are the form parameters
 	})  
 ```
+
+### Form update process
+
+In chronological order as follows: 
+
+- FormPanel.Validator           data validate
+- FormPanel.PreProcessFn        data pre process
+- FormPanel.UpdateFn/InsertFn   update/insert
+- FormPanel.PostHook            hook
+
+The corresponding setting APIs:
+
+```go
+
+formList.SetPostValidator()
+formList.SetPreProcessFn()
+formList.SetPostHook()
+formList.SetUpdateFn()
+formList.SetInsertFn()
+
+```
+
+In the PostHook callback function, you can get the update/insert resutl by calling```values.PostError()```.

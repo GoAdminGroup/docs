@@ -74,16 +74,20 @@ info.AddActionButton("操作", action.Jump("https://google.com"))
 
 ```go
 type Action interface {
-  // 返回对应的JS
-  Js() template.JS
-  // 返回按钮的属性
-  BtnAttribute() template.HTML
-  // 返回额外的HTML
-  ExtContent() template.HTML
-  // 设置按钮的ID，供给Js()方法调用
-  SetBtnId(btnId string)
-  // 返回请求节点，包括路由方法和对应控制器方法
-  GetCallbacks() context.Node
+    // 返回对应的JS
+    Js() template.JS
+    // 获取class
+    BtnClass() template.HTML
+    // 返回按钮的属性
+    BtnAttribute() template.HTML
+    // 返回额外的HTML
+    ExtContent() template.HTML
+    // 设置按钮的ID，供给Js()方法调用
+    SetBtnId(btnId string)
+    // 设置数据
+    SetBtnData(data interface{})
+    // 返回请求节点，包括路由方法和对应控制器方法
+    GetCallbacks() context.Node
 }
 ```
 
@@ -164,10 +168,6 @@ info.AddField("头像", "avatar", db.Varchar).FieldImage("50", "50")
 ```go
 info.AddField("头像", "avatar", db.Varchar).FieldImage("50", "50", "https://prefix.com")
 ```
-
-
-
-
 
 ## 帮助方法
 

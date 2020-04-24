@@ -7,6 +7,8 @@ The example plugin is our demo.
 
 Using plugins are divided into: using the third package source code plugin and use the dynamic link library plugin (.so file, currently only supports linux and mac platforms)
 
+You can skip this part, if you just want to build a crud administrative platform.
+
 ## Using the third package source code plugin
 
 For example: 
@@ -15,10 +17,11 @@ For example:
 package main
 
 import (
+	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // Import the adapter
+	_ "github.com/GoAdminGroup/themes/adminlte" // Import the theme
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // Import the sql driver
+
 	"github.com/gin-gonic/gin"
-	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
-	_ "github.com/GoAdminGroup/themes/adminlte"
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/plugins/example"
@@ -52,11 +55,12 @@ Load the ```.so```file, and call```plugins.LoadFromPlugin```.
 ```go
 package main
 
-import (
-	"github.com/gin-gonic/gin"
-	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
+import (	
+	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // Import the adapter
 	_ "github.com/GoAdminGroup/themes/adminlte" // Import the theme
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // Import the sql driver
+
+	"github.com/gin-gonic/gin"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/plugins"

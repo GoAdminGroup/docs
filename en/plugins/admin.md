@@ -1,7 +1,7 @@
 # How To Use Admin Plugin
 ---
 
-The Admin plugin can help you to quickly generate a database data table for adding, deleting, and changing database data tables.
+The Admin plugin can help you to quickly generate a platform for database data table query, adding, deleting, and editing.
 
 ## Quick Start
 
@@ -12,7 +12,7 @@ Following the steps:
 - Initialize and load in the engine
 - Set access menu
 
-### Generate configuration file
+### Step 1. Generate configuration file
 
 Suppose you have a data table users in your database, such as:
 
@@ -30,9 +30,9 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-Use the command line tools - adm to help you quickly generate configuration files:
+Use the command line tools - ```adm``` to help you quickly generate configuration files:
 
-- install
+- install adm
 
 ```bash
 go install github.com/GoAdminGroup/go-admin/adm
@@ -41,7 +41,7 @@ go install github.com/GoAdminGroup/go-admin/adm
 - generate
 
 <br>
-Execute in the project folder
+Execute the command in your project folder
 
 ```bash
 adm generate
@@ -51,7 +51,7 @@ adm generate
 
 Fill in the information according to the prompts. After the run, a file ```users.go``` will be generated. This is the configuration file corresponding to the data table. How to configure it is described in detail later.
 
-### Set access url
+### Step 2. Set access url
 
 After the configuration file is generated, a routing configuration file ```tables.go``` will also be generated :
 
@@ -77,18 +77,19 @@ var Generators = map[string]models.TableGenerator{
 ```"user"``` is the corresponding access route prefix, ```GetUserTable``` is the table data generation method.
 The corresponding access routing address is: http://localhost:9033/admin/info/user
 
-### Initialize and load in the engine
+### Step 3. Initialize and load in the engine
 
-To initialize, you need to call the ```NewAdmin``` method, and then pass the ```Generators``` above. Then call the engine's ```AddPlugins``` method to load the engine.
+To initialize, you need to call the ```eng.AddGenerators``` method, and then pass the ```Generators``` above.
 
 ```go
 package main
 
 import (
+	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // Import the adapter, it must be imported. If it is not imported, you need to define it yourself.
+	_ "github.com/GoAdminGroup/themes/adminlte" // Import the theme
+	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // Import the sql driver
+
 	"github.com/gin-gonic/gin"
-	_ "github.com/GoAdminGroup/go-admin/adapter/gin"
-	_ "github.com/GoAdminGroup/themes/adminlte"
-	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql"
 	"github.com/GoAdminGroup/go-admin/engine"
 	"github.com/GoAdminGroup/go-admin/plugins/admin"
 	"github.com/GoAdminGroup/go-admin/modules/config"
@@ -130,17 +131,15 @@ func main() {
 }
 ```
 
-### Set access menu
+### Step 4. Set access menu
 
-After running, access the login URL, enter the menu management page, and set the management menu of the data table to enter in the sidebar.
+After running, access the login URL, enter the menu management page, and then set the management menu of the data table to enter in the sidebar.
 
-> PS:
->
 > In the above example, the login URL is http://localhost:9033/admin/login
 >
 > The menu management page is http://localhost:9033/admin/menu
 
-## Introduction to the business data table generation method file
+## Introduction of the business data table generation method
 
 ```go
 package datamodel
@@ -245,7 +244,7 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 }
 ```
 
-Initialize by calling ```models.NewDefaultTable(models.DefaultTableConfig)``` method to pass <strong>data table model configuration</strong>. The data table model is configured as:
+Initialized by calling ```models.NewDefaultTable(models.DefaultTableConfig)``` method to pass <strong>data table model configuration</strong>. The data table model is configured as:
 
 ```go
 type Config struct {
@@ -269,22 +268,31 @@ The business data table generation method is a function that returns a type obje
 ```go
 type Table interface {
 	GetInfo() *types.InfoPanel
+	GetDetail() *types.InfoPanel
+	GetDetailFromInfo() *types.InfoPanel
 	GetForm() *types.FormPanel
+
 	GetCanAdd() bool
 	GetEditable() bool
 	GetDeletable() bool
 	GetExportable() bool
+
 	GetPrimaryKey() PrimaryKey
-	GetDataFromDatabase(path string, params parameter.Parameters, isAll bool) (PanelInfo, error)
-	GetDataFromDatabaseWithIds(path string, params parameter.Parameters, ids []string) (PanelInfo, error)
-	GetDataFromDatabaseWithId(id string) ([]types.FormField, [][]types.FormField, []string, string, string, error)
-	UpdateDataFromDatabase(dataList form.Values) error
-	InsertDataFromDatabase(dataList form.Values) error
-	DeleteDataFromDatabase(id string) error
+
+	GetData(params parameter.Parameters) (PanelInfo, error)
+	GetDataWithIds(params parameter.Parameters) (PanelInfo, error)
+	GetDataWithId(params parameter.Parameters) (FormInfo, error)
+	UpdateData(dataList form.Values) error
+	InsertData(dataList form.Values) error
+	DeleteData(pk string) error
+
+	GetNewForm() FormInfo
+
+	Copy() Table
 }
 ```
 
-It mainly includes ```GetInfo()``` and ```GetForm()```. The ui corresponding to the type returned by these two functions is the table for displaying data and the form for editing new data. The screenshots are as follows:
+It mainly includes ```GetInfo()``` and ```GetForm()```. The UI corresponding to the type returned by these two functions is the table for displaying data and the form for editing or creating data. The screenshots are as follows:
 
 - This is the ```Info```.
 
@@ -302,54 +310,74 @@ It mainly includes ```GetInfo()``` and ```GetForm()```. The ui corresponding to 
 
 ```go
 type InfoPanel struct {
-	FieldList         []Field
-	curFieldListIndex int
+	FieldList   FieldList
 
-	Table       string
-	Title       string
-	Description string
+	Table       string   
+	Title       string   
+	Description string   
 
-	// Warn: may be deprecated future.
-	TabGroups  TabGroups      // tabs contents
-	TabHeaders TabHeadersq	  // tabs headers
+	TabGroups  TabGroups  
+	TabHeaders TabHeaders 
 
-	Sort Sort
+	Sort      Sort     
+	SortField string   
 
-	Action     template.HTML
-	HeaderHtml template.HTML
-	FooterHtml template.HTML
+	PageSizeList    []int 
+	DefaultPageSize int   
+
+	ExportType int
+
+	IsHideNewButton    bool 
+	IsHideExportButton bool 
+	IsHideEditButton   bool 
+	IsHideDeleteButton bool 
+	IsHideDetailButton bool 
+	IsHideFilterButton bool 
+	IsHideRowSelector  bool 
+	IsHidePagination   bool 
+	IsHideFilterArea   bool 
+	FilterFormLayout   form.Layout 
+
+	FilterFormHeadWidth  int
+	FilterFormInputWidth int
+
+	Wheres    Wheres    
+	WhereRaws WhereRaw  
+
+	TableLayout string 
+
+	DeleteHook  DeleteFn 
+	PreDeleteFn DeleteFn 
+	DeleteFn    DeleteFn 
+
+	DeleteHookWithRes DeleteFnWithRes 
+
+	GetDataFn GetDataFn
+
+	Action        template.HTML 
+	HeaderHtml    template.HTML 
+	FooterHtml    template.HTML 
 }
 
 type Field struct {
-	FilterFn   FieldFilterFn     // filter function
-	Field      string            // field name
-	TypeName   db.DatabaseType   // field type
-	Head       string            // title
-	Width      int               // width, unit is px
-	Join       Join              // join table setting
-	Sortable   bool              // can be sorted or not
-	Filterable bool              // can be filtered or not
-	Hide       bool              // hide or not
-}
-
-// Field is the table field.
-type Field struct {
-	Head     string				// title
+	Head     string				// title	
 	Field    string				// field name
-	TypeName db.DatabaseType	// field type
+	TypeName db.DatabaseType	// database type name
 
 	Join Join // join table setting
 
-	Width      int   // width, unit is px
-	Sortable   bool	 // can be sorted or not
-	Fixed      bool  // can be sorted or not
-	Filterable bool  // can be filtered or not
-	Hide       bool  // hide or not
+	Width      int    // width
+	Sortable   bool   // sortable
+	Fixed      bool   // fixed
+	Filterable bool   // filterable
+	Hide       bool   // hide or not
 
-	Display              FieldFilterFn           // field display filter function
-	DisplayProcessChains DisplayProcessFnChains  // field value process function list
+	EditType    table.Type    // edit type
+	EditOptions FieldOptions  // edit options
+
+	Display              FieldFilterFn           // display filter callback function
+	DisplayProcessChains DisplayProcessFnChains  // display process function chains
 }
-
 
 // join table setting
 // example: left join Table on Table.JoinField = Field
@@ -377,6 +405,12 @@ type FormPanel struct {
 
 	Validator FormValidator   // form post validator function
 	PostHook  FormPostHookFn  // form post hook function
+	PreProcessFn FormPreProcessFn // form post pre process function
+
+	IsHideContinueEditCheckBox bool
+	IsHideContinueNewCheckBox  bool
+	IsHideResetButton          bool
+	IsHideBackButton           bool
 
 	HeaderHtml template.HTML  // header custom html content
 	FooterHtml template.HTML  // footer custom html content
@@ -385,34 +419,48 @@ type FormPanel struct {
 	InsertFn FormPostFn // Form inserts function, set up this function, it took over the form of the insert, PostHook effect no longer
 }
 
-// form validator function type
-type PostValidator func(values form.Values) error
+type FormPostFn func(values form.Values) error
 
 // form hook function type
 type PostHookFn func(values form.Values)
 
 type FormField struct {
-	Field    string
-	TypeName db.DatabaseType
-	Head     string
-	FormType form.Type
+	Field        string               
+	TypeName     string               
+	Head         string               
+	FormType     form.Type            
 
-	Default                string
-	Value                  string
-	Options                []map[string]string
-	DefaultOptionDelimiter string
+	Default      		   string               
+	Value                  string               
+	Options                []map[string]string  
+	DefaultOptionDelimiter string				
 
-	Editable    bool
-	NotAllowAdd bool
-	Must        bool
-	Hide        bool
+	Editable     bool 
+	NotAllowAdd  bool 
+	Must         bool 
+	Hide         bool 
 
-	HelpMsg   template.HTML  // form field help msg
-	OptionExt template.JS    // extra settings of select components, see: https://select2.org/configuration/options-api
+	HelpMsg   template.HTML 
+	OptionExt template.JS   
+	
+	Display              FieldFilterFn          
+	DisplayProcessChains DisplayProcessFnChains 
+	PostFilterFn PostFieldFilterFn              
 
-	Display              FieldFilterFn           // field display filter function
-	DisplayProcessChains DisplayProcessFnChains  // field value process function list
-	PostFilterFn PostFieldFilterFn
+	Placeholder string
+
+	CustomContent template.HTML
+	CustomJs      template.JS  
+	CustomCss     template.CSS 
+
+	Width int
+
+	Divider      bool  
+	DividerTitle string
+
+	OptionExt    template.JS 
+	OptionInitFn OptionInitFn
+	OptionTable  OptionTable 
 }
 ```
 
@@ -424,6 +472,7 @@ The currently supported form types are:
 - Password
 - rich text
 - File
+- Code
 - double selection box
 - Multiple choices
 - icon drop-down selection box
@@ -440,7 +489,7 @@ The currently supported form types are:
 
 Can be used like this:
 
-```
+```go
 
 import "github.com/GoAdminGroup/go-admin/template/types/form"
 
@@ -450,25 +499,13 @@ FormType: form.File,
 
 ```
 
-For the selection type: single selection, multiple selection, selection box, you need to specify the Options value. The format is:
-
-```
-...
-Options: []map[string]string{
-	{
-        "field": "name",
-        "value": "joe",
-    },{
-        "field": "name",
-        "value": "jane",
-    },
-}
-...
-```
+See more in：[admin form components](admin/form/components.md)
 
 Where field is the name of the field and value is the value corresponding to the selection.
 
 ### Filter function FilterFn and processing function PostFn description
+
+The data which framework retrieve from database will be displayed in the table or form. If you want to transform them before displaying, for example turn capital or add some html style etc, you can do that using the field filter callback function. Of course, the framework have some built-in data process functions which will be introduced in the chapter of admin table.
 
 ```go
 // FieldModel contains ID and value of the single query result.
@@ -509,32 +546,14 @@ type PostFieldModel struct {
 
 type FieldModelValue []string
 
-// PostFieldFilterFn is used to process the form data when submitting the form. 
-// The form data is passed over, processed by the form submission filter 
-// function and then stored in the database.
-//
-// If it is for the select type: Select/SelectSingle/SelectBox，you need to 
-// convert the array type to a string type, such as:
-//
-// PostFilterFn: func(model types.PostFieldModel) string {
-// 	return strings.Join(model.Value, ",")
-// },
-//
-// Also it can be used for the processing of non-form fields, which can be used to update 
-// or insert data with tables.
-//
-// Custom fields, such as the role of the user table, need to be updated. 
-// Here, the table update can be performed based on the passed primary key 
-// ID and the form data Value. Such as:
-// 
-// PostFilterFn: func(model types.PostFieldModel) {
-//   db.Table("role").Insert(dialect.H{
-//	  	"user_id": model.ID,  
-//	  	"role_id": model.Value.Value(),
-//   })
-// },
-//
-type PostFieldFilterFn func(value PostFieldModel) string
+func (r FieldModelValue) Value() string {
+	return r.First()
+}
+
+func (r FieldModelValue) First() string {
+	return r[0]
+}
+```
 
 <br>
 

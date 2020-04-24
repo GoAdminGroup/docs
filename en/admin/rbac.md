@@ -24,7 +24,7 @@ On a form of management, the corresponding routing to add and delete, assuming t
 | Export operation | /export/users | POST |
 | All permission | * | (empty)
 
-**Note: instructions of route matching rules**
+**Note 1: instructions of route matching rules**
 
 As you can see, there is such like ```id=2``` parameters in the url of the table above. It is a rule of the admin plugin, that is if the request url has the parameters that are on the match of the parameters of the rule url, it will pass the permission test. In addition, the parameters, **__goadmin_edit_pk**， **__goadmin_detail_pk**，**__goadmin_detail_pk** can be replaced as **id**. For example: 
 
@@ -32,10 +32,14 @@ As you can see, there is such like ```id=2``` parameters in the url of the table
 > rule url: /info/users/edit?id=3632
 > test result: pass
 
-**Note: set up the authority does not mean the left side menu can be seen**
+**Note 2: set up the authority does not mean the left side menu can be seen**
 
 Set the permissions, if need to display on the left side of the menu, you also need to in the menu editor page set up corresponding role.
 
-**Note: the role of permissions is higher than in the menu configuration**
+**Note 3: the role of permissions is higher than in the menu configuration**
 
 That is to say, assuming the menu 1, corresponding operator is the role of, and have all permissions users can still access the menu 1.
+
+**Note 4: permissions will have affect in the display of the UI component**
+
+Which means, if you don`t have the permission of edit, you will not see the edit button.

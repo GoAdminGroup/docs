@@ -64,6 +64,17 @@ formList.AddField("url", "url", db.Varchar, form.Url)
 formList.AddField("ip", "ip", db.Varchar, form.Ip)
 ```
 
+### Code
+```go
+formList.AddField("code", "code", db.Text, form.Code)
+formList.AddField("code", "code", db.Text, form.Code).FieldOptionExt(map[string]interface{}{
+    "theme": "monokai",
+    "font_size": 14,
+    "language": "php",
+    "options": "{useWorker: false}",
+})
+```
+
 ### Color
 
 ```go
@@ -107,21 +118,6 @@ formList.AddField("sex", "sex", db.Int, form.SelectSingle).
 
 ### Select
 
-### SelectSingle
-
-```go
-formList.AddField("sex", "sex", db.Int, form.SelectSingle).
-        // Options, Text is the display content, Value is the corresponding value.
-		FieldOptions(types.FieldOptions{
-            {Text: "man",Value: "0"},
-            {Text: "women",Value: "1"},
-        }).
-        // Default option.
-        FieldDefault("0")
-```
-
-### Select
-
 ```go
 formList.AddField("drink", "drink", db.Int, form.Select).
         // Options, Text is the display content, Value is the corresponding value.
@@ -139,6 +135,10 @@ formList.AddField("drink", "drink", db.Int, form.Select).
                 Text: "red bull",
                 Value: "red bull",
             },
+        }).
+        // returns a []string  here, the corresponding value is ultimately responds field values of this column, the corresponding value is displayed when edit form
+        FieldDisplay(func(model types.FieldModel) interface{} {
+            return []string{"beer"}
         })
 ```
 
@@ -152,6 +152,18 @@ formList.AddField("gender", "gender", db.Int, form.Radio).
             {Text: "female",Value: "1"},
         }).
         FieldDefault("0")
+```
+
+### Switch
+
+```go
+formList.AddField("site", "site", db.Int, form.Switch).
+        // // Options, Text is the display content, Value is the corresponding value.
+		FieldOptions(types.FieldOptions{
+			{Text: trueStr, Value: "true"},
+			{Text: falseStr, Value: "false"},
+		})
+        FieldDefault("0") // Set default value
 ```
 
 ### SelectBox
@@ -173,6 +185,10 @@ formList.AddField("fruit", "fruit", db.Int, form.SelectBox).
                 Text: "pear",
                 Value: "pear",
             },
+        }).
+        // returns a []string  here, the corresponding value is ultimately responds field values of this column, the corresponding value is displayed when edit form
+        FieldDisplay(func(model types.FieldModel) interface{} {
+            return []string{"pear"}
         })
 ```
 

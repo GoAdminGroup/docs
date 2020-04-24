@@ -138,12 +138,32 @@ info.HideFilterArea()
 ```go
 // field, operator, argument
 info.Where("type", "=", 0)
+// raw sql
+info.WhereRaw("type = 0 or sex = 1")
+// or statement, the following will generate: type = 3 or type = 0
+info.Where("type", "=", 3).WhereOr("type", "=", 0) 
+```
+
+### Set export value
+
+```go
+// Set the export handled without display native value, the default value to show the process
+info.ExportValue()
 ```
 
 ## Set filter area form layout
 
 ```go
 info.SetFilterFormLayout(layout form.Layout)
+```
+
+## Set selection form item width
+
+```go
+// Set the title width, 1 to 12, the default is 2
+info.SetFilterFormHeadWidth(w int)
+// Set input box width, 1 to 12, the default is 10, the sum of two value is 12
+info.SetFilterFormInputWidth(w int)
 ```
 
 ## Set default order rule
@@ -280,6 +300,21 @@ info.AddSelectBox("gender", types.FieldOptions{
 
 Parameter of ```FieldFilter``` is the field name for filter.
 
+## Add column button
+
+Sometimes want to add a column of action buttons, you can use:
+
+```go
+info.AddColumnButtons(head string, buttons ...Button)
+```
+
+## Add a column
+
+If you simply want to increase a column, with database field is not a one to one, you can use this API.
+
+```go
+info.AddColumn(head string, fn FieldFilterFn)
+```
 
 ## Configure Detail Page
 

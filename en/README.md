@@ -1,14 +1,14 @@
 # Introduction
 ------
 
-GoAdmin is a data visualization management platform, providing a complete set of visual ui calls to golang programs, and a built-in sql relational database management backend plugin.
+GoAdmin is a framework, providing a complete set of visual UI calls to golang programs, and a built-in sql relational database management backend plugin.
 <br>
 <br>
-Before we build a management backend, we needed at least one back office engineer, a front-end engineer, to take at least a week.
-Now with GoAdmin, we don't need front-end engineers. Our back-end engineers don't even need to know the front-end knowledge. We can build a complete back-end management system in half an hour.
-If your requirements are not complicated, just simple crud, then all you need are serveral golang files, and all files can be packaged into a single binary file, which is very convenient for distribution and deployment.
+In the past, when we try to build an administrative platform, we needed at least one backend IT engineer, a front-end IT engineer, taking at least a week work.
+Now with GoAdmin, we don't need front-end IT engineers. Our back-end IT engineers don't even need to know the front-end knowledge. We can build a complete administrative platform or a data visualization platform in half an hour.
+If your requirements are not so complicated, just simple crud, then all you need are serveral golang files, and all files can be packaged into a single binary file, which is very convenient for distribution and deployment.
 
-here is very simple example which show you how it work: [https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
+Here is a super simple example which quickly shows you how it works: [https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
 
 
 ## Features
@@ -18,9 +18,9 @@ here is very simple example which show you how it work: [https://github.com/GoAd
 - Support plug-ins(working on it)
 - Provided different ui theme(only Adminlte now, others are coming soon.)
 
-## Demo
+## Online Demo
 
-[https://demo.go-admin.com](https://demo.go-admin.com/admin/login)
+[https://demo.go-admin.com](https://demo.go-admin.com)
 
 ## Dependencies
 
@@ -35,10 +35,12 @@ here is very simple example which show you how it work: [https://github.com/GoAd
 
 ## Community
 
-[Community](http://forum.go-admin.cn)
+[Community](http://discuss.go-admin.com)
 
 ## Backers
 
 Your support will help me do better! 
 
 <a href="https://opencollective.com/go-admin#backers" target="_blank"><img src="https://opencollective.com/go-admin/backers.svg?width=890"></a>
+
+[Support Paypal too](https://www.paypal.me/cg80333)

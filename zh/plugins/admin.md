@@ -274,18 +274,27 @@ type PrimaryKey struct {
 ```go
 type Table interface {
 	GetInfo() *types.InfoPanel
+	GetDetail() *types.InfoPanel
+	GetDetailFromInfo() *types.InfoPanel
 	GetForm() *types.FormPanel
+
 	GetCanAdd() bool
 	GetEditable() bool
 	GetDeletable() bool
 	GetExportable() bool
+
 	GetPrimaryKey() PrimaryKey
-	GetDataFromDatabase(path string, params parameter.Parameters, isAll bool) (PanelInfo, error)
-	GetDataFromDatabaseWithIds(path string, params parameter.Parameters, ids []string) (PanelInfo, error)
-	GetDataFromDatabaseWithId(id string) ([]types.FormField, [][]types.FormField, []string, string, string, error)
-	UpdateDataFromDatabase(dataList form.Values) error
-	InsertDataFromDatabase(dataList form.Values) error
-	DeleteDataFromDatabase(id string) error
+
+	GetData(params parameter.Parameters) (PanelInfo, error)
+	GetDataWithIds(params parameter.Parameters) (PanelInfo, error)
+	GetDataWithId(params parameter.Parameters) (FormInfo, error)
+	UpdateData(dataList form.Values) error
+	InsertData(dataList form.Values) error
+	DeleteData(pk string) error
+
+	GetNewForm() FormInfo
+
+	Copy() Table
 }
 ```
 
@@ -464,6 +473,7 @@ type FormField struct {
 - 密码
 - 富文本
 - 文件
+- 代码
 - 双选择框
 - 多选
 - icon下拉选择框
@@ -492,7 +502,6 @@ FormType: form.File,
 
 ```
 
-其中，field为显示内容，value为选择对应的值。
 具体使用，详见：[表单组件使用一节](admin/form/components.md)
 
 ### 显示过滤函数FieldFilterFn说明

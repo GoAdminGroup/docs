@@ -43,7 +43,11 @@
 
 ## 交流
 
-QQ群：[756664859](https://jq.qq.com/?_wv=1027&k=5JqQqIt)，为防广告，请备注加群来意，没备注不通过。
+QQ群：
+
+[一群：756664859(满)](https://jq.qq.com/?_wv=1027&k=5JqQqIt)，为防广告，请备注加群来意，没备注不通过。
+
+二群：874825430
 
 [微信群](http://quick.go-admin.cn/resource/wechat_qrcode.jpg)
 

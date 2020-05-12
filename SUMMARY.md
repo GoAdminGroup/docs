@@ -59,6 +59,7 @@
     - [Monitor插件](zh/monitor/monitor.md)  
     - [ui组件介绍]()
         - [目录](zh/components/components.md)
+        - [使用介绍](zh/components/usage.md)        
         - [infobox](zh/components/infobox.md)
         - [chartjs](zh/components/chartjs.md)
         - [progress-group](zh/components/progressbar.md)

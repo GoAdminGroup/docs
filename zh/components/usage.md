@@ -93,13 +93,13 @@ label := template.Default().Label().
 ```golang
 table := template.Default().Table().
 		    SetStyle("striped").
-		    SetHideThead().
-		    SetMinWidth("0.01%").
+		    SetHideThead(). // 隐藏表头
+		    SetMinWidth("0.01%"). // 设置最小宽度
 		    SetThead(types.Thead{
 			    types.TheadItem{Head: "key", Width: "50%"},
 			    types.TheadItem{Head: "value"},
-		    }).
-		    SetInfoList(list).
+		    }).  // 设置表头
+		    SetInfoList(list).  // 设置表格内容
             GetContent()
 ```
 

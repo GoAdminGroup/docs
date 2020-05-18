@@ -173,20 +173,6 @@ info.AddField("ShowEnable", "show_status",db.Tinyint).FieldEditAble(table.Switch
 	}).FieldFilterOptionExt(map[string]interface{}{"allowClear": true})
 ```
 
-### FieldImage
-
-If field `avatar` is full path, it will show as a image 
-
-```go
-info.AddField("Avatar", "avatar", db.Varchar).FieldImage("50", "50")  
-```
-
-You can custom the prefix.
-
-```go
-info.AddField("Avatar", "avatar", db.Varchar).FieldImage("50", "50", "https://prefix.com")
-```
-
 ## Help Methods
 
 ### String manipulation

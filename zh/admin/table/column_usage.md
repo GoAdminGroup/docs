@@ -155,20 +155,6 @@ info.AddField("显示状态", "show_status", db.Tinyint).FieldEditAble(table.Swi
 	}).FieldFilterOptionExt(map[string]interface{}{"allowClear": true})
 ```
 
-### 列上图片
-
-如果`avatar`字段保存的是图片的完整地址，或者路径，可以通过下面的方式将该列渲染为图片显示
-
-```go
-info.AddField("头像", "avatar", db.Varchar).FieldImage("50", "50")  
-```
-
-当然也可以为图片增加访问前缀
-
-```go
-info.AddField("头像", "avatar", db.Varchar).FieldImage("50", "50", "https://prefix.com")
-```
-
 ## 帮助方法
 
 ### 字符串操作

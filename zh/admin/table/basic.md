@@ -170,6 +170,14 @@ info.SetFilterFormHeadWidth(w int)
 info.SetFilterFormInputWidth(w int)
 ```
 
+## 自定义筛选逻辑
+
+```go
+info.SetQueryFilterFn(func(param parameter.Parameters, conn db.Connection) (ids []string, stopQuery bool) {
+    // 根据参数与连接对象返回表格筛选id，stopQuery代表是否停止框架逻辑的筛选，是的话直接则返回当前结果
+})
+```
+
 ## 设置默认排序规则
 
 ```go

@@ -247,11 +247,23 @@ type Config struct {
 	// 是否隐藏应用信息入口，默认显示
 	HideAppInfoEntrance bool `json:"hide_app_info_entrance",yaml:"hide_app_info_entrance",ini:"hide_app_info_entrance"`
 
+	// 自定义404页面
+	Custom404HTML template.HTML `json:"custom_404_html,omitempty",yaml:"custom_404_html",ini:"custom_404_html"`
+
+	// 自定义403页面
+	Custom403HTML template.HTML `json:"custom_403_html,omitempty",yaml:"custom_403_html",ini:"custom_403_html"`
+
+	// 自定义500页面
+	Custom500HTML template.HTML `json:"custom_500_html,omitempty",yaml:"custom_500_html",ini:"custom_500_html"`
+
 	// 配置更新处理函数
 	UpdateProcessFn UpdateConfigProcessFn `json:"-",yaml:"-",ini:"-"`
 
 	// 是否开放admin的json apis，默认关闭
 	OpenAdminApi bool `json:"open_admin_api",yaml:"open_admin_api",ini:"open_admin_api"`
+
+	// 隐藏访客用户设置菜单
+	HideVisitorUserCenterEntrance bool `json:"hide_visitor_user_center_entrance",yaml:"hide_visitor_user_center_entrance",ini:"hide_visitor_user_center_entrance"`
 }
 
 ```

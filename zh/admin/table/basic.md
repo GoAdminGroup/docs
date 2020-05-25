@@ -214,6 +214,31 @@ info.AddField("Role Name", "role_name", db.Varchar).FieldJoin(types.Join{
 select ..., role.`role_name` from users left join role on users.`id` = role.`user_id` where ...
 ```
 
+多对多关系的连表，只需继续使用 FieldJoin ：
+
+```go
+
+info.AddField("Role Name", "role_name", db.Varchar)FieldJoin(types.Join{
+			Table:     "role_users",
+			JoinField: "user_id",
+			Field:     "id",
+		}).
+		FieldJoin(types.Join{
+			Table:     "roles",
+			JoinField: "id",
+			Field:     "role_id",
+			BaseTable: "role_users",
+		})
+```
+
+这将会生成类似这样的sql语句：
+
+```sql
+select ..., roles.`role_name` from users left join role on users.`id` = role_users.`user_id` left join role_users.`role_id` = role.`id` where ...
+```
+
+从而完成一次多对多关系的查询。
+
 ## 新增按钮
 
 如果您需要新增一些功能按钮，可以调用：

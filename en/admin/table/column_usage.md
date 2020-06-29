@@ -66,7 +66,7 @@ FieldFilterProcess(func(s string) string {
 If you want to add some function button, then you can do like this:
 
 ```go
-info.AddButton(title template.HTML, icon string, action Action, color ...template.HTML)
+info.AddActionButton(title template.HTML, icon string, action Action, color ...template.HTML)
 ```
 
 ```title``` is the title of Button, ```icon```is the icon of Button, ```action```is a set of operations of Button and ```color``` are the background color and text color.
@@ -81,7 +81,7 @@ import (
     ...
 )
 
-info.AddButton("Today Data", icon.Save, action.PopUp("/admin/data/analyze", "Data Analysis"))
+info.AddActionButton("Today Data", icon.Save, action.PopUp("/admin/data/analyze", "Data Analysis"))
 ```
 
 Added a popup operation, will go to request the corresponding routing, corresponding routing return is the content of the popup, "data analysis" as the title for the popup.

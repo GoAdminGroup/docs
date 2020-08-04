@@ -27,7 +27,7 @@ adm init -l cn
 
 ## main.go
 
-在你的项目文件夹有一个```main.go```文件，内容如下：
+初始化完成后，在你的项目文件夹下有一个```main.go```文件，内容如下：
 
 ```go
 package main
@@ -82,7 +82,7 @@ func startServer() {
 		"msg": "Hello world",
 	})
 
-	_ = r.Run(":80")
+	_ = r.Run(":9033")
 
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
@@ -149,6 +149,7 @@ type Database struct {
 	Driver       string  // 驱动名
 	File         string  // 文件名
 	DSN          string  // DSN语句：如果设置了DSN语句，则优先使用DSN进行连接
+	Params       map[string]string  // DSN的额外参数
 }
 
 // 数据库配置

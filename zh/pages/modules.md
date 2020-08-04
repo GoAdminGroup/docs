@@ -11,6 +11,13 @@ type Panel struct {
 	Title       string          // 页面标题
 	Description string          // 页面描述
 	Url         string
+
+	MiniSidebar bool // 是否缩小侧边栏
+
+	AutoRefresh bool // 是否自动刷新页面
+	RefreshInterval []int // 刷新页面间隔，时间单位为秒
+
+	Callbacks Callbacks // 页面回调函数
 }
 ```
 

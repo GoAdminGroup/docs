@@ -17,79 +17,97 @@ GoAdmin通过各种适配器使得你在各个web框架中使用都十分的方�
 
 下面以gin这个框架为例子，演示搭建过程。
 
-> 使用最新版命令行工具 adm 可以新建一个文件夹，进入文件夹中执行：
-> adm init
->
-> 根据指示就可以初始化一个项目啦！赶快试试吧。
+首先新建一个项目文件夹，然后进入文件夹中使用最新版命令行工具 adm 执行：
+
+```
+adm init -l cn
+```
+
+根据指示填写就可以初始化一个项目模板。
 
 ## main.go
 
-在你的项目文件夹下新建一个```main.go```文件，内容如下：
+在你的项目文件夹有一个```main.go```文件，内容如下：
 
 ```go
 package main
 
 import (
+	"io/ioutil"
+	"log"
+	"os"
+	"os/signal"
+
 	_ "github.com/GoAdminGroup/go-admin/adapter/gin" // 引入适配器，必须引入，如若不引入，则需要自己定义
 	_ "github.com/GoAdminGroup/themes/adminlte" // 引入主题，必须引入，不然报错
 	_ "github.com/GoAdminGroup/go-admin/modules/db/drivers/mysql" // 引入对应数据库引擎
 
 	"github.com/GoAdminGroup/go-admin/engine"
-	"github.com/GoAdminGroup/go-admin/modules/config"
-	"github.com/GoAdminGroup/go-admin/modules/language"
+	"github.com/GoAdminGroup/go-admin/template"
+	"github.com/GoAdminGroup/go-admin/template/chartjs"
 	"github.com/gin-gonic/gin"
+
+	"xxx/pages"
+	"xxx/tables"
 )
 
 func main() {
+	startServer()
+}
+
+func startServer() {
+	gin.SetMode(gin.ReleaseMode)
+	gin.DefaultWriter = ioutil.Discard
+
 	r := gin.Default()
+
+	template.AddComp(chartjs.NewChart())
 
 	// 实例化一个GoAdmin引擎对象
 	eng := engine.Default()
 
-	// GoAdmin全局配置，也可以写成一个json，通过json引入
-	cfg := config.Config{
-		// 数据库配置，为一个map，key为连接名，value为对应连接信息
-		Databases: config.DatabaseList{
-			// 默认数据库连接，名字必须为default
-			"default": {
-				Host:       "127.0.0.1",
-				Port:       "3306",
-				User:       "root",
-				Pwd:        "root",
-				Name:       "goadmin",
-				MaxIdleCon: 50,
-				MaxOpenCon: 150,
-				Driver:     config.DriverMysql,
-			},
-		},
-		UrlPrefix: "admin", // 访问网站的前缀
-		// Store 必须设置且保证有写权限，否则增加不了新的管理员用户
-		Store: config.Store{
-			Path:   "./uploads",
-			Prefix: "uploads",
-		},
-		// 网站语言
-		Language: language.CN,
-	}
-
 	// 增加配置与插件，使用Use方法挂载到Web框架中
-	_ = eng.AddConfig(cfg).
+	if err := eng.AddConfigFromJSON("./config.json").
 		// 这里引入你需要管理的业务表配置
 		// 后面会介绍如何使用命令行根据你自己的业务表生成Generators
-		// AddGenerators(Generators).
-		Use(r)
+		AddGenerators(tables.Generators).
+		Use(r); err != nil {
+		panic(err)
+	}
 
-	_ = r.Run(":9033")
+	r.Static("/uploads", "./uploads")
+
+	eng.HTML("GET", "/admin", pages.GetDashBoard)
+	eng.HTMLFile("GET", "/admin/hello", "./html/hello.tmpl", map[string]interface{}{
+		"msg": "Hello world",
+	})
+
+	_ = r.Run(":80")
+
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+	log.Print("closing database connection")
+	eng.MysqlConnection().Close()
 }
 ```
 
-请<b>留意以上代码与注释</b>，对应的步骤都加上了注释，使用十分简单，只需要：
+请<b>留意以上代码与注释</b>，对应的步骤都加上了注释，十分好理解：
 
 - 匿名引入<b>适配器</b>，<b>主题</b>与<b>数据库驱动</b>（必须）
 - 载入设置好的全局配置项：```eng.AddConfig```
 - 挂载到Web框架中：```eng.Use```
 
-接着执行```go run main.go```运行代码，访问：[http://localhost:9033/admin/login](http://localhost:9033/admin/login) <br>
+接着根据提示依次执行：
+(以下为mac/linux用户执行命令，windows用户需根据提示执行)
+
+```
+make init module=xxx
+GORPOXY=https://goproxy.io make install
+make serve
+```
+
+运行代码，访问：[http://localhost:9033/admin/login](http://localhost:9033/admin/login) <br>
 <br>
 默认登录账号：admin<br>
 默认登录密码：admin
@@ -97,8 +115,6 @@ func main() {
 注意：golang版本高于1.11强烈建议开启```GO111MODULE=on```，如果运行下载依赖有问题，这里提供了依赖包下载：
 
 - [vendor_v1.2.15.zip](http://file.go-admin.cn/go_admin/vendor/v1_2_15/vendor.zip)
-
-其他框架的例子可以参考：[https://github.com/GoAdminGroup/go-admin/tree/master/examples](https://github.com/GoAdminGroup/go-admin/tree/master/examples)
 
 ## 添加自己的业务表进行管理
 
@@ -109,7 +125,7 @@ func main() {
 {% page-ref page="plugins/admin.md" %}
 
 - [插件介绍](plugins/plugins.md)
-- [admin插件](plugins/admin.md)
+- [内置admin插件](plugins/admin.md)
 
 ## 全局配置项说明
 
@@ -251,6 +267,9 @@ type Config struct {
 	// 是否隐藏应用信息入口，默认显示
 	HideAppInfoEntrance bool `json:"hide_app_info_entrance",yaml:"hide_app_info_entrance",ini:"hide_app_info_entrance"`
 
+	// 隐藏模块列表入口，默认显示
+	HidePluginEntrance bool `json:"hide_plugin_entrance,omitempty" yaml:"hide_plugin_entrance,omitempty" ini:"hide_plugin_entrance,omitempty"`
+
 	// 自定义404页面
 	Custom404HTML template.HTML `json:"custom_404_html,omitempty",yaml:"custom_404_html",ini:"custom_404_html"`
 
@@ -268,6 +287,15 @@ type Config struct {
 
 	// 隐藏访客用户设置菜单
 	HideVisitorUserCenterEntrance bool `json:"hide_visitor_user_center_entrance",yaml:"hide_visitor_user_center_entrance",ini:"hide_visitor_user_center_entrance"`
+
+	// 需要排除的主题模块
+	ExcludeThemeComponents []string `json:"exclude_theme_components,omitempty" yaml:"exclude_theme_components,omitempty" ini:"exclude_theme_components,omitempty"`
+
+	// 引导文件路径
+	BootstrapFilePath string `json:"bootstrap_file_path,omitempty" yaml:"bootstrap_file_path,omitempty" ini:"bootstrap_file_path,omitempty"`
+
+	// go mod文件路径
+	GoModFilePath string `json:"go_mod_file_path,omitempty" yaml:"go_mod_file_path,omitempty" ini:"go_mod_file_path,omitempty"`
 }
 
 ```

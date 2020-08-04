@@ -30,26 +30,26 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-使用自带的命令行工具可以帮助你快速生成数据模型文件，如：
+使用工具快速生成数据模型文件：
 
-- 安装
-
-```bash
-go install github.com/GoAdminGroup/go-admin/adm
-```
-
-- 生成
+1. 使用自带的命令行工具
 
 <br>
 在项目文件夹下执行：
 
 ```bash
-adm generate
+adm generate -l cn
 ```
 
 **注意：选择表格的时候，按空格选择，不是按回车**
 
 根据提示填写信息，运行完之后，会生成一个文件```users.go```，这个就是对应数据表的配置文件了，关于如何配置，在后面详细介绍。
+
+2. 使用在线生成工具：
+
+![](http://quick.go-admin.cn/docs/tool.png)
+
+**注意：输出路径为本地文件绝对路径**
 
 ### 设置访问路由
 

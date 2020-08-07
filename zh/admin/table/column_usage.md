@@ -102,11 +102,16 @@ import (
 // 返回一个Jump Action，参数一为url，参数二为额外的html
 // Jump Action是一个跳转操作。如果需要跳转url中带上id，可以这样写：
 //
-// action.Jump("/admin/info/manager?id={{.Id}}")
+action.Jump("/admin/info/manager?id={{.Id}}")
 //
 // 其中{{.Id}}为id的占位符
 action.Jump("/admin/info/manager")
 action.JumpInNewTab("/admin/info/manager", "管理员")
+
+// 如果是行中的action，想要取得同行数据作为参数，比如行中有一列叫name，那么可以这样传：
+action.Jump(`/admin/info/manager?name={{(index .Value "name").Value}}`)
+
+// 这里 (index .Value "name") 取得的对象是：https://godoc.org/github.com/GoAdminGroup/go-admin/template/types#InfoItem
 
 // 返回一个PopUp Action，参数一为url，参数二为popup标题，参数三为对应的控制器方法。
 // 用户点击按钮后会请求对应的方法，带上请求id，请求转发到对应控制器方法后进行处理返回。

@@ -165,6 +165,9 @@ func GetContent(ctx *gin.Context) (types.Panel, error) {
 		// Title 与 Description是标题与描述
 		Title:       "表单",
 		Description: "表单例子",
+
+		// 这里需要注册表单的回调函数，如果不注册，action的回调函数不会被调用
+		Callbacks: panel.Callbacks,
 	}, nil
 }
 ```

@@ -25,12 +25,11 @@ adm init -l cn
 
 根据指示填写就可以初始化一个项目模板。
 
-使用版本高于 v1.2.16 的adm，可以使用命令：
+或者使用版本高于 **v1.2.16** 的adm，执行以下命令可以进行基于web的可视化安装：
 
 ```
 adm init web -l cn
 ```
-可以通过浏览器打开一个web安装页面进行可视化安装。
 
 ## main.go
 
@@ -139,8 +138,8 @@ make serve
 [https://github.com/GoAdminGroup/go-admin/blob/master/modules/config/config.go](https://github.com/GoAdminGroup/go-admin/blob/master/modules/config/config.go)
 
 
-<strong>注意：配置一旦初始化生成后，后续修改请在网站右上角中进入配置中心修改！</strong>
-<strong>注意：配置一旦初始化生成后，后续修改请在网站右上角中进入配置中心修改！</strong>
+<strong>注意：配置一旦初始化生成后，后续修改请在网站右上角中进入配置中心修改！</strong><br>
+<strong>注意：配置一旦初始化生成后，后续修改请在网站右上角中进入配置中心修改！</strong><br>
 <strong>注意：配置一旦初始化生成后，后续修改请在网站右上角中进入配置中心修改！</strong>
 
 ```go

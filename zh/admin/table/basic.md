@@ -148,6 +148,19 @@ info.WhereRaw("type = 0 or sex = 1")
 info.Where("type", "=", 3).WhereOr("type", "=", 0) 
 ```
 
+### 自定义主键
+
+```go
+// 设置模型配置
+userTable = table.NewDefaultTable(table.Config{
+    ...
+    PrimaryKey: table.PrimaryKey{ // 自定义主键，默认为id，类型为Int
+        Type: db.Int, // 主键类型
+        Name: table.DefaultPrimaryKeyName, // 主键字段名
+    },
+}) 
+```
+
 ### 导出设置
 
 ```go

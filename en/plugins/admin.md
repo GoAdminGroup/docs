@@ -557,5 +557,5 @@ func (r FieldModelValue) First() string {
 
 <br>
 
-> English is not my main language. If any typo or wrong translation you found, you can help to translate in [github here](https://github.com/GoAdminGroup/docs). I will very appreciate it.
+> English is not my main language. If you find any typo or wrong translation, you can help to translate it in [github here](https://github.com/GoAdminGroup/docs). I will appreciate it very much.
 

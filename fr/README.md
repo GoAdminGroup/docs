@@ -8,7 +8,7 @@ Before we build a management backend, we needed at least one back office enginee
 Now with GoAdmin, we don't need front-end engineers. Our back-end engineers don't even need to know the front-end knowledge. We can build a complete back-end management system in half an hour.
 If your requirements are not complicated, just simple crud, then all you need are serveral golang files, and all files can be packaged into a single binary file, which is very convenient for distribution and deployment.
 
-here is very simple example which show you how it work: [https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
+Here is a very simple example which show you how it work: [https://github.com/GoAdminGroup/example](https://github.com/GoAdminGroup/example)
 
 
 ## Features

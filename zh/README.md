@@ -56,6 +56,8 @@
 
 **微信群：**
 
+添加以下个人微信，并备注加GoAdmin开发群。
+
 <img src="http://quick.go-admin.cn/resource/wechat_qrcode_02.jpg" width="200" />
 
 **社区：** [https://discuss.go-admin.com/](https://discuss.go-admin.com/)

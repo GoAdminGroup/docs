@@ -56,7 +56,7 @@
 
 **微信群：**
 
-<img src="http://quick.go-admin.cn/resource/wechat_qrcode.jpg" width="200" />
+<img src="http://quick.go-admin.cn/resource/wechat_qrcode_02.jpg" width="200" />
 
 **社区：** [https://discuss.go-admin.com/](https://discuss.go-admin.com/)
 

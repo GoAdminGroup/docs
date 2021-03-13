@@ -31,6 +31,8 @@ adm init -l cn
 adm init web -l cn
 ```
 
+** 默认为前端文件编译成二进制的模板形式。如果您想对前端功能进行较多自定义改动，可以参考后面说明。**
+
 ## main.go
 
 初始化完成后，在你的项目文件夹下有一个```main.go```文件，内容如下：
@@ -132,6 +134,56 @@ make serve
 
 - [插件介绍](plugins/plugins.md)
 - [内置admin插件](plugins/admin.md)
+
+## 模板文件分离的模式
+
+如果对前端功能需要较多自定义，可使用模板文件分离的形式。
+
+假设已经使用```adm init```初始化一个模板后，那么需要进行以下几步更改：
+
+- 修改main.go文件，修改导入主题包为分离主题包
+- 下载模板文件夹public到本地
+	- adminlte: https://gitee.com/go-admin/themes/tree/master/adminlte/separation/public
+	- sword: https://gitee.com/go-admin/themes/tree/master/sword/separation/public
+- 修改config.json文件：
+	- 改动主题 theme 配置项：adminlte改为adminlte_sep，sword改为sword_sep
+	- 增加 asset_root_path 配置项，为模板文件夹(public)的地址，建议用绝对路径
+- 重新启动，并在网站右上角进去设置页更改主题
+
+这时修改一下模板文件夹下文件```public/pages/header.tmpl```试试吧！
+
+main.go
+
+```go
+package main
+
+import (
+	...
+
+	_ "github.com/GoAdminGroup/themes/adminlte/separation" 
+
+	...
+)
+
+func main() {
+	startServer()
+}
+
+func startServer() {
+	...
+}
+```
+
+config.json
+
+```js
+{
+  ...
+  "theme": "sword_sep",
+  ...
+  "asset_root_path": "./public"
+}
+```
 
 ## 全局配置项说明
 

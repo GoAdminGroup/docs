@@ -143,8 +143,8 @@ make serve
 
 - 修改main.go文件，修改导入主题包为分离主题包
 - 下载模板文件夹public到本地
-	- [adminlte](https://gitee.com/go-admin/themes/tree/master/adminlte/separation/public)
-	- [sword](https://gitee.com/go-admin/themes/tree/master/sword/separation/public)
+	- [adminlte](https://gitee.com/go-admin/themes/raw/master/adminlte/separation/public.zip)
+	- [sword](https://gitee.com/go-admin/themes/raw/master/sword/separation/public.zip)
 - 修改config.json文件：
 	- 改动主题 theme 配置项：adminlte 改为 adminlte_sep，sword 改为 sword_sep
 	- 增加 asset_root_path 配置项，为模板文件夹(public)的地址，建议用绝对路径

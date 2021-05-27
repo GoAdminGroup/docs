@@ -32,7 +32,7 @@ go install github.com/GoAdminGroup/go-admin/adm
 
 <br>
 
-🍺🍺 Get ready to work here, next to the [Quick start](quick_start)
+🍺🍺 Get ready to work here, next to the [Quick start](quick_start.md)
 
 <br>
 

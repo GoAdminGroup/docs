@@ -30,5 +30,5 @@ go install github.com/GoAdminGroup/go-admin/adm
 
 🍺🍺 Get ready to work here, next to the [Quick start](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/quick_start/README.md)
 
-> English is not my main language. If any typo or wrong translation you found, you can help to translate in [github here](https://github.com/GoAdminGroup/docs). I will very appreciate it.
+> English is not my main language. If you find any typo or wrong translation, you can help to translate it in [github here](https://github.com/GoAdminGroup/docs). I will appreciate it very much.
 

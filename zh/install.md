@@ -18,11 +18,11 @@
 
 |  File name   | OS  | Arch  | Size  |
 |  ----  | ----  | ----  |----  |
-| [adm_darwin_x86_64_v1.2.22.zip](http://file.go-admin.cn/go_admin/cli/v1_2_22/adm_darwin_x86_64_v1.2.22.zip)  | macOs | x86-64 | 4.77 MB
-| [adm_linux_x86_64_v1.2.22.zip](http://file.go-admin.cn/go_admin/cli/v1_2_22/adm_linux_x86_64_v1.2.22.zip)  | Linux | x86-64   | 6.52 MB
-| [adm_linux_armel_v1.2.22.zip](http://file.go-admin.cn/go_admin/cli/v1_2_22/adm_linux_armel_v1.2.22.zip)  | Linux | x86   | 6.06 MB
-| [adm_windows_i386_v1.2.22.zip](http://file.go-admin.cn/go_admin/cli/v1_2_22/adm_windows_i386_v1.2.22.zip)  | Windows | x86  |6.16 MB
-| [adm_windows_x86_64_v1.2.22.zip](http://file.go-admin.cn/go_admin/cli/v1_2_22/adm_windows_x86_64_v1.2.22.zip)  | Windows | x86-64   |6.38 MB
+| [adm_darwin_x86_64_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_darwin_x86_64_v1.2.23.zip)  | macOs | x86-64 | 4.77 MB
+| [adm_linux_x86_64_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_linux_x86_64_v1.2.23.zip)  | Linux | x86-64   | 6.52 MB
+| [adm_linux_armel_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_linux_armel_v1.2.23.zip)  | Linux | x86   | 6.06 MB
+| [adm_windows_i386_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_windows_i386_v1.2.23.zip)  | Windows | x86  |6.16 MB
+| [adm_windows_x86_64_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_windows_x86_64_v1.2.23.zip)  | Windows | x86-64   |6.38 MB
 
 
 

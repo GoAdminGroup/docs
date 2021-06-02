@@ -25,7 +25,7 @@ adm init -l cn
 
 根据指示填写就可以初始化一个项目模板。
 
-或者使用版本高于 **v1.2.22** 的adm，执行以下命令可以进行基于web的可视化安装：
+或者使用版本高于 **v1.2.23** 的adm，执行以下命令可以进行基于web的可视化安装：
 
 ```
 adm init web -l cn
@@ -122,7 +122,7 @@ make serve
 
 注意：golang版本高于1.11强烈建议开启```GO111MODULE=on```，如果运行下载依赖有问题，这里提供了依赖包下载：
 
-- [vendor_v1.2.22.zip](http://file.go-admin.cn/go_admin/vendor/v1_2_22/vendor.zip)
+- [vendor_v1.2.23.zip](http://file.go-admin.cn/go_admin/vendor/v1_2_23/vendor.zip)
 
 ## 添加自己的业务表进行管理
 

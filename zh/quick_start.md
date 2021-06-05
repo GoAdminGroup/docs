@@ -3,39 +3,27 @@
 
 GoAdmin通过各种适配器使得你在各个web框架中使用都十分的方便。目前支持的web框架有：
 
-- [gin](http://github.com/gin-gonic/gin)
-- [beego](https://github.com/astaxie/beego)
-- [fasthttp](https://github.com/valyala/fasthttp)
-- [buffalo](https://github.com/gobuffalo/buffalo)
-- [echo](https://github.com/labstack/echo)
-- [gorilla/mux](http://github.com/gorilla/mux)
-- [iris](https://github.com/kataras/iris)
-- [chi](https://github.com/go-chi/chi)
-- [gf](https://github.com/gogf/gf)
+[gin](http://github.com/gin-gonic/gin) / [beego](https://github.com/astaxie/beego) / [fasthttp](https://github.com/valyala/fasthttp) / [buffalo](https://github.com/gobuffalo/buffalo) / [echo](https://github.com/labstack/echo) / [gorilla/mux](http://github.com/gorilla/mux) / [iris](https://github.com/kataras/iris) / [chi](https://github.com/go-chi/chi) / [gf](https://github.com/gogf/gf)
 
-你可以选择你拿手的或者业务项目正在用的框架开始，如果上述没有你喜欢的框架，欢迎给我们提[issue](https://github.com/GoAdminGroup/go-admin/issues/new?assignees=&labels=&template=proposal.md&title=%5BProposal%5D)！
+您可以选择拿手的或者业务项目正在用的框架开始，如果上述没有你喜欢的框架，欢迎给我们提[issue](https://github.com/GoAdminGroup/go-admin/issues/new?assignees=&labels=&template=proposal.md&title=%5BProposal%5D)！
 
-下面以gin这个框架为例子，演示搭建过程。
+下面演示一下怎么快速搭建和启动项目。
+
+## 初始化
 
 首先新建一个项目文件夹，然后进入文件夹中使用最新版命令行工具 adm 执行：
 
-```
-adm init -l cn
-```
-
-根据指示填写就可以初始化一个项目模板。
-
-或者使用版本高于 **v1.2.23** 的adm，执行以下命令可以进行基于web的可视化安装：
-
-```
-adm init web -l cn
+```bash
+$ adm init -l cn
 ```
 
-** 默认为前端文件编译成二进制的模板形式。如果您想对前端功能进行较多自定义改动，可以参考后面说明。**
+或者使用以下命令，可以打开一个web界面安装：
 
-## main.go
+```bash
+$ adm init web -l cn
+```
 
-初始化完成后，在你的项目文件夹下有一个```main.go```文件，内容如下：
+初始化完成后，在你的项目文件夹下会生成整个项目的骨架。其中有一个```main.go```文件，内容如下：
 
 ```go
 package main
@@ -109,10 +97,10 @@ func startServer() {
 接着根据提示依次执行：
 (以下为mac/linux用户执行命令，windows用户需根据提示执行)
 
-```
-make init module=xxx
-GORPOXY=https://goproxy.io make install
-make serve
+```bash
+$ make init module=xxx
+$ GORPOXY=https://goproxy.io make install
+$ make serve
 ```
 
 运行代码，访问：[http://localhost:9033/admin/login](http://localhost:9033/admin/login) <br>
@@ -124,7 +112,7 @@ make serve
 
 - [vendor_v1.2.23.zip](http://file.go-admin.cn/go_admin/vendor/v1_2_23/vendor.zip)
 
-## 添加自己的业务表进行管理
+## 添加业务表管理
 
 详见：
 
@@ -135,7 +123,7 @@ make serve
 - [插件介绍](plugins/plugins.md)
 - [内置admin插件](plugins/admin.md)
 
-## 模板文件分离的模式
+## 前端模板文件分离
 
 如果对前端功能需要较多自定义，可使用模板文件分离的形式。
 
@@ -147,7 +135,7 @@ make serve
 	- [sword](https://gitee.com/go-admin/themes/raw/master/sword/separation/public.zip)
 - 修改config.json文件：
 	- 改动主题 theme 配置项：adminlte 改为 adminlte_sep，sword 改为 sword_sep
-	- 增加 asset_root_path 配置项，为模板文件夹(public)的地址，建议用绝对路径
+	- 增加 asset_root_path 配置项，为模板文件夹(public)的地址，建议用绝对路径，末尾需要带上斜杆
 - 重新启动，并在网站右上角进去设置页更改主题
 
 这时修改一下模板文件夹下文件```public/pages/header.tmpl```试试吧！
@@ -181,7 +169,7 @@ config.json
   ...
   "theme": "sword_sep",
   ...
-  "asset_root_path": "./public"
+  "asset_root_path": "./public/"
 }
 ```
 
@@ -366,7 +354,7 @@ type Config struct {
 
 日志设置：
 
-```golang
+```go
 
 type Logger struct {
 	// 编码设置

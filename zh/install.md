@@ -41,18 +41,18 @@ PGPASSWORD=root psql -h 127.0.0.1 -p 5432 -d go_admin -U postgres -f ./admin.sql
 
 |  文件名   | 系统  | 架构  | 大小  |
 |  ----  | ----  | ----  |----  |
-| [adm_darwin_x86_64_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_darwin_x86_64_v1.2.23.zip)  | macOs | x86-64 | 4.77 MB
-| [adm_linux_x86_64_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_linux_x86_64_v1.2.23.zip)  | Linux | x86-64   | 6.52 MB
-| [adm_linux_armel_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_linux_armel_v1.2.23.zip)  | Linux | x86   | 6.06 MB
-| [adm_windows_i386_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_windows_i386_v1.2.23.zip)  | Windows | x86  |6.16 MB
-| [adm_windows_x86_64_v1.2.23.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_windows_x86_64_v1.2.23.zip)  | Windows | x86-64   |6.38 MB
+| [adm_darwin_x86_64_v1.2.24.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_darwin_x86_64_v1.2.24.zip)  | macOs | x86-64 | 4.77 MB
+| [adm_linux_x86_64_v1.2.24.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_linux_x86_64_v1.2.24.zip)  | Linux | x86-64   | 6.52 MB
+| [adm_linux_armel_v1.2.24.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_linux_armel_v1.2.24.zip)  | Linux | x86   | 6.06 MB
+| [adm_windows_i386_v1.2.24.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_windows_i386_v1.2.24.zip)  | Windows | x86  |6.16 MB
+| [adm_windows_x86_64_v1.2.24.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_windows_x86_64_v1.2.24.zip)  | Windows | x86-64   |6.38 MB
 
 
 
 或使用命令安装：
 
 ```bash
-$ go install github.com/GoAdminGroup/go-admin/adm
+$ go install github.com/GoAdminGroup/adm
 ```
 
 🍺🍺 到这里准备工作完毕~~

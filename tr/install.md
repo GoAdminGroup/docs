@@ -25,7 +25,7 @@ Download the binary excecute file:
 Or use the command:
 
 ```text
-go install github.com/GoAdminGroup/go-admin/adm
+go install github.com/GoAdminGroup/adm
 ```
 
 🍺🍺 Get ready to work here, next to the [Quick start](https://github.com/GoAdminGroup/docs/tree/a7285aeef44a9fc42dbd84723277aec08f27d153/tr/quick_start/README.md)

@@ -17,7 +17,7 @@ Download the binary of the corresponding system:
 Or use the command to install:
 
 ```text
-go install github.com/GoAdminGroup/go-admin/adm
+go install github.com/GoAdminGroup/adm
 ```
 
 ## Usage

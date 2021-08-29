@@ -35,7 +35,7 @@ Use the command line tools - adm to help you quickly generate configuration file
 - install
 
 ```bash
-go install github.com/GoAdminGroup/go-admin/adm
+go install github.com/GoAdminGroup/adm
 ```
 
 - generate

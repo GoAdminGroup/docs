@@ -13,9 +13,9 @@ Here is a super simple example which quickly shows you how it works: [https://gi
 
 ## Features
 
-- Build-in RBAC Access Authentication System
-- Support most web framework
-- Support plug-ins(working on it)
+- Built-in RBAC Access Authentication System
+- Supports most web frameworks
+- Supports plug-ins(working on it)
 - Provided different ui theme(only Adminlte now, others are coming soon.)
 
 ## Online Demo

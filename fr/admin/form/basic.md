@@ -28,14 +28,14 @@ import (
 
 func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
-	// config the table model.
+	// configure le modèle de la table.
 	userTable = table.NewDefaultTable(...)
 
   ...
 
 	formList := userTable.GetForm()
 
-	// set id editable is false.
+	// Le champ id n'est plus éditable.
 	formList.AddField("ID", "id", db.Int, form.Default).FieldNotAllowEdit()
 	formList.AddField("Ip", "ip", db.Varchar, form.Text)
 	formList.AddField("Name", "name", db.Varchar, form.Text)
@@ -46,17 +46,17 @@ func GetUserTable(ctx *context.Context) (userTable table.Table) {
 }
 ```
 
-### Ajout de domaines
+### Ajout de champs
 
 ```go
 
-// Ajoute un domaine avec son titre ID, son nom id, son type int et son type par défault
+// Ajoute un champ avec son titre ID, son nom id, son type int et son type par défault
 formList.AddField("ID", "id", db.Int, form.Default)
 
-// Ajoute un second domaine avec son titre Ip, son nom ip, son type varchar et son type Text
+// Ajoute un second champ avec son titre Ip, son nom ip, son type varchar et son type Text
 formList.AddField("Ip", "ip", db.Varchar, form.Text)
 
-// Ajoute un troisième domaine, un domaine qui n'existe pas dans la table sql
+// Ajoute un troisième champ, un champ qui n'existe pas dans la table sql
 formList.AddField("Custom", "custom", db.Varchar, form.Text)
 
 ```
@@ -69,7 +69,7 @@ formList.AddField("id", "id", db.Int, form.Default).FieldNotAllowEdit()
 
 ```
 
-### Interdire l'ajout de nouveaux domaines
+### Interdire l'ajout de nouveaux champs
 
 ```go
 

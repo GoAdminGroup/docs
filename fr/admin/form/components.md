@@ -1,4 +1,4 @@
-# Usage Of Form Components
+# Utilisation d'une table
 ---
 
 ## Default
@@ -17,12 +17,12 @@ formList.AddField("name", "name", db.Varchar, form.Text)
 
 ```go
 formList.AddField("sex", "sex", db.Int, form.SelectSingle).
-        // Radio options, field represents the display content, value on behalf of the corresponding value
+        // Une option possibles, le champ représente le contenu et sa valeur correspond à l'option choisie
 		FieldOptions(types.FieldOptions{ 
             {Text: "man",Value: "0"},
             {Text: "women",Value: "1"},
         }).
-        // This returns []string, the corresponding value is that the value of the sex of this column, the corresponding value is displayed when edit form
+        // Ceci retourne []string, la valeur de la chaine de caractère est le texte correspondant, la valeur est donnée lors de l'édition de la table.
         FieldDisplay(func(model types.FieldModel) interface{} {
             return []string{"0"}
         })
@@ -32,7 +32,7 @@ formList.AddField("sex", "sex", db.Int, form.SelectSingle).
 
 ```go
 formList.AddField("drink", "drink", db.Int, form.Select).
-        // alternative options, field represents the display content, value on behalf of the corresponding value
+        // plusieurs options possibles, le champ représente le contenu et sa valeur correspond à l'option choisie
 		FieldOptions(types.FieldOptions{
             {
                 Text: "beer",
@@ -48,7 +48,7 @@ formList.AddField("drink", "drink", db.Int, form.Select).
                 Value: "red bull",
             },
         }).
-        // This returns []string, the corresponding value is that the value of the drink of this column, the corresponding value is displayed when edit form
+        // Ceci retourne []string, la valeur de la chaine de caractère est le texte correspondant, la valeur est donnée lors de l'édition de la table.
         FieldDisplay(func(model types.FieldModel) interface{} {
             return []string{"beer"}
         })
@@ -64,7 +64,7 @@ formList.AddField("icon", "icon", db.Varchar, form.IconPicker)
 
 ```go
 formList.AddField("fruit", "fruit", db.Int, form.SelectBox).
-        // alternative options, field represents the display content, value on behalf of the corresponding value
+        // plusieurs options possibles, le champ représente le contenu et sa valeur correspond à l'option choisie
 		FieldOptions(types.FieldOptions{
             {
                 Text: "apple",
@@ -80,7 +80,7 @@ formList.AddField("fruit", "fruit", db.Int, form.SelectBox).
                 Value: "pear",
             },
         }).
-        // This returns []string, the corresponding value is that the value of the fruit of this column, the corresponding value is displayed when edit form
+        // Ceci retourne []string, la valeur de la chaine de caractère est le texte correspondant, la valeur est donnée lors de l'édition de la table.
         FieldDisplay(func(model types.FieldModel) interface{} {
             return []string{"pear"}
         })
@@ -114,11 +114,11 @@ formList.AddField("birthday", "birthday", db.Varchar, form.Datetime)
 
 ```go
 formList.AddField("gender", "gender", db.Int, form.Radio).
-        // Radio options, field on behalf of the word, the label on behalf of the display content, value on behalf of the corresponding value
+        // Options radio, le champ représente le contenu et sa valeur correspond à l'option choisie
 		FieldOptions(types.FieldOptions{ 
             {Text: "man",Value: "0"},
             {Text: "women",Value: "1"},
-        }).FieldDefault("0") // Set the default values
+        }).FieldDefault("0") // Donne la valeur par défault
 ```
 
 ## Email
@@ -163,9 +163,9 @@ formList.AddField("num", "num", db.Varchar, form.Number)
 formList.AddField("content", "content", db.Varchar, form.TextArea)
 ```
 
-## Custom
+## Personnalisée
 
-Custom form content
+Table personnalisée
 
 ```go
 formList.AddField("content", "content", db.Varchar, form.Custom).
@@ -174,7 +174,8 @@ formList.AddField("content", "content", db.Varchar, form.Custom).
     FieldCustomJs(template.JS(``))
 ```
 
-The following form the custom template file structure, setting the ` ` ` CustomContent ` ` `, ` ` ` CustomCss ` ` `, ` ` ` CustomJs ` ` ` will be inserted into the corresponding location.
+Ce qui suit forme le modèle de la structure de fichier personnalisée. 
+En ajustant les options ` ` ` CustomContent ` ` `, ` ` ` CustomCss ` ` `, ` ` ` CustomJs ` ` `, les paramètres seront insérés dans leurs endroits respectifs.
 
 ```go
 {{define "form_custom"}}

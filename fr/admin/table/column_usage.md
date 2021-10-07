@@ -1,114 +1,114 @@
-# Usage Of Column
+# Usage de colonnes
 ---
 
-**InfoPanel** has a lot of built-in operation methods for columns, which can be used to manipulate column data very flexibly.
+**InfoPanel** a beaucoup d'éléments qui permettent de manipuler les données des colonnes de façon très flexible.
 
-### Set Width
+### Changer la largeur
 
 ```go
 info.SetTableFixed()
 info.AddField("Name", "name", db.Varchar).FieldWidth(100)
 ```
 
-### Hide
+### Cacher
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldHide()
 ```
 
-### Be Sortable
+### Pouvoir être ordonné
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldSortable()
 ```
 
-### Be Fixed
+### Est fixe
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldFixed()
 ```
 
-### Be Filterable
+### Peut-être filtrable
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldFilterable()
 ```
 
-## Help Methods
+## Aide
 
-### String manipulation
+### Manipulation de chaînes de caractères
 
-Limit the output length
+Limiter la taille du champ
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldLimit(10)
 ```
 
-Title
+Titre
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldToTitle()
 ```
 
-Trim space
+Modifier l'espace
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldTrimSpace()
 ```
 
-String interception
+Concaténation
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldSubstr(0, 3)
 ```
 
-String to uppercase
+Chaîne de caractères en majuscules
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldToUpper()
 ```
 
-String to lowercase
+Chaîne de caractères en minuscules
 
 ```go
 info.AddField("Name", "name", db.Varchar).FieldToLower()
 ```
 
 
-**If you want to add global filtering operation**
+**Si vous voulez ajouter des filtres globaux**
 
-Then you can do like this:
+Alors vous pourrez le faire comme ceci:
 
 ```go
 adminPlugin := admin.NewAdmin(...)
 
-// limit output
+// limiter la sortie
 adminPlugin.AddDisplayFilterLimit(limit int)
 
-// trim space
+// Modifier l'espace
 adminPlugin.AddDisplayFilterTrimSpace()
 
-// substr
+// Concaténation
 adminPlugin.AddDisplayFilterSubstr(start int, end int)
 
-// make title
+// Titre
 adminPlugin.AddDisplayFilterToTitle()
 
-// to upper
+// Majuscules
 adminPlugin.AddDisplayFilterToUpper()
 
-// to lower
+// Minuscules
 adminPlugin.AddDisplayFilterToLower()
 
-// xss filter
+// Filtre xss
 adminPlugin.AddDisplayFilterXssFilter()
 
-// js filter
+// Filtre JavaScript
 adminPlugin.AddDisplayFilterXssJsFilter()
 
 ```
 
-**If you want to add filtering operation in display level of info table or forms**
+**Si vous voulez ajouter un filtre pour une table ou un tableau**
 
 ```go
 info := table.NewDefaultTable(...).GetInfo()

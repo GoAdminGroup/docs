@@ -1,6 +1,6 @@
-# Basic Usage
+# Usage basique
 
-Use the command line to generate a data table type for the sql table, such as:
+Utilisez cette ligne de commande pour générer un table de données:
 
 ```sql
 CREATE TABLE `users` (
@@ -16,7 +16,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-Generated:
+Généré:
 
 ```go
 package datamodel
@@ -27,42 +27,42 @@ import (
 
 func GetUserTable(ctx *context.Context) (userTable table.Table) {
 
-    // config the table model.
+    // configuration du modèle de la table.
     userTable = table.NewDefaultTable(table.Config{...})
 
     info := userTable.GetInfo()
 
-    // set id sortable.
+    // id est triable.
     info.AddField("ID", "id", db.Int).FieldSortable(true)
     info.AddField("Name", "name", db.Varchar)
 
     ...
 
-    // set the title and description of table page.
+    // on donne le titre et la déscription de la page de la table.
     info.SetTable("users").SetTitle("Users").SetDescription("Users").
-        SetAction(template.HTML(`<a href="http://google.com"><i class="fa fa-google"></i></a>`))  // custom operation button
+        SetAction(template.HTML(`<a href="http://google.com"><i class="fa fa-google"></i></a>`))  // bouton personnalisé
 
     ...
 }
 ```
 
-### Add Field
+### Ajout d'un champ
 
 ```go
-// Add a field with the field title ID, field name id, field type int
+// Ajout d'un champ avec son titre (ID), son nom (id) et son type (int)
 info.AddField("ID", "id", db.Int)
 
-// Add the second field, the field title is Name, the field name is name, and the field type is varchar
+// Ajout d'un second champ avec son titre (Name), son nom (name) et son type (varchar)
 info.AddField("Name", "name", db.Varchar)
 
-// Add a third field, a field that does not exist in the sql table
+// Ajout d'un troisième champ, qui n'existe cependant pas dans la table sql
 info.AddField("Custom", "custom", db.Varchar)
 ```
 
-### Modify display output
+### Modifications visuelles
 
 ```go
-// Output the corresponding content according to the value of the field
+// La sortie correspond à la valeur du champ
 info.AddField("Gender", "gender", db.Tinyint).FieldDisplay(func(model types.FieldModel) interface{} {
     if model.Value == "0" {
         return "men"
@@ -73,103 +73,103 @@ info.AddField("Gender", "gender", db.Tinyint).FieldDisplay(func(model types.Fiel
     return "unknown"
 })
 
-// Output html
+// Sortie html
 info.AddField("Name", "name", db.Varchar).FieldDisplay(func(model types.FieldModel) interface{} {    
     return "<span class='label'>" +  model.Value + "</span>"
 })
 ```
 
-The anonymous function received by the **FieldDisplay** method binds the data object of the current row, and can call other field data of the current row in it.
+La sortie inconnue reçue par **FieldDisplay** connecte les données de la ligne actuelle et peut appeler d'autres données en elle. 
 
 ```go
 info.AddField("First Name", "first_name", db.Varchar).FieldHide()
 info.AddField("Last Name", "last_name", db.Varchar).FieldHide()
 
-// non-existing field columns
+// Colonne du champ non-existante
 info.AddField("Full Name", "full_name", db.Varchar).FieldDisplay(func(model types.FieldModel) interface{} {    
     return model.Row["first_name"].(string) + " " + model.Row["last_name"].(string)
 })
 ```
 
-### Hide create button
+### Cacher le bouton créer
 
 ```go
 info.HideNewButton()
 ```
 
-### Hide edit button
+### Cacher le bouton éditer
 
 ```go
 info.HideEditButton()
 ```
 
-### Hide export button
+### Cacher le bouton exporter
 
 ```go
 info.HideExportButton()
 ```
 
-### Hide delete button
+### Cacher le bouton supprimer
 
 ```go
 info.HideDeleteButton()
 ```
 
-### Hide detail button
+### Cacher le bouton de détails
 
 ```go
 info.HideDetailButton()
 ```
 
-### Hide filter area by default
+### Cacher le filtre par défault
 
 ```go
 info.HideFilterArea()
 ```
 
-### Pre query
+### Pré requête
 
 ```go
 // field, operator, argument
 info.Where("type", "=", 0)
 ```
 
-## Set filter area form layout
+## Modifier la disposition du filtre
 
 ```go
 info.SetFilterFormLayout(layout form.Layout)
 ```
 
-## Set default order rule
+## Changer l'ordre par défault
 
 ```go
-// increase
+// monter
 info.SetSortAsc()
-// decrease
+// descendre
 info.SetSortDesc()
 ```
 
-## Join Table
+## Joindre une table
 
-The table needs to set the table name and the table field
+La table doit avoir un nom et un champ
 
 ```go
 info.AddField("Role Name", "role_name", db.Varchar).FieldJoin(types.Join{
-    Table: "role",         // table name which you want to join 
-    Field: "id",           // table field name of your own 
-    JoinField: "user_id",  // table field name of the table which you want to join 
+    Table: "role",         // nom de la table que l'on veut joindre
+    Field: "id",           // nom du champ à joindre
+    JoinField: "user_id",  // champ de la table que l'on veut joindre
 })
 ```
 
-It will generate a sql statement like this:
+Cela va générer une commande sql comme celle-ci:
 
 ```sql
 select ..., role.`role_name` from users left join role on users.`id` = role.`user_id` where ...
 ```
 
-## Configure Detail Page
+## Configurer la page des détails
 
-You can customize details page display content, if it is not set, the default Settings display using list page
+Vous pouvez personnaliser l'affichage de la page des détails. Si ce n'est pas fait, les règlages par défaults seront choisis
 
 ```go
 package datamodel

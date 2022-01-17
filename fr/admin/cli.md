@@ -1,12 +1,12 @@
-# Cli Introduction
+# Introduction à l'interface en ligne de commandes
 ---
 
-GoAdmin provides a command line tool to increase development efficiency and streamline the development process.
+GoAdmin donne accès à une interface en ligne de commandes pour permettre d'augmenter l'efficacité du développement et le normaliser.
 
-## Install
+## Installation
 
 
-Download the binary of the corresponding system:
+Téléchargez la version correspondante à votre système d'exploitation:
 
 |  File name   | OS  | Arch  | Size  |
 |  ----  | ----  | ----  |----  |
@@ -17,27 +17,27 @@ Download the binary of the corresponding system:
 | [adm_windows_x86_64_v1.2.24.zip](http://file.go-admin.cn/go_admin/cli/v1_2_23/adm_windows_x86_64_v1.2.24.zip)  | Windows | x86-64   |6.38 MB
 
 
-Or use the command to install:
+Ou utilisez la commande pour l'installer:
 
 ```
 go install github.com/GoAdminGroup/adm
 ```
 
-## Usage
+## Utilisation
 
-Use
+Utilisez
 
 ```
 adm --help
 ```
 
-Will list help information.
+Cette commande donner les informations suivantes:
 
 |  Command  |  Subcommand   | Options  | Function  | 
 |  ---- | ---- | ----  | ----  |
-| generate  |  - | - | generate a data model file.
-| compile  | asset| **-s, --src** front-end resource folder path<br>**-d, --dist** output go file path | compile all resource files into one single go file.
-| compile  | tpl | **-s, --src** the input golang tmpl template folder path<br>**-d, --dist** output go file path<br>**p, --package** output go file package name | compile all template files into one single go file.
-| combine  | css| **-s, --src** the input css folder path<br>**-d, --dist** the output css file path<br>**p, --package** output go file package name | combine the css files into one single css file.
-| combine  | js | **-s, --src** the input js folder path<br>**-d, --dist** the output js file path | combine the js files into one single js file.
-| develop  | tpl | **-m, --module** golang module name or path under $GOPATH<br>**-n, --name** theme name | fetch remotely theme development templates to local.
+| generate  |  - | - | génère un modèle de fichier de données.
+| compile  | asset| **-s, --src** chemin d'accès des ressources front-end<br>**-d, --dist** chemin du fichier de sortie go | compile toutes les ressources dans un seul fichier go.
+| compile  | tpl | **-s, --src** chemin d'accès vers les modèles golang sous forme d'un dossier tmpl<br>**-d, --dist** chemin du fichier go de sortie <br>**-p, --package** nom du fichier de sortie go | compile tous les modèles en seul fichier go.
+| combine  | css| **-s, --src** chemin d'accès vers le dossier d'entrée css<br>**-d, --dist** chemin vers le fichier css de sortie<br>**-p, --package** nom du fichier de sortie css | combine tous les fichiers css en un fichier css.
+| combine  | js | **-s, --src** chemin d'accès vers le dossier d'entrée js<br>**-d, --dist** chemin vers le fichier js de sortie | combine tous les fichiers js en un seul.
+| develop  | tpl | **-m, --module** nom du module golang ou sont chemin d'accès $GOPATH<br>**-n, --name** nom du thème | récupère les modèles et les sauvegardes localement.

@@ -110,7 +110,7 @@ $ make serve
 
 注意：golang版本高于1.11强烈建议开启```GO111MODULE=on```，如果运行下载依赖有问题，这里提供了依赖包下载：
 
-- [vendor_v1.2.24.zip](http://file.go-admin.cn/go_admin/vendor/v1_2_23/vendor.zip)
+- [vendor_v1.2.24.zip](http://file.go-admin.cn/go_admin/vendor/v1_2_24/vendor.zip)
 
 ## 添加业务表管理
 

@@ -32,8 +32,7 @@ func main() {
 	gin.DefaultWriter = ioutil.Discard
 
 	eng := engine.Default()
-	adminPlugin := admin.NewAdmin(datamodel.Generators)
-	adminPlugin.AddGenerator("user", datamodel.GetUserTable)
+	
 
     // 使用登录页面组件
     login.Init(login.Config{
@@ -52,8 +51,9 @@ func main() {
 		panic(err)
 	}
 		
-	// 载入对应验证码驱动，如没使用不用载入
-	adminPlugin.SetCaptcha(map[string]string{"driver": login.CaptchaDriverKeyDefault})
+	// eng.Use已经New了一个Admin,这里直接使用，载入对应验证码驱动，如没使用不用载入
+	eng.AdminPlugin().SetCaptcha(map[string]string{"driver": login.CaptchaDriverKeyDefault})
+    eng.AdminPlugin().AddGenerator("user", datamodel.GetUserTable)
 
 	r.Static("/uploads", "./uploads")
 
